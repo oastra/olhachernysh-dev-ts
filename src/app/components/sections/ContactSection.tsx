@@ -8,7 +8,6 @@ import SectionFooter from '../common/SectionFooter';
 export default function ContactSection() {
   return (
     <SectionWrapper
-      as="section"
       id="contact"
       aria-labelledby="contact-title"
       className="!pt-0 !pb-0"
