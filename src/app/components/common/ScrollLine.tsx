@@ -12,28 +12,26 @@ type ContainerRef =
 
 type StepRef = React.RefObject<Handle> | React.MutableRefObject<Handle | null>;
 
+// NEW: can be a handle itself or a ref to a handle
+type StepInput = StepRef | Handle;
+
 type Props = {
   containerRef: ContainerRef;
-  stepRefs: StepRef[];
+  stepRefs: StepInput[]; // <— changed
   className?: string;
   gradient?: [string, string];
 };
 
 function buildSmoothPath(container: HTMLElement, steps: HTMLElement[]) {
-  // layout constants tuned to your Figma
-  const cardLeft = 16; // left edge of cards (approx)
-  const cardRightOffset = 12; // path hugs card’s right side
-  const cornerR = 12; // curve radius for corners
-  const topRuleOffset = 8; // path starts slightly below the top rule
+  const cardLeft = 16;
+  const cardRightOffset = 12;
+  const cornerR = 12;
+  const topRuleOffset = 8;
 
-  const rect = container.getBoundingClientRect();
-  const cw = rect.width;
-
-  // X positions
+  const cw = container.getBoundingClientRect().width;
   const xLeft = cardLeft;
   const xRight = cw - cardRightOffset;
 
-  // Compute card vertical metrics
   const points = steps.map((el) => {
     const yTop = el.offsetTop;
     const yBottom = yTop + el.offsetHeight;
@@ -41,28 +39,16 @@ function buildSmoothPath(container: HTMLElement, steps: HTMLElement[]) {
   });
 
   let d = '';
-
-  // Move to start (left)
   d += `M ${xLeft} ${topRuleOffset} `;
-  // Top horizontal segment
   d += `L ${xRight} ${topRuleOffset} `;
 
-  // Snake down the right side past each card with rounded corners
   points.forEach(({ yTop, yBottom }, idx) => {
-    const toY = yTop - 10; // small gap before card
+    const toY = yTop - 10;
     d += `L ${xRight} ${toY} `;
-
-    // Corner around the card top-right
     d += `Q ${xRight} ${toY + cornerR} ${xRight - cornerR} ${toY + cornerR} `;
-
-    // Run down along the card
     const downY = yBottom + 10;
     d += `L ${xRight - cornerR} ${downY - cornerR} `;
-
-    // Corner leaving bottom-right of the card
     d += `Q ${xRight - cornerR} ${downY} ${xRight} ${downY} `;
-
-    // After last card, draw a tail down with a rounded end
     if (idx === points.length - 1) {
       d += `L ${xRight} ${downY + 60} `;
       d += `Q ${xRight} ${downY + 72} ${xRight - 12} ${downY + 72} `;
@@ -70,6 +56,15 @@ function buildSmoothPath(container: HTMLElement, steps: HTMLElement[]) {
   });
 
   return d;
+}
+
+// helper: normalize StepInput -> HTMLElement | null
+function getElFromStep(step: StepInput): HTMLElement | null {
+  if (step && typeof step === 'object' && 'current' in step) {
+    return (step.current?.el ?? null) as HTMLElement | null;
+  }
+  // it's a plain Handle
+  return (step as Handle).el ?? null;
 }
 
 export default function ScrollLine({
@@ -85,9 +80,7 @@ export default function ScrollLine({
   // Recompute path on layout changes
   React.useLayoutEffect(() => {
     const container = containerRef.current;
-    const steps = stepRefs
-      .map((r) => r.current?.el as HTMLElement | null)
-      .filter(Boolean) as HTMLElement[];
+    const steps = stepRefs.map(getElFromStep).filter(Boolean) as HTMLElement[];
 
     if (!container || steps.length === 0) return;
 
