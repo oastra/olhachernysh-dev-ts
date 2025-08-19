@@ -1,0 +1,240 @@
+/* Tailwind import — must be first */
+@import 'tailwindcss';
+@import './typography.css';
+
+/* Global CSS variables for light and dark modes */
+/* Light mode variables */
+:root {
+  --background: #fbfdfc;
+  --foreground: #171717;
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Theme variables (Tailwind v4 configuration in CSS) */
+@theme {
+  --breakpoint-sm: 375px; /* mobile */
+  --breakpoint-md: 744px; /* tablet */
+  --breakpoint-lg: 1024px; /* laptop */
+  --breakpoint-xl: 1440px; /* desktop */
+  --breakpoint-2xl: 1600px; /* big desktop */
+  --breakpoint-4xl: 120rem; /* 1920px */
+
+  /* Fonts — will generate font-display and font-text utilities */
+  --font-display: 'FixelDisplay', sans-serif;
+  --font-text: 'FixelText', sans-serif;
+  --font-logo: 'Konkhmer Sleokchher', sans-serif;
+
+  /* Colors — will generate text-main-blue, bg-main-blue, etc. */
+  --color-main-blue: #092e84;
+  --color-black-custom: #000924;
+  --color-gray-custom: #c3c3c3;
+  --color-additional-blue: #5fa0ff;
+  --color-white: #ffffff;
+  --color-ink: #020024;
+
+  /* Optional: link background/foreground vars to color tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+/* Reusable mask helpers */
+.mask-frame-1 {
+  -webkit-mask: url('/masks/frame-1.svg') no-repeat center / contain;
+  mask: url('/masks/frame-1.svg') no-repeat center / contain;
+}
+.mask-frame-2 {
+  -webkit-mask: url('/masks/frame-2.svg') no-repeat center / contain;
+  mask: url('/masks/frame-2.svg') no-repeat center / contain;
+}
+
+/* Custom gradient utilities */
+
+@layer utilities {
+  /* Typography utilities */
+  /* Headings */
+  /* H1: mobile 32 → tablet 54 → desktop 90 */
+  .text-h1 {
+    @apply font-["FixelDisplay"] font-medium leading-[110%]
+           text-[32px] md:text-[54px] xl:text-[90px];
+  }
+  /* H2: mobile 32 → tablet 48 → desktop 66 */
+  .text-h2 {
+    @apply font-["FixelDisplay"] font-medium leading-[110%]
+           text-[32px] md:text-[48px] xl:text-[66px];
+  }
+  /* H3: mobile 32 → tablet 42 → desktop 48 */
+  .text-h3 {
+    @apply font-["FixelDisplay"] font-medium leading-[130%]
+           text-[32px] md:text-[42px] lg:text-[48px];
+  }
+
+  .text-body {
+    @apply font-["FixelText"] leading-[150%] text-[16px] md:text-[18px];
+  }
+  /* base gradient text */
+  .text-main-gradient {
+    background: linear-gradient(90deg, #000924 0%, #092b79 35%, #00d4ff 98%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* enable `hover:text-main-gradient` */
+  .hover\:text-main-gradient:hover {
+    background: linear-gradient(90deg, #000924 0%, #092b79 35%, #00d4ff 98%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  /* --- shared gradient you already use --- */
+
+  .bg-main-gradient {
+    background: linear-gradient(90deg, #000924 0%, #092b79 35%, #00d4ff 98%);
+  }
+  .hover\:bg-main-gradient:hover {
+    background: linear-gradient(90deg, #000924 0%, #092b79 35%, #00d4ff 98%);
+  }
+
+  .bg-gradient-10 {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 9, 36, 0.1) 0%,
+      rgba(9, 43, 121, 0.1) 35%,
+      rgba(0, 212, 255, 0.1) 98%
+    );
+  }
+
+  .bg-portfolio-gradient {
+    background: linear-gradient(90deg, #e7e9eb 0%, rgba(9, 83, 132, 0.05) 100%);
+  }
+
+  /* --- button variants as plain CSS (with :hover) --- */
+  .btn-cta {
+    background-color: var(--color-main-blue);
+    color: #fff;
+  }
+  .btn-cta:hover {
+    background: linear-gradient(90deg, #000924 0%, #092b79 35%, #00d4ff 98%);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-main-blue);
+  }
+  .btn-secondary:hover {
+    color: var(--color-black-custom);
+  }
+
+  .btn-glass {
+    background: rgba(95, 160, 255, 0.37);
+    color: #091a84;
+  }
+  .btn-glass:hover {
+    background: linear-gradient(90deg, #000924 0%, #092b79 35%, #00d4ff 98%);
+    color: #fff;
+  }
+
+  .btn-primary {
+    background: linear-gradient(90deg, #000924 0%, #092b79 35%, #00d4ff 98%);
+    color: #fff;
+  }
+  /* Circular CTA gradient button (used on ProjectCard hover) */
+  .btn-circle-cta {
+    @apply grid place-items-center rounded-full shadow-lg;
+    background: linear-gradient(90deg, #000924 0%, #092b79 35%, #00d4ff 98%);
+    box-shadow: 0 10px 30px rgba(0, 68, 255, 0.25);
+  }
+
+  .btn-circle-cta:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.6),
+      0 10px 30px rgba(0, 68, 255, 0.3);
+  }
+
+  /* optional glow */
+  .btn-glow:hover {
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.25);
+  }
+
+  /* arrow nudge (used by group-hover on the icon) */
+  @keyframes nudge-x {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(4px);
+    }
+  }
+  .animate-nudge-x {
+    animation: nudge-x 1.2s ease-in-out infinite;
+  }
+}
+
+/* Base styles */
+body {
+  @apply antialiased font-text;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Fonts */
+@font-face {
+  font-family: 'FixelDisplay';
+  src: url('/fonts/fixel/FixelDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FixelDisplay';
+  src: url('/fonts/fixel/FixelDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FixelText';
+  src: url('/fonts/fixel/FixelText-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* @font-face {
+  font-family: 'FixelText';
+  src: url('/fonts/fixel/FixelText-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+} */
+@font-face {
+  font-family: 'Konkhmer Sleokchher';
+  src: url('/fonts/konkhmer/KonkhmerSleokchher-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
