@@ -1,27 +1,26 @@
 'use client';
 
-import {
-  RefObject,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import * as React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 type Handle = { el: HTMLDivElement | null };
 
+// Accept both createRef and useRef styles, with nullable current
+type ContainerRef =
+  | React.RefObject<HTMLDivElement>
+  | React.MutableRefObject<HTMLDivElement | null>;
+
+type StepRef = React.RefObject<Handle> | React.MutableRefObject<Handle | null>;
+
 type Props = {
-  containerRef: RefObject<HTMLDivElement>;
-  stepRefs: RefObject<Handle>[];
+  containerRef: ContainerRef;
+  stepRefs: StepRef[];
   className?: string;
   gradient?: [string, string];
 };
 
 function buildSmoothPath(container: HTMLElement, steps: HTMLElement[]) {
   // layout constants tuned to your Figma
-  const paddingX = 16; // container horizontal padding allowance
   const cardLeft = 16; // left edge of cards (approx)
   const cardRightOffset = 12; // path hugs card’s right side
   const cornerR = 12; // curve radius for corners
@@ -34,15 +33,11 @@ function buildSmoothPath(container: HTMLElement, steps: HTMLElement[]) {
   const xLeft = cardLeft;
   const xRight = cw - cardRightOffset;
 
-  // Start near the top-left, go right (top rule), then down along the right edge,
-  // meandering past each card with rounded corners.
-  // We’ll compute Y positions using each card’s midpoint.
+  // Compute card vertical metrics
   const points = steps.map((el) => {
-    const r = el.getBoundingClientRect();
     const yTop = el.offsetTop;
-    const yMid = yTop + el.offsetHeight / 2;
     const yBottom = yTop + el.offsetHeight;
-    return { yTop, yMid, yBottom };
+    return { yTop, yBottom };
   });
 
   let d = '';
@@ -52,7 +47,7 @@ function buildSmoothPath(container: HTMLElement, steps: HTMLElement[]) {
   // Top horizontal segment
   d += `L ${xRight} ${topRuleOffset} `;
 
-  // Now snake down the right side past each card with rounded corners
+  // Snake down the right side past each card with rounded corners
   points.forEach(({ yTop, yBottom }, idx) => {
     const toY = yTop - 10; // small gap before card
     d += `L ${xRight} ${toY} `;
@@ -83,12 +78,12 @@ export default function ScrollLine({
   className,
   gradient = ['#6EC1FF', '#6A5CFF'],
 }: Props) {
-  const pathRef = useRef<SVGPathElement>(null);
-  const [length, setLength] = useState(1);
-  const [d, setD] = useState('M0 0');
+  const pathRef = React.useRef<SVGPathElement>(null);
+  const [length, setLength] = React.useState(1);
+  const [d, setD] = React.useState('M0 0');
 
   // Recompute path on layout changes
-  useLayoutEffect(() => {
+  React.useLayoutEffect(() => {
     const container = containerRef.current;
     const steps = stepRefs
       .map((r) => r.current?.el as HTMLElement | null)
@@ -111,16 +106,17 @@ export default function ScrollLine({
     return () => ro.disconnect();
   }, [containerRef, stepRefs]);
 
-  // Draw on scroll
+  // Draw on scroll — cast to HTMLElement ref to satisfy framer-motion typing
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: containerRef as unknown as React.RefObject<HTMLElement>,
     offset: ['start 80%', 'end start'],
   });
+
   const dashOffset = useTransform(scrollYProgress, [0, 1], [length, 0]);
 
   // Compute an svg viewBox big enough to cover the container
-  const [vb, setVb] = useState({ w: 100, h: 1000 });
-  useEffect(() => {
+  const [vb, setVb] = React.useState({ w: 100, h: 1000 });
+  React.useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
@@ -137,7 +133,7 @@ export default function ScrollLine({
       height={vb.h}
       viewBox={`0 0 ${vb.w} ${vb.h}`}
       preserveAspectRatio="none"
-      aria-hidden
+      aria-hidden="true"
     >
       <defs>
         <linearGradient id="proc-grad" x1="0" y1="0" x2="0" y2="1">
