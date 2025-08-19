@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, createRef } from 'react';
 import SectionWrapper from '../common/SectionWrapper';
 import SectionTitle from '../common/SectionTitle';
 import { processSteps } from '@/data/processSteps';
@@ -9,18 +9,16 @@ import ProcessStep, { ProcessStepHandle } from '../common/ProcessStep';
 
 export default function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Create an array of RefObjects ONCE
   const stepRefs = useMemo(
-    () =>
-      Array.from(
-        { length: processSteps.length },
-        () => ({ current: null } as unknown as ProcessStepHandle)
-      ),
+    () => processSteps.map(() => createRef<ProcessStepHandle>()),
     []
   );
 
   return (
     <SectionWrapper id="process">
-      <SectionTitle right="Step‑by‑step: from discovery to launch (with clean hand‑off and support).">
+      <SectionTitle right="Step-by-step: from discovery to launch (with clean hand-off and support).">
         Process
       </SectionTitle>
 
@@ -28,13 +26,11 @@ export default function ProcessSection() {
         ref={containerRef}
         className="relative mx-auto max-w-[980px] md:max-w-[1040px]"
       >
-        {/* Top rule from Figma */}
         <div className="h-[2px] w-full bg-gray-200/80 mb-8" />
 
-        {/* Gradient path that auto-routes around cards */}
         <ScrollLine
           containerRef={containerRef}
-          stepRefs={stepRefs}
+          stepRefs={stepRefs} // <-- array of RefObjects
           className="pointer-events-none absolute inset-0"
           gradient={['#6EC1FF', '#6A5CFF']}
         />
@@ -43,7 +39,7 @@ export default function ProcessSection() {
           {processSteps.map((s, i) => (
             <li key={s.id} className="px-2 md:px-0">
               <ProcessStep
-                ref={stepRefs[i]}
+                ref={stepRefs[i]} // <-- RefObject<ProcessStepHandle>
                 number={s.number}
                 title={s.title}
                 bullets={s.bullets}
