@@ -1,6 +1,6 @@
 // components/common/ServiceMaskedImage.tsx
 'use client';
-import ResponsiveMaskedImage from '../../ui/masks/ResponsiveMaskedImage';
+import ResponsiveMaskedImage from '../ui/masks/ResponsiveMaskedImage';
 import { DESKTOP_SERVICES_MASK_PATH } from '@/utils/masks';
 
 export default function ServiceMaskedImage(props: {

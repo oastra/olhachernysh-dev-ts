@@ -21,46 +21,50 @@ export default function ServiceRow({
 }: Props) {
   return (
     <div
-      className="grid grid-cols-1 gap-8 lg:gap-10 items-start"
+      className="grid grid-cols-1 items-center"
       role="region"
       aria-labelledby={`service-${index}`}
     >
-      {/* Header: number gutter + content */}
       <button
         onClick={onActivate}
-        className="grid w-full text-left focus:outline-none sm:grid-cols-[56px_1fr] sm:gap-4"
+        className="w-full text-left focus:outline-none"
         aria-expanded={isActive}
         aria-controls={`service-panel-${index}`}
       >
-        {/* Number gutter (stacks above title on very small screens) */}
-        <span className="text-[#0A0A1A]/70 text-h5 sm:col-start-1 sm:row-start-1">
-          0{index}
-        </span>
+        {/* Mobile: Flex layout for number + title, Desktop: Grid layout */}
+        <div className="flex justify-start sm:grid sm:grid-cols-[24px_1fr] gap-1 md:gap-4 md:items-start">
+          {/* Number */}
+          <span className="flex-shrink-0 w-auto text-h6 md:w-[40px] flex items-center justify-center text-black md:text-h5">
+            0{index}
+          </span>
 
-        {/* Title + summary */}
-        <div className="sm:col-start-2 sm:row-start-1">
+          {/* Title */}
           <h3
             id={`service-${index}`}
-            className={[
-              'transition-colors text-h3',
-              isActive ? 'text-main-gradient' : 'text-[#0A0A1A]',
-            ].join(' ')}
+            className={`transition-colors text-h2 ${
+              isActive
+                ? 'text-main-gradient'
+                : 'text-ink/72 hover:text-ink cursor-pointer'
+            }`}
           >
             {title}
           </h3>
+        </div>
 
-          {summary && (
-            <p className="mt-2 text-body-mobile md:text-body text-[#0A0A1A]/80">
+        {/* Summary - full width on mobile */}
+        {summary && (
+          <div className="mt-4 pl-0 md:pl-[56px]">
+            <p className="text-body-mobile md:text-[20px] text-ink/70">
               {summary}
             </p>
-          )}
-        </div>
+          </div>
+        )}
       </button>
 
       {/* Details: collapsible on ALL breakpoints */}
       <div
         id={`service-panel-${index}`}
-        className="sm:grid sm:grid-cols-[56px_1fr] sm:gap-4"
+        className="grid md:grid-cols-[56px_1fr] gap-2 mt-2"
       >
         <div className="hidden sm:block" /> {/* spacer under number */}
         <motion.div
@@ -73,11 +77,11 @@ export default function ServiceRow({
           className="overflow-hidden"
           aria-hidden={!isActive}
         >
-          <div className="pt-3">
-            {!!bullets?.length && (
-              <ul className="space-y-1 text-body list-disc list-outside pl-5 text-[#0A0A1A]/80">
-                {bullets.map((b, i) => (
-                  <li key={i}>{b}</li>
+          <div className="">
+            {bullets && bullets.length > 0 && (
+              <ul className="space-y-1 text-body list-disc list-outside pl-5 text-ink/72">
+                {bullets.map((bullet, i) => (
+                  <li key={i}>{bullet}</li>
                 ))}
               </ul>
             )}
@@ -86,7 +90,7 @@ export default function ServiceRow({
       </div>
 
       {/* Divider */}
-      <div className="h-px w-full bg-[#0A0A1A]/10 mt-6" />
+      <div className="h-px w-full bg-gray-custom mt-[24px] md:mt-[39px]" />
     </div>
   );
 }

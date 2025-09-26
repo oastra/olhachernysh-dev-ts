@@ -20,7 +20,7 @@ export const SERVICES: ServiceItem[] = [
       'Portfolio or Personal Brand Websites',
     ],
     image: {
-      src: '/images/services-s/01-customWebsiteDevelopment.webp',
+      src: '/images/services/01-customWebsiteDevelopment.webp',
       alt: 'Custom website development',
     },
   },
@@ -36,7 +36,7 @@ export const SERVICES: ServiceItem[] = [
       'Design handoff files for dev teams (if development isn’t included)',
     ],
     image: {
-      src: '/images/services-s/02-UXDesign.webp',
+      src: '/images/services/02-UXDesign.webp',
       alt: 'Design collaboration',
     },
   },
@@ -52,7 +52,7 @@ export const SERVICES: ServiceItem[] = [
       'Animation and scroll-triggered effects',
     ],
     image: {
-      src: '/images/services-s/03-frontendDevelopment.webp',
+      src: '/images/services/03-frontendDevelopment.webp',
       alt: 'Frontend development',
     },
   },
@@ -69,7 +69,7 @@ export const SERVICES: ServiceItem[] = [
       'API integrations (Instagram, maps, etc.)',
     ],
     image: {
-      src: '/images/services-s/04-backendIntegrations.webp',
+      src: '/images/services/04-backendIntegrations.webp',
       alt: 'Backend & integrations',
     },
   },
@@ -84,7 +84,7 @@ export const SERVICES: ServiceItem[] = [
       'Speed optimization and performance audits',
     ],
     image: {
-      src: '/images/services-s/05-TechnicalSetupLaunch.webp',
+      src: '/images/services/05-TechnicalSetupLaunch.webp',
       alt: 'Technical setup and launch',
     },
   },

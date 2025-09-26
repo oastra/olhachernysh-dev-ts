@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import SectionWrapper from '@/app/components/common/SectionWrapper';
 import SectionTitle from '@/app/components/common/SectionTitle';
-import ServiceRow from './services/ServiceRow';
-import ServiceMaskedImage from './services/ServiceMaskedImage';
+import ServiceRow from '../services/ServiceRow';
+import ServiceMaskedImage from '../services/ServiceMaskedImage';
 import { SERVICES } from '@/data/services.data';
 
 export default function ServicesSection() {
@@ -28,7 +28,7 @@ export default function ServicesSection() {
     <SectionWrapper id="services">
       <SectionTitle>My Services</SectionTitle>
 
-      <div className="lg:grid lg:grid-cols-[503px_1fr] lg:gap-12">
+      <div className="overflow-x-hidden gap-4 px-0px-1 lg:px-0 lg:grid lg:grid-cols-[503px_1fr] lg:gap-12">
         {/* LEFT: 503×712 image, desktop only, not sticky */}
         <div className="hidden lg:block w-[503px] h-[712px]">
           <AnimatePresence mode="wait">
@@ -44,7 +44,7 @@ export default function ServicesSection() {
                 <ServiceMaskedImage
                   src={activeItem.image.src}
                   alt={activeItem.image.alt}
-                  className="h-full w-full"
+                  className="h-full w-full object-cover"
                 />
               </motion.div>
             )}
@@ -52,7 +52,7 @@ export default function ServicesSection() {
         </div>
 
         {/* RIGHT: accordion list (scrollable on desktop only) */}
-        <div className="space-y-10 lg:space-y-14 lg:h-[712px] lg:overflow-y-auto lg:pr-2">
+        <div className="space-y-8 lg:space-y-12 pr-0 w-full lg:h-[712px] lg:overflow-y-auto lg:pr-2">
           {SERVICES.map((s) => (
             <ServiceRow
               key={s.index}

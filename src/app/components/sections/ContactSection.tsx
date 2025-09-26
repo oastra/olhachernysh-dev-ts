@@ -2,7 +2,7 @@
 'use client';
 
 import SectionWrapper from '../common/SectionWrapper';
-import ContactForm from '../common/ContactForm';
+import ContactForm from '../form/ContactForm';
 import SectionFooter from '../common/SectionFooter';
 
 export default function ContactSection() {
@@ -14,10 +14,7 @@ export default function ContactSection() {
     >
       <div className="bg-[#0E2C73] rounded-[36px] md:rounded-[48px] text-white px-6 py-10 md:px-12 md:py-14">
         <header className="grid md:grid-cols-2 gap-10 md:gap-16">
-          <h2
-            id="contact-title"
-            className="text-[28px] md:text-[36px] font-semibold leading-tight"
-          >
+          <h2 id="contact-title" className="text-footer ">
             Ready to bring your website idea to life? <br /> Get in touch.
           </h2>
           <ContactForm />

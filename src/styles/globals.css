@@ -163,6 +163,98 @@
   .btn-glow:hover {
     box-shadow: 0 10px 30px rgba(0, 212, 255, 0.25);
   }
+  @layer utilities {
+    /* === Gradient token reused everywhere === */
+    .gline {
+      background: linear-gradient(90deg, #000924 0%, #092b79 35%, #00d4ff 98%);
+    }
+
+    /* === Segment painters (no layout shift) === */
+    .snake-cell {
+      position: relative;
+    }
+    .snake-top::before,
+    .snake-right::before,
+    .snake-bottom::before,
+    .snake-left::before {
+      content: '';
+      position: absolute;
+    }
+
+    .snake-top::before {
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 1px;
+    }
+    .snake-right::before {
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 1px;
+    }
+    .snake-bottom::before {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+    }
+    .snake-left::before {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 1px;
+    }
+
+    .snake-top::before,
+    .snake-right::before,
+    .snake-bottom::before,
+    .snake-left::before {
+      background: linear-gradient(90deg, #000924 0%, #092b79 35%, #00d4ff 98%);
+    }
+
+    /* === Corner arcs (quarter ring, 1px thick) === */
+    .snake-corner {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+    }
+    .snake-corner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      padding: 9px; /* 1px ring */
+      background: linear-gradient(90deg, #000924 0%, #092b79 35%, #00d4ff 98%);
+      -webkit-mask: radial-gradient(closest-side, #000 98%, transparent)
+          content-box,
+        radial-gradient(closest-side, #000 100%, transparent) border-box;
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+    /* Mask each to a quarter using a rect clip */
+    .corner-tl {
+      left: -10px;
+      top: -10px;
+      clip-path: inset(0 10px 10px 0 round 10px);
+    }
+    .corner-tr {
+      right: -10px;
+      top: -10px;
+      clip-path: inset(0 0 10px 10px round 10px);
+    }
+    .corner-bl {
+      left: -10px;
+      bottom: -10px;
+      clip-path: inset(10px 10px 0 0 round 10px);
+    }
+    .corner-br {
+      right: -10px;
+      bottom: -10px;
+      clip-path: inset(10px 0 0 10px round 10px);
+    }
+  }
+  /* === Arrow nudge animation === */
 
   /* arrow nudge (used by group-hover on the icon) */
   @keyframes nudge-x {
@@ -184,6 +276,10 @@ body {
   @apply antialiased font-text;
   background-color: var(--background);
   color: var(--foreground);
+}
+a,
+button {
+  cursor: pointer;
 }
 
 /* Fonts */
