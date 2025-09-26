@@ -1,19 +1,19 @@
 'use client';
 
-import ProcessStep from '../temp/process/ProcessStep';
+import ProcessStep from '../process/ProcessStep';
 
 interface TextCardProps {
   number: string;
   title: string;
   bullets: string[];
-  side?: 'left' | 'right';
+  layout?: 'desktop' | 'tablet' | 'mobile'; // Changed from 'side'
 }
 
 export default function TextCard({
   number,
   title,
   bullets,
-  side,
+  layout = 'desktop', // Default to desktop
 }: TextCardProps) {
   return (
     <div className="overflow-hidden flex-shrink-0 w-[520px] h-[400px]">
@@ -22,7 +22,7 @@ export default function TextCard({
           number={number}
           title={title}
           bullets={bullets}
-          side={side}
+          layout={layout} // Pass layout instead of side
         />
       </div>
     </div>

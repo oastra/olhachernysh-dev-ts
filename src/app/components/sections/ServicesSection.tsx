@@ -52,7 +52,7 @@ export default function ServicesSection() {
         </div>
 
         {/* RIGHT: accordion list (scrollable on desktop only) */}
-        <div className="space-y-8 lg:space-y-12 pr-0 w-full lg:h-[712px] lg:overflow-y-auto lg:pr-2">
+        <div className="space-y-8 lg:space-y-12 pl-0 w-full lg:h-[712px] lg:overflow-y-auto lg:pl-8">
           {SERVICES.map((s) => (
             <ServiceRow
               key={s.index}
