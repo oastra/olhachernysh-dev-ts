@@ -1,8 +1,8 @@
 'use client';
 
 interface GifBoxProps {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 
 export default function GifBox({ width, height }: GifBoxProps) {

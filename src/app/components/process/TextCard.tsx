@@ -3,10 +3,6 @@
 import ProcessStep from '../temp/process/ProcessStep';
 
 interface TextCardProps {
-  width: number;
-  height: number;
-  paddingX: number;
-  paddingY: number;
   number: string;
   title: string;
   bullets: string[];
@@ -14,26 +10,14 @@ interface TextCardProps {
 }
 
 export default function TextCard({
-  width,
-  height,
-  paddingX,
-  paddingY,
   number,
   title,
   bullets,
   side,
 }: TextCardProps) {
   return (
-    <div className="overflow-hidden flex-shrink-0" style={{ width, height }}>
-      <div
-        className="h-full w-full overflow-hidden"
-        style={{
-          paddingLeft: paddingX,
-          paddingRight: paddingX,
-          paddingTop: paddingY,
-          paddingBottom: paddingY,
-        }}
-      >
+    <div className="overflow-hidden flex-shrink-0 w-[520px] h-[400px]">
+      <div className="h-full w-full overflow-hidden px-8 py-10">
         <ProcessStep
           number={number}
           title={title}
