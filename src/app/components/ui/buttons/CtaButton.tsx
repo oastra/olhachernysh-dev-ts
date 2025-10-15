@@ -1,34 +1,30 @@
 'use client';
 
 import Link from 'next/link';
-import { IconArrowRight } from '@tabler/icons-react';
+import React from 'react';
+import clsx from 'clsx';
 
 interface Props {
   label: string;
   href?: string;
   className?: string;
+  onClick?: () => void;
 }
 
-export default function CtaButton({ label, href }: Props) {
-  const className =
+export default function CtaButton({ label, href, className, onClick }: Props) {
+  const baseStyles =
     'group inline-flex items-center justify-center px-8 py-4 text-[18px] leading-[19.8px] font-display font-normal text-white rounded-full bg-main-blue hover:bg-main-gradient transition-all duration-300 focus:outline-none';
 
-  const content = (
-    <>
-      {label}
-      <IconArrowRight
-        size={20}
-        stroke={2}
-        className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
-      />
-    </>
-  );
+  const combinedClass = clsx(baseStyles, className);
+  const content = <>{label}</>;
 
   return href ? (
-    <Link href={href} className={className}>
+    <Link href={href} onClick={onClick} className={combinedClass}>
       {content}
     </Link>
   ) : (
-    <button className={className}>{content}</button>
+    <button onClick={onClick} className={combinedClass}>
+      {content}
+    </button>
   );
 }

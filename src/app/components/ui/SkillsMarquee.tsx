@@ -28,8 +28,13 @@ function Track({ duration = 40 }: { duration?: number }) {
   return (
     <motion.div
       className="flex w-max shrink-0 items-center gap-12"
-      animate={{ x: ['0%', '-50%'] }} // seamless loop (list is duplicated)
-      transition={{ duration, ease: 'linear', repeat: Infinity }}
+      animate={{ x: ['0%', '-100%'] }} // seamless loop (list is duplicated)
+      transition={{
+        duration,
+        ease: 'linear',
+        repeatType: 'loop',
+        repeat: Infinity,
+      }}
       style={{
         WebkitMaskImage:
           'linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)',
@@ -100,7 +105,7 @@ export default function SkillsMarquee() {
           ))}
         </div>
       ) : (
-        <Track duration={60} /> /* single, slow, infinite line */
+        <Track duration={90} /> /* single, slow, infinite line */
       )}{' '}
     </section>
   );

@@ -25,7 +25,7 @@ export const FormInput: React.FC<FormInputProps> = ({
   onBlur,
 }) => {
   const getInputClassName = () => {
-    const baseClass = `w-full rounded-md bg-white/15 backdrop-blur-sm px-4 py-3.5 text-h6
+    const baseClass = `w-full rounded-md bg-white/15 backdrop-blur-sm px-4 py-3 text-h6
                       text-white placeholder-white/60 border transition-all duration-300 
                       hover:bg-white/20 focus:outline-none focus:ring-2`;
 

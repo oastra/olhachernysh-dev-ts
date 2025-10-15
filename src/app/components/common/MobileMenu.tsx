@@ -3,6 +3,7 @@ import React from 'react';
 import { IconMinus } from '@tabler/icons-react';
 import NavLinks from './NavLinks';
 import Logo from './Logo';
+import CtaButton from '../ui/buttons/CtaButton';
 
 type MobileMenuProps = { onClose: () => void; id?: string };
 
@@ -32,13 +33,12 @@ export default function MobileMenu({ onClose, id }: MobileMenuProps) {
       {/* content */}
       <div className="h-full w-full px-6 pb-10 pt-12 flex flex-col items-center gap-8">
         <NavLinks onClick={onClose} className="text-lg" />
-        <a
+        <CtaButton
+          label="Get a Free Quote"
           href="#contact"
-          className="bg-main-blue text-white text-base px-6 py-3 rounded-full font-display"
           onClick={onClose}
-        >
-          Get a Free Quote
-        </a>
+          className="bg-main-blue text-white text-base px-6 py-3 rounded-full font-display"
+        />
       </div>
     </div>
   );

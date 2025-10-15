@@ -1,13 +1,42 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-type Props = { scrolled: boolean; children: React.ReactNode };
+type Props = {
+  scrolled: boolean;
+  isVisible: boolean; // Add this prop to control visibility based on scroll direction
+  children: React.ReactNode;
+};
 
-export default function HeaderBar({ scrolled, children }: Props) {
+export default function HeaderBar({
+  scrolled,
+  isVisible = true,
+  children,
+}: Props) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   return (
-    <div className="relative">
+    <motion.div
+      className="relative"
+      initial={false}
+      animate={{
+        y: isVisible ? 0 : -100, // Hide header when scrolling down
+        opacity: isVisible ? 1 : 0,
+      }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+    >
       {/* Animated pill background */}
       <AnimatePresence initial={false}>
         {scrolled && (
@@ -29,15 +58,15 @@ export default function HeaderBar({ scrolled, children }: Props) {
         className="relative z-10 flex items-center justify-between"
         initial={false}
         animate={{
-          paddingLeft: scrolled ? 32 : 24, // px (Tailwind px-8 ≈ 32, px-6 ≈ 24)
+          paddingLeft: scrolled ? 32 : 24,
           paddingRight: scrolled ? 32 : 24,
-          paddingTop: scrolled ? 16 : 24, // py-4 ≈ 16, py-6 ≈ 24
-          paddingBottom: scrolled ? 16 : 24,
+          paddingTop: scrolled ? (isMobile ? 4 : 16) : 24, // 4px mobile, 16px desktop when scrolled
+          paddingBottom: scrolled ? (isMobile ? 4 : 16) : 24, // 4px mobile, 16px desktop when scrolled
         }}
         transition={{ duration: 0.22, ease: 'easeOut' }}
       >
         {children}
       </motion.div>
-    </div>
+    </motion.div>
   );
 }

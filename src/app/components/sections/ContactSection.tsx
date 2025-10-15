@@ -14,7 +14,10 @@ export default function ContactSection() {
     >
       <div className="bg-[#0E2C73] rounded-[36px] md:rounded-[48px] text-white px-6 py-10 md:px-12 md:py-14">
         <header className="grid md:grid-cols-2 gap-10 md:gap-16">
-          <h2 id="contact-title" className="text-footer ">
+          <h2
+            id="contact-title"
+            className="text-h1-mobile lg:text-[54px] lg:leading-[120%] lg:font-['Fixel_Display']"
+          >
             Ready to bring your website idea to life? <br /> Get in touch.
           </h2>
           <ContactForm />
