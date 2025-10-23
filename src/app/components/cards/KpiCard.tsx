@@ -1,4 +1,5 @@
 'use client';
+import * as React from 'react';
 
 type Item = { value: string; label: string };
 type Size = 'desktop' | 'tablet' | 'mobile';
@@ -6,11 +7,15 @@ type Size = 'desktop' | 'tablet' | 'mobile';
 interface Props {
   className?: string;
   items?: [Item, Item, Item, Item];
-  size?: Size; // 'desktop' | 'tablet' | 'mobile'
-  /** Optional: force specific label widths (per item) to match Figma wrapping precisely */
+  size?: Size;
   labelWidthOverrides?: [number?, number?, number?, number?];
+  /** Make the card scale with its hero canvas. */
+  fluidFromCanvas?: boolean;
+  /** Base canvas width (px) to scale from. Desktop hero is 1356. */
+  fluidBase?: number;
 }
 
+/* Defaults */
 const DEFAULT_ITEMS: [Item, Item, Item, Item] = [
   { value: '15+ ', label: 'Developed Projects' },
   { value: '35+ ', label: 'Increased conversions' },
@@ -18,76 +23,135 @@ const DEFAULT_ITEMS: [Item, Item, Item, Item] = [
   { value: ' 2+ ', label: 'Years\nExperience' },
 ];
 
+/** Figma bases per size */
+const BASE = {
+  desktop: {
+    W: 473,
+    H: 233,
+    INNER_W: 434,
+    PAD: { x: 19, y: 33 },
+    GAP: { r1: 28, r2: 46 },
+    radius: 25,
+  },
+  tablet: {
+    W: 353,
+    H: 138,
+    INNER_W: 311,
+    PAD: { x: 22, y: 25 },
+    GAP: { r1: 16, r2: 36 },
+    radius: 20,
+  },
+  mobile: {
+    W: 353,
+    H: 138,
+    INNER_W: 311,
+    PAD: { x: 22, y: 25 },
+    GAP: { r1: 16, r2: 36 },
+    radius: 20,
+  },
+};
+
 export default function KpiCard({
   className = '',
   items = DEFAULT_ITEMS,
   size = 'desktop',
   labelWidthOverrides,
+  fluidFromCanvas = false,
+  fluidBase = 1356,
 }: Props) {
-  const isDesktop = size === 'desktop';
-  const isCompact = size === 'tablet' || size === 'mobile';
+  const S = BASE[size];
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const [k, setK] = React.useState(1); // numeric scale
 
-  return (
+  // Observe the nearest hero canvas (marked with data-hero-canvas)
+  React.useLayoutEffect(() => {
+    if (!fluidFromCanvas) return;
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const canvas =
+      wrapper.closest<HTMLElement>('[data-hero-canvas]') ??
+      (wrapper.parentElement as HTMLElement);
+
+    if (!canvas) return;
+
+    const ro = new ResizeObserver(() => {
+      const w = canvas.clientWidth || fluidBase;
+      setK(w / fluidBase);
+    });
+    ro.observe(canvas);
+    return () => ro.disconnect();
+  }, [fluidFromCanvas, fluidBase]);
+
+  const Inner = () => (
     <div
-      className={[
-        'relative overflow-hidden bg-main-blue',
-        isDesktop
-          ? 'rounded-[25px] w-[473px] h-[233px]'
-          : 'rounded-[20px] w-[353px] h-[138px]',
-        className,
-      ].join(' ')}
+      className="flex flex-col gap-[4px]"
+      style={{ padding: `${S.PAD.y}px ${S.PAD.x}px`, width: S.INNER_W }}
     >
-      {/* Padding per Figma: desktop (px=19, py=33), compact (px=22, py=25) */}
-      <div
-        className={[
-          'flex flex-col',
-          isDesktop
-            ? 'px-[19px] py-[33px] w-[434px] gap-[4px]'
-            : 'px-[22px] py-[25px] w-[311px] gap-[4px]',
-        ].join(' ')}
-      >
-        {/* Row 1 — gaps: desktop 28 / compact 17 */}
-        <div
-          className={[
-            'flex items-center',
-            isDesktop ? 'gap-[28px]' : 'gap-[16px]',
-          ].join(' ')}
-        >
-          <Kpi
-            value={items[0].value}
-            label={items[0].label}
-            variant={size}
-            labelWidth={labelWidthOverrides?.[0]}
-          />
-          <Kpi
-            value={items[1].value}
-            label={items[1].label}
-            variant={size}
-            labelWidth={labelWidthOverrides?.[1]}
-          />
-        </div>
+      {/* row 1 */}
+      <div className="flex items-center" style={{ gap: S.GAP.r1 }}>
+        <Kpi
+          value={items[0].value}
+          label={items[0].label}
+          variant={size}
+          labelWidth={labelWidthOverrides?.[0]}
+        />
+        <Kpi
+          value={items[1].value}
+          label={items[1].label}
+          variant={size}
+          labelWidth={labelWidthOverrides?.[1]}
+        />
+      </div>
+      {/* row 2 */}
+      <div className="flex items-center" style={{ gap: S.GAP.r2 }}>
+        <Kpi
+          value={items[2].value}
+          label={items[2].label}
+          variant={size}
+          labelWidth={labelWidthOverrides?.[2]}
+        />
+        <Kpi
+          value={items[3].value}
+          label={items[3].label}
+          variant={size}
+          labelWidth={labelWidthOverrides?.[3]}
+        />
+      </div>
+    </div>
+  );
 
-        {/* Row 2 — gaps: desktop 46 / compact 48 */}
+  if (fluidFromCanvas) {
+    // layout box scales, inner card scales with a numeric transform
+    return (
+      <div
+        ref={wrapperRef}
+        className={className}
+        style={{ width: S.W * k, height: S.H * k, position: 'relative' }}
+      >
         <div
-          className={[
-            'flex items-center',
-            isDesktop ? 'gap-[46px]' : 'gap-[36px]',
-          ].join(' ')}
+          className="relative overflow-hidden bg-main-blue"
+          style={{
+            width: S.W,
+            height: S.H,
+            transform: `scale(${k})`,
+            transformOrigin: 'top left',
+            borderRadius: S.radius,
+          }}
         >
-          <Kpi
-            value={items[2].value}
-            label={items[2].label}
-            variant={size}
-            labelWidth={labelWidthOverrides?.[2]}
-          />
-          <Kpi
-            value={items[3].value}
-            label={items[3].label}
-            variant={size}
-            labelWidth={labelWidthOverrides?.[3]}
-          />
+          <Inner />
         </div>
       </div>
+    );
+  }
+
+  // non-fluid fallback
+  return (
+    <div
+      className="relative overflow-hidden bg-main-blue"
+      style={{ width: S.W, height: S.H, borderRadius: S.radius }}
+    >
+      <Inner />
     </div>
   );
 }
@@ -104,11 +168,10 @@ function Kpi({
   labelWidth?: number;
 }) {
   const isDesktop = variant === 'desktop';
-  const defaultLabelW = 99; // Figma default (set 88 via override for “Happy Clients” if you want exact wrap)
+  const defaultLabelW = 99;
 
   return (
     <div className="flex items-center gap-1">
-      {/* Values: desktop 54/81, compact 28/42 */}
       <div
         className={[
           'text-gray-custom font-medium text-center whitespace-pre',
@@ -119,7 +182,6 @@ function Kpi({
       >
         {value}
       </div>
-      {/* Labels: desktop 16/17.6, compact 14/15.4; fixed width to control wrapping */}
       <div
         className={[
           'text-gray-custom font-normal whitespace-pre-line',

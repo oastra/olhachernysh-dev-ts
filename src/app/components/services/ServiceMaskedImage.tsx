@@ -14,7 +14,7 @@ export default function ServiceMaskedImage(props: {
       sizes="503px"
       masks={{
         // only desktop shows an image for services
-        desktop: { ...DESKTOP_SERVICES_MASK_PATH, width: 503, height: 712 },
+        desktop: { ...DESKTOP_SERVICES_MASK_PATH, width: 503, height: 662 },
       }}
     />
   );

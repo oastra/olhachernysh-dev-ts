@@ -1,20 +1,34 @@
 'use client';
 
-interface GifBoxProps {
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
+type Props = {
   width?: number;
   height?: number;
-}
+  lottieSrc?: string;
+  isActive?: boolean;
+  loop?: boolean;
+};
 
-export default function GifBox({ width, height }: GifBoxProps) {
+export default function GifBox({
+  width,
+  height,
+  lottieSrc,
+  isActive = false,
+  loop = true,
+}: Props) {
+  if (!isActive || !lottieSrc) {
+    return <div className="flex-shrink-0" style={{ width, height }} />;
+  }
+
   return (
-    <div
-      className="bg-gray-100 rounded-lg flex-shrink-0"
-      style={{ width, height }}
-    >
-      {/* TODO: Replace with actual GIF/animation component */}
-      <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
-        GIF
-      </div>
+    <div className="flex-shrink-0 " style={{ width, height }}>
+      <DotLottieReact
+        src={lottieSrc}
+        autoplay
+        loop={loop}
+        style={{ width: '100%', height: '100%' }}
+      />
     </div>
   );
 }

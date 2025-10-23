@@ -1,5 +1,6 @@
 'use client';
 
+import * as React from 'react';
 import KpiCard from '../../cards/KpiCard';
 import PrimaryButton from '../buttons/PrimaryButton';
 import {
@@ -8,13 +9,21 @@ import {
   HERO_2_DESKTOP_MASK_PATH, // Vector 2 (native 543×380)
 } from '@/utils/masks';
 
+/* --- Base Figma canvas --- */
+const BASE = { W: 1356, H: 535 };
+
+/* Helpers to convert Figma px → % of canvas */
+const pxW = (px: number) => `${(px / BASE.W) * 100}%`;
+const pxH = (px: number) => `${(px / BASE.H) * 100}%`;
+
 /* --- Figma numbers (pixels) --- */
 const BIG = { w: 798, h: 535, left: 5, top: 0 }; // Vector 1
 const TILE = { w: 535, h: 378, left: 626, top: 157 }; // Vector 2
 const PHONE = { w: 179, h: 535, left: 1177, top: 0 }; // right strip
 const CTA = { w: 338, h: 135, left: 823, top: 0 }; // CTA pill
+const KPI = { left: 0, top: 0 }; // KPI card (top-left)
 
-/* --- Build WHITE CSS masks (white = visible) --- */
+/* --- White CSS masks (white = visible) --- */
 const BIG_MASK_URI = svgPathToDataUri({
   width: BIG.w,
   height: BIG.h,
@@ -28,28 +37,31 @@ const TILE_MASK_URI = svgPathToDataUri({
   ...HERO_2_DESKTOP_MASK_PATH,
 });
 
-export default function HeroCollage() {
+export default function HeroCollageDesktop() {
   return (
-    <section className="mx-auto max-w-[1356px] px-4 md:px-6 xl:px-0">
-      {/* fixed-size collage canvas (matches your Figma) */}
+    <div className="mx-auto w-full px-4 md:px-6 xl:px-0">
+      {/* Responsive collage canvas (fixed aspect, container queries enabled) */}
       <div
+        data-hero-canvas="desktop"
         className="
           relative isolate mx-auto
-          w-[1356px] h-[535px]
+          w-full max-w-[1356px]
+          aspect-[1356/535]
           overflow-hidden
+          [container-type:inline-size]
         "
       >
-        {/* ========= UNDERLAY (behind everything) ========= */}
-        <div className="absolute inset-0 -z-10 pointer-events-none">
+        {/* ========= UNDERLAY ========= */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
           {/* Vector 1 — big S */}
           <div
             className="absolute"
             style={
               {
-                left: BIG.left,
-                top: BIG.top,
-                width: BIG.w,
-                height: BIG.h,
+                left: pxW(BIG.left),
+                top: pxH(BIG.top),
+                width: pxW(BIG.w),
+                height: pxH(BIG.h),
                 backgroundImage: 'url(/images/hero/hero-img-1.webp)',
                 backgroundSize: 'cover',
                 backgroundPosition: '60% 50%',
@@ -59,7 +71,7 @@ export default function HeroCollage() {
                 maskRepeat: 'no-repeat',
                 WebkitMaskSize: '100% 100%',
                 maskSize: '100% 100%',
-                borderRadius: 40, // keeps edge AA crisp
+                borderRadius: 'calc(40px * (100cqw / 1356))',
               } as React.CSSProperties
             }
           />
@@ -69,10 +81,10 @@ export default function HeroCollage() {
             className="absolute"
             style={
               {
-                left: TILE.left,
-                top: TILE.top,
-                width: TILE.w,
-                height: TILE.h,
+                left: pxW(TILE.left),
+                top: pxH(TILE.top),
+                width: pxW(TILE.w),
+                height: pxH(TILE.h),
                 backgroundImage: 'url(/images/hero/hero-img-2.webp)',
                 backgroundSize: 'cover',
                 backgroundPosition: '50% 50%',
@@ -82,50 +94,49 @@ export default function HeroCollage() {
                 maskRepeat: 'no-repeat',
                 WebkitMaskSize: '100% 100%',
                 maskSize: '100% 100%',
+                borderRadius: 'calc(24px * (100cqw / 1356))',
               } as React.CSSProperties
             }
           />
         </div>
 
-        {/* ========= FOREGROUND (on top) ========= */}
+        {/* ========= FOREGROUND ========= */}
 
-        {/* KPI card (separate component) */}
-        {/* Desktop */}
-        <div className="hidden xl:block">
-          <KpiCard size="desktop" />
+        {/* KPI — scales numerically with the hero canvas width (fluidBase=1356) */}
+        <div
+          className="absolute z-20"
+          style={{ left: pxW(KPI.left), top: pxH(KPI.top) }}
+        >
+          <KpiCard size="desktop" fluidFromCanvas fluidBase={1356} />
         </div>
 
-        {/* Tablet */}
-        <div className="hidden md:block xl:hidden">
-          <KpiCard size="tablet" />
-        </div>
-
-        {/* Mobile */}
-        <div className="md:hidden">
-          <KpiCard size="mobile" labelWidthOverrides={[99, 99, 88, 99]} />
-        </div>
-
-        {/* CTA (separate component) */}
+        {/* CTA — wrapper defines size; button fills and scales via cqw */}
         <div
           className="absolute z-20 flex items-start justify-end"
-          style={{ left: CTA.left, top: CTA.top, width: CTA.w, height: CTA.h }}
+          style={{
+            left: pxW(CTA.left),
+            top: pxH(CTA.top),
+            width: pxW(CTA.w),
+            height: pxH(CTA.h),
+          }}
         >
           <PrimaryButton
             label="View My Work"
             href="#projects"
             fixedCollageSize
-            className="h-[135px] w-[338px] rounded-[35px] text-[24px] leading-[26.4px]"
+            className="rounded-[35px]"
           />
         </div>
 
-        {/* Phone strip — NO rotation */}
+        {/* Phone strip — no rotation */}
         <div
-          className="absolute z-20 rounded-[35px] overflow-hidden"
+          className="absolute z-20 overflow-hidden rounded-[35px]"
           style={{
-            left: PHONE.left,
-            top: PHONE.top,
-            width: PHONE.w,
-            height: PHONE.h,
+            left: pxW(PHONE.left),
+            top: pxH(PHONE.top),
+            width: pxW(PHONE.w),
+            height: pxH(PHONE.h),
+            borderRadius: 'calc(35px * (100cqw / 1356))',
           }}
         >
           <img
@@ -135,6 +146,6 @@ export default function HeroCollage() {
           />
         </div>
       </div>
-    </section>
+    </div>
   );
 }
