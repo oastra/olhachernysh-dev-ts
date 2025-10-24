@@ -5,12 +5,18 @@ import SnakeOverlay from './SnakeOverlay';
 import { processSteps } from '@/data/processSteps';
 
 // Following the EXACT desktop pattern
-const SECTION_HEIGHT = 200; // Height for each card section
+const CARD_HEIGHT = 231; // Height for each card on tablet
+const GAP_HEIGHT = 16; // Gap between cards (where snake runs)
+const NUM_SECTIONS = 6;
+const NUM_GAPS = 5;
+
+// Calculate SVG scaling to match our card + gap layout
 const SVG_VIEWBOX_HEIGHT = 1613;
 const SVG_VIEWBOX_WIDTH = 523;
 
-// Calculate scale and container dimensions
-const SCALE_FACTOR = (SECTION_HEIGHT * 6) / SVG_VIEWBOX_HEIGHT;
+// Total desired height = cards + gaps
+const TOTAL_CONTENT_HEIGHT = CARD_HEIGHT * NUM_SECTIONS + GAP_HEIGHT * NUM_GAPS;
+const SCALE_FACTOR = TOTAL_CONTENT_HEIGHT / SVG_VIEWBOX_HEIGHT;
 const CONTAINER_HEIGHT = SVG_VIEWBOX_HEIGHT * SCALE_FACTOR;
 const CONTAINER_WIDTH = SVG_VIEWBOX_WIDTH;
 
@@ -51,7 +57,9 @@ export default function ProcessTablet() {
             const section = sectionPositions[index];
             const topPx = section.top * SCALE_FACTOR;
             const heightPx = (section.bottom - section.top) * SCALE_FACTOR;
-            const paddingY = 12;
+
+            // Use GAP_HEIGHT / 2 for top/bottom padding to create 16px total gap
+            const paddingY = GAP_HEIGHT / 2;
 
             return (
               <div
@@ -64,12 +72,14 @@ export default function ProcessTablet() {
                   paddingBottom: `${paddingY}px`,
                 }}
               >
-                <ProcessStep
-                  number={step.number}
-                  title={step.title}
-                  bullets={step.bullets}
-                  layout="tablet"
-                />
+                <div className="w-full">
+                  <ProcessStep
+                    number={step.number}
+                    title={step.title}
+                    bullets={step.bullets}
+                    layout="tablet"
+                  />
+                </div>
               </div>
             );
           })}
