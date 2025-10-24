@@ -61,103 +61,111 @@ export default function ProcessDesktop() {
   ];
 
   return (
-    <div
-      className="hidden lg:block w-full mx-auto relative"
-      style={{
-        width: `${CONTAINER_WIDTH}px`,
-        height: `${CONTAINER_HEIGHT}px`,
-      }}
-    >
-      {/* Snake Overlay - scales to fit container */}
-      <div className="absolute inset-0 w-full h-full">
-        <SnakeOverlay
-          viewBox={`0 0 ${SVG_VIEWBOX_WIDTH} ${SVG_VIEWBOX_HEIGHT}`}
-          d="M1.5 1.5H1253.5C1259.02 1.5 1263.5 5.97715 1263.5 11.5V214.5C1263.5 220.023 1259.02 224.5 1253.5 224.5H11.5C5.97719 224.5 1.5 228.977 1.5 234.5V440C1.5 445.523 5.97715 450 11.5 450H1253.5C1259.02 450 1263.5 454.477 1263.5 460V678C1263.5 683.523 1259.02 688 1253.5 688H11.5C5.97719 688 1.5 692.477 1.5 698V914C1.5 919.523 5.97715 924 11.5 924H1251.1C1256.59 924 1261.05 928.414 1261.1 933.896L1263.39 1154.4C1263.45 1159.96 1258.96 1164.5 1253.4 1164.5H11.5C5.97719 1164.5 1.5 1168.98 1.5 1174.5V1397.5C1.5 1403.02 5.97715 1407.5 11.5 1407.5H687C692.523 1407.5 697 1411.98 697 1417.5V1611"
-          strokeWidth={3}
-        />
-      </div>
+    <div className="hidden lg:block w-full">
+      <div
+        className="w-full mx-auto relative"
+        style={{
+          maxWidth: `${CONTAINER_WIDTH}px`,
+          aspectRatio: `${CONTAINER_WIDTH} / ${CONTAINER_HEIGHT}`,
+        }}
+      >
+        {/* Snake Overlay - scales to fit container */}
+        <div className="absolute inset-0 w-full h-full">
+          <SnakeOverlay
+            viewBox={`0 0 ${SVG_VIEWBOX_WIDTH} ${SVG_VIEWBOX_HEIGHT}`}
+            d="M1.5 1.5H1253.5C1259.02 1.5 1263.5 5.97715 1263.5 11.5V214.5C1263.5 220.023 1259.02 224.5 1253.5 224.5H11.5C5.97719 224.5 1.5 228.977 1.5 234.5V440C1.5 445.523 5.97715 450 11.5 450H1253.5C1259.02 450 1263.5 454.477 1263.5 460V678C1263.5 683.523 1259.02 688 1253.5 688H11.5C5.97719 688 1.5 692.477 1.5 698V914C1.5 919.523 5.97715 924 11.5 924H1251.1C1256.59 924 1261.05 928.414 1261.1 933.896L1263.39 1154.4C1263.45 1159.96 1258.96 1164.5 1253.4 1164.5H11.5C5.97719 1164.5 1.5 1168.98 1.5 1174.5V1397.5C1.5 1403.02 5.97715 1407.5 11.5 1407.5H687C692.523 1407.5 697 1411.98 697 1417.5V1611"
+            strokeWidth={3}
+          />
+        </div>
 
-      {/* Content - positioned absolutely to match SVG sections */}
-      <div className="relative z-10 w-full max-w-[1100px] mx-auto h-full">
-        {processSteps.map((step, index) => {
-          const section = sectionPositions[index];
-          const topPx = section.top * SCALE_FACTOR;
-          const heightPx = (section.bottom - section.top) * SCALE_FACTOR;
-          const paddingY = 16;
-          const contentHeight = heightPx - paddingY * 2;
+        {/* Content - positioned absolutely to match SVG sections */}
+        <div className="relative z-10 w-full max-w-[1100px] mx-auto h-full">
+          {processSteps.map((step, index) => {
+            const section = sectionPositions[index];
+            // Convert to percentages of the SVG viewBox for positioning
+            const topPercent = (section.top / SVG_VIEWBOX_HEIGHT) * 100;
+            const heightPercent =
+              ((section.bottom - section.top) / SVG_VIEWBOX_HEIGHT) * 100;
+            const paddingPercent = 1; // 1% top and bottom
 
-          return (
-            <div
-              key={step.id}
-              className="absolute w-full flex items-center justify-between"
-              style={{
-                top: `${topPx}px`,
-                height: `${heightPx}px`,
-                paddingTop: `${paddingY}px`,
-                paddingBottom: `${paddingY}px`,
-              }}
-            >
-              {index % 2 === 0 ? (
-                <>
-                  {/* Animation LEFT */}
-                  <div
-                    className="flex items-center justify-between flex-shrink-0 ml-10"
-                    style={{ width: '180px', height: `${contentHeight}px` }}
-                  >
-                    <GifBox
-                      width={180}
-                      height={140}
-                      lottieSrc={animationPaths[index]}
-                      isActive={activeIndex === index}
-                      loop={false}
-                    />
-                  </div>
-                  {/* Text RIGHT */}
-                  <div
-                    className=" flex items-center pl-8"
-                    style={{ height: `${contentHeight}px` }}
-                  >
-                    <TextCard
-                      number={step.number}
-                      title={step.title}
-                      bullets={step.bullets}
-                      onHoverChange={(h) => setActiveIndex(h ? index : null)}
-                    />
-                  </div>
-                </>
-              ) : (
-                <>
-                  {/* Text LEFT */}
-                  <div
-                    className="flex items-center justify-end "
-                    style={{ height: `${contentHeight}px` }}
-                  >
-                    <TextCard
-                      number={step.number}
-                      title={step.title}
-                      bullets={step.bullets}
-                      onHoverChange={(h) => setActiveIndex(h ? index : null)}
-                    />
-                  </div>
-                  {/* Animation RIGHT */}
-                  <div
-                    className="flex items-center justify-center flex-shrink-0 pr-[50px]"
-                    style={{ width: '180px', height: `${contentHeight}px` }}
-                  >
-                    <GifBox
-                      width={180}
-                      height={140}
-                      lottieSrc={animationPaths[index]}
-                      isActive={activeIndex === index}
-                      loop={false}
-                    />
-                  </div>
-                </>
-              )}
-            </div>
-          );
-        })}
-      </div>
+            // Calculate content height for animations/text (keep original logic)
+            const totalHeight = (section.bottom - section.top) * SCALE_FACTOR;
+            const paddingPx = 16;
+            const contentHeight = totalHeight - paddingPx * 2;
+
+            return (
+              <div
+                key={step.id}
+                className="absolute w-full flex items-center justify-between"
+                style={{
+                  top: `${topPercent}%`,
+                  height: `${heightPercent}%`,
+                  paddingTop: `${paddingPercent}%`,
+                  paddingBottom: `${paddingPercent}%`,
+                }}
+              >
+                {index % 2 === 0 ? (
+                  <>
+                    {/* Animation LEFT */}
+                    <div
+                      className="flex items-center justify-between flex-shrink-0 ml-10"
+                      style={{ width: '180px', height: `${contentHeight}px` }}
+                    >
+                      <GifBox
+                        width={180}
+                        height={140}
+                        lottieSrc={animationPaths[index]}
+                        isActive={activeIndex === index}
+                        loop={false}
+                      />
+                    </div>
+                    {/* Text RIGHT */}
+                    <div
+                      className=" flex items-center pr-8"
+                      style={{ height: `${contentHeight}px` }}
+                    >
+                      <TextCard
+                        number={step.number}
+                        title={step.title}
+                        bullets={step.bullets}
+                        onHoverChange={(h) => setActiveIndex(h ? index : null)}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Text LEFT */}
+                    <div
+                      className="flex items-center justify-end pl-8"
+                      style={{ height: `${contentHeight}px` }}
+                    >
+                      <TextCard
+                        number={step.number}
+                        title={step.title}
+                        bullets={step.bullets}
+                        onHoverChange={(h) => setActiveIndex(h ? index : null)}
+                      />
+                    </div>
+                    {/* Animation RIGHT */}
+                    <div
+                      className="flex items-center justify-center flex-shrink-0 mr-[50px]"
+                      style={{ width: '180px', height: `${contentHeight}px` }}
+                    >
+                      <GifBox
+                        width={180}
+                        height={140}
+                        lottieSrc={animationPaths[index]}
+                        isActive={activeIndex === index}
+                        loop={false}
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>{' '}
     </div>
   );
 }

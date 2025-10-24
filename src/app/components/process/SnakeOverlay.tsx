@@ -75,7 +75,7 @@ export default function SnakeOverlay({
       width="100%"
       height="100%"
       viewBox={viewBox}
-      preserveAspectRatio="none"
+      preserveAspectRatio="xMidYMid meet"
     >
       <defs>
         <linearGradient

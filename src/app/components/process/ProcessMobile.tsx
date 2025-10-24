@@ -26,12 +26,12 @@ export default function ProcessMobile() {
   ];
 
   return (
-    <div className="md:hidden">
+    <div className="md:hidden w-full">
       <div
         className="w-full mx-auto relative"
         style={{
-          width: `${CONTAINER_WIDTH}px`,
-          height: `${CONTAINER_HEIGHT}px`,
+          maxWidth: `${CONTAINER_WIDTH}px`,
+          aspectRatio: `${CONTAINER_WIDTH} / ${CONTAINER_HEIGHT}`,
         }}
       >
         {/* Snake Overlay */}
@@ -46,22 +46,23 @@ export default function ProcessMobile() {
         </div>
 
         {/* Content - absolutely positioned like desktop */}
-        <div className="relative z-10 w-full max-w-[305px] mx-auto h-full px-4">
+        <div className="relative z-10 w-full h-full px-[1.2%]">
           {processSteps.map((step, index) => {
             const section = sectionPositions[index];
-            const topPx = section.top * SCALE_FACTOR;
-            const heightPx = (section.bottom - section.top) * SCALE_FACTOR;
-            const paddingY = 8;
+            // Convert to percentages of the SVG viewBox
+            const topPercent = (section.top / SVG_VIEWBOX_HEIGHT) * 100;
+            const heightPercent =
+              ((section.bottom - section.top) / SVG_VIEWBOX_HEIGHT) * 100;
 
             return (
               <div
                 key={step.id}
                 className="absolute w-full flex items-center"
                 style={{
-                  top: `${topPx}px`,
-                  height: `${heightPx}px`,
-                  paddingTop: `${paddingY}px`,
-                  paddingBottom: `${paddingY}px`,
+                  top: `${topPercent}%`,
+                  height: `${heightPercent}%`,
+                  paddingTop: '0.48%',
+                  paddingBottom: '0.48%',
                 }}
               >
                 <ProcessStep
