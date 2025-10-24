@@ -51,7 +51,7 @@ export default function SnakeOverlay({
               // After animation completes, remove dasharray so line stays visible permanently
               setTimeout(() => {
                 path.style.strokeDasharray = 'none';
-              }, animationDuration * 3000);
+              }, animationDuration * 1000);
             }, animationDelay * 1000);
           }
         });
@@ -80,15 +80,15 @@ export default function SnakeOverlay({
       <defs>
         <linearGradient
           id="processSnakeGrad"
-          x1="1.5"
-          y1="806.25"
-          x2="1263.5"
-          y2="806.25"
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="0%"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stopColor="#000924" />
-          <stop offset="0.35" stopColor="#092B79" />
-          <stop offset="0.975962" stopColor="#00D4FF" />
+          <stop offset="0%" stopColor="#000924" />
+          <stop offset="35%" stopColor="#092B79" />
+          <stop offset="97.6%" stopColor="#00D4FF" />
         </linearGradient>
       </defs>
       <path

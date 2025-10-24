@@ -4,112 +4,72 @@ import ProcessStep from './ProcessStep';
 import SnakeOverlay from './SnakeOverlay';
 import { processSteps } from '@/data/processSteps';
 
-const SVG_VIEWBOX_HEIGHT = 1450;
-const SVG_VIEWBOX_WIDTH = 620;
+// Following the EXACT desktop pattern
+const SECTION_HEIGHT = 200; // Height for each card section
+const SVG_VIEWBOX_HEIGHT = 1613;
+const SVG_VIEWBOX_WIDTH = 523;
+
+// Calculate scale and container dimensions
+const SCALE_FACTOR = (SECTION_HEIGHT * 6) / SVG_VIEWBOX_HEIGHT;
+const CONTAINER_HEIGHT = SVG_VIEWBOX_HEIGHT * SCALE_FACTOR;
+const CONTAINER_WIDTH = SVG_VIEWBOX_WIDTH;
 
 export default function ProcessTablet() {
-  const orderedSteps = [...processSteps];
-
-  // SVG path - zigzag connecting the cards
-  const tabletPath = `
-    M 595 70
-    L 595 185
-    Q 595 215 565 215
-    L 55 215
-    Q 25 215 25 245
-    L 25 365
-    Q 25 395 55 395
-    L 565 395
-    Q 595 395 595 425
-    L 595 545
-    Q 595 575 565 575
-    L 55 575
-    Q 25 575 25 605
-    L 25 725
-    Q 25 755 55 755
-    L 565 755
-    Q 595 755 595 785
-    L 595 905
-    Q 595 935 565 935
-    L 55 935
-    Q 25 935 25 965
-    L 25 1085
-    Q 25 1115 55 1115
-    L 565 1115
-    Q 595 1115 595 1145
-    L 595 1265
-    Q 595 1295 565 1295
-    L 55 1295
-    Q 25 1295 25 1325
-    L 25 1430
-  `;
-
-  // Card positions matching SVG
+  // Section positions matching SVG path (same as desktop)
   const sectionPositions = [
-    { top: 60, bottom: 200 }, // Card 1
-    { top: 220, bottom: 380 }, // Card 2
-    { top: 400, bottom: 560 }, // Card 3
-    { top: 580, bottom: 740 }, // Card 4
-    { top: 760, bottom: 920 }, // Card 5
-    { top: 940, bottom: 1100 }, // Card 6
+    { top: 11.5, bottom: 214.5 }, // Section 1
+    { top: 234.5, bottom: 440 }, // Section 2
+    { top: 460, bottom: 678 }, // Section 3
+    { top: 698, bottom: 914 }, // Section 4
+    { top: 933.896, bottom: 1154.4 }, // Section 5
+    { top: 1174.5, bottom: 1397.5 }, // Section 6
   ];
 
   return (
     <div className="hidden md:block lg:hidden">
-      {/* Container with fixed dimensions */}
       <div
-        className="relative w-full mx-auto"
+        className="w-full mx-auto relative"
         style={{
-          maxWidth: `${SVG_VIEWBOX_WIDTH}px`,
-          height: `${SVG_VIEWBOX_HEIGHT}px`,
+          width: `${CONTAINER_WIDTH}px`,
+          height: `${CONTAINER_HEIGHT}px`,
         }}
       >
-        {/* Snake Overlay - Behind cards */}
-        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+        {/* Snake Overlay */}
+        <div className="absolute inset-0 w-full h-full">
           <SnakeOverlay
             viewBox={`0 0 ${SVG_VIEWBOX_WIDTH} ${SVG_VIEWBOX_HEIGHT}`}
-            d={tabletPath}
+            d="M1.5 1.5H513C518.523 1.5 523 5.97715 523 11.5V214.5C523 220.023 518.523 224.5 513 224.5H11.5C5.97719 224.5 1.5 228.977 1.5 234.5V440C1.5 445.523 5.97715 450 11.5 450H513C518.523 450 523 454.477 523 460V678C523 683.523 518.523 688 513 688H11.5C5.97719 688 1.5 692.477 1.5 698V914C1.5 919.523 5.97715 924 11.5 924H513C518.523 924 523 928.414 523 933.896V1154.4C523 1159.96 518.523 1164.5 513 1164.5H11.5C5.97719 1164.5 1.5 1168.98 1.5 1174.5V1397.5C1.5 1403.02 5.97715 1407.5 11.5 1407.5H200"
             strokeWidth={3}
             animationDuration={5}
             animationDelay={0.3}
-            ease="ease-in-out"
           />
         </div>
 
-        {/* Content Cards - Above overlay */}
-        <div className="relative z-20 w-full h-full">
-          {orderedSteps.map((step, index) => {
+        {/* Content - absolutely positioned like desktop */}
+        <div className="relative z-10 w-full max-w-[480px] mx-auto h-full">
+          {processSteps.map((step, index) => {
             const section = sectionPositions[index];
-            const topPx = section.top;
-            const heightPx = section.bottom - section.top;
+            const topPx = section.top * SCALE_FACTOR;
+            const heightPx = (section.bottom - section.top) * SCALE_FACTOR;
+            const paddingY = 12;
 
             return (
               <div
                 key={step.id}
-                className="absolute w-full px-4 z-20"
+                className="absolute w-full flex items-center"
                 style={{
                   top: `${topPx}px`,
                   height: `${heightPx}px`,
+                  paddingTop: `${paddingY}px`,
+                  paddingBottom: `${paddingY}px`,
                 }}
               >
-                {/* Card without border - plain white */}
-                <div
-                  className="
-                    relative
-                    h-full w-full 
-                    rounded-xl 
-                    bg-white
-                    p-6
-                    flex items-center
-                  "
-                >
-                  <ProcessStep
-                    number={step.number}
-                    title={step.title}
-                    bullets={step.bullets}
-                    layout="tablet"
-                  />
-                </div>
+                <ProcessStep
+                  number={step.number}
+                  title={step.title}
+                  bullets={step.bullets}
+                  layout="tablet"
+                />
               </div>
             );
           })}
