@@ -43,7 +43,7 @@ export default function ProcessStep({
             'w-full flex flex-col justify-start items-start gap-[12px]',
           header: 'w-full flex justify-start items-center gap-[10px]',
           number: 'text-[14px] font-medium leading-[15.4px] text-ink',
-          title: 'text-[18px] font-medium leading-[19.8px] text-ink',
+          title: 'text-h3-mobile font-medium leading-[19.8px] text-ink',
           bulletList: 'list-disc pl-[16px] space-y-[4px] marker:text-ink/75',
           bulletItem: 'text-[14px] leading-[21px] text-ink/75',
         };
