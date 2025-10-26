@@ -12,52 +12,28 @@ const animationPaths = [
   '/lottie/step2.lottie',
   '/lottie/step3.lottie',
   '/lottie/step4.lottie',
-  '/lottie/step6.lottie',
+  '/lottie/step5-1.lottie',
   '/lottie/step6.lottie',
 ];
 
-// SVG Path Analysis (viewBox="0 0 1265 1613"):
-// Section 1: y=11.5 to y=214.5   (height: 203 units)
-// Gap:       y=224.5 to y=234.5  (10 units)
-// Section 2: y=234.5 to y=440    (height: 205.5 units)
-// Gap:       y=450 to y=460      (10 units)
-// Section 3: y=460 to y=678      (height: 218 units)
-// Gap:       y=688 to y=698      (10 units)
-// Section 4: y=698 to y=914      (height: 216 units)
-// Gap:       y=924 to y=933.896  (~10 units)
-// Section 5: y=933.896 to y=1154.4 (height: 220.5 units)
-// Gap:       y=1164.5 to y=1174.5 (10 units)
-// Section 6: y=1174.5 to y=1397.5 (height: 223 units)
-
-// These sections need to scale to your desired 236px per section
-// SVG total height = 1613 units
-// Desired height = 236px * 6 sections + gaps between
-// Let's calculate with proper gaps
-
-const SECTION_HEIGHT = 236; // Desired height for each section
+const SECTION_HEIGHT = 236;
 const SVG_VIEWBOX_HEIGHT = 1613;
 const SVG_VIEWBOX_WIDTH = 1265;
 
-// Calculate scale factor to make sections 236px
-// Average section in SVG ≈ 214 units
-// We want 236px, so scale = 236 / (1613 / 6) ≈ 0.88
-
 const SCALE_FACTOR = (SECTION_HEIGHT * 6) / SVG_VIEWBOX_HEIGHT;
-const CONTAINER_HEIGHT = SVG_VIEWBOX_HEIGHT * SCALE_FACTOR; // Should be ~1416px
-const CONTAINER_WIDTH = SVG_VIEWBOX_WIDTH; // 1265px
+const CONTAINER_HEIGHT = SVG_VIEWBOX_HEIGHT * SCALE_FACTOR;
+const CONTAINER_WIDTH = SVG_VIEWBOX_WIDTH;
 
 export default function ProcessDesktop() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  // Calculate position for each section based on SVG coordinates
-  // These are the Y positions in the SVG where content should be
   const sectionPositions = [
-    { top: 11.5, bottom: 214.5 }, // Section 1
-    { top: 234.5, bottom: 440 }, // Section 2
-    { top: 460, bottom: 678 }, // Section 3
-    { top: 698, bottom: 914 }, // Section 4
-    { top: 933.896, bottom: 1154.4 }, // Section 5
-    { top: 1174.5, bottom: 1397.5 }, // Section 6
+    { top: 11.5, bottom: 214.5 },
+    { top: 234.5, bottom: 440 },
+    { top: 460, bottom: 678 },
+    { top: 698, bottom: 914 },
+    { top: 933.896, bottom: 1154.4 },
+    { top: 1174.5, bottom: 1397.5 },
   ];
 
   return (
@@ -69,7 +45,7 @@ export default function ProcessDesktop() {
           aspectRatio: `${CONTAINER_WIDTH} / ${CONTAINER_HEIGHT}`,
         }}
       >
-        {/* Snake Overlay - scales to fit container */}
+        {/* Snake Overlay */}
         <div className="absolute inset-0 w-full h-full">
           <SnakeOverlay
             viewBox={`0 0 ${SVG_VIEWBOX_WIDTH} ${SVG_VIEWBOX_HEIGHT}`}
@@ -78,38 +54,41 @@ export default function ProcessDesktop() {
           />
         </div>
 
-        {/* Content - positioned absolutely to match SVG sections */}
+        {/* Content */}
         <div className="relative z-10 w-full max-w-[1100px] mx-auto h-full">
           {processSteps.map((step, index) => {
             const section = sectionPositions[index];
-            // Convert to percentages of the SVG viewBox for positioning
             const topPercent = (section.top / SVG_VIEWBOX_HEIGHT) * 100;
             const heightPercent =
               ((section.bottom - section.top) / SVG_VIEWBOX_HEIGHT) * 100;
-            const paddingPercent = 1; // 1% top and bottom
 
-            // Calculate content height for animations/text (keep original logic)
+            // Increase padding for more breathing room
             const totalHeight = (section.bottom - section.top) * SCALE_FACTOR;
-            const paddingPx = 16;
-            const contentHeight = totalHeight - paddingPx * 2;
+            const verticalPadding = 24; // Increased from 16 to 24
+            const contentHeight = totalHeight - verticalPadding * 2;
 
             return (
               <div
                 key={step.id}
-                className="absolute w-full flex items-center justify-between"
+                className="absolute w-full flex items-center justify-between gap-4 xl:gap-8 px-8"
                 style={{
                   top: `${topPercent}%`,
                   height: `${heightPercent}%`,
-                  paddingTop: `${paddingPercent}%`,
-                  paddingBottom: `${paddingPercent}%`,
+                  paddingTop: `${verticalPadding}px`,
+                  paddingBottom: `${verticalPadding}px`,
                 }}
               >
                 {index % 2 === 0 ? (
                   <>
                     {/* Animation LEFT */}
                     <div
-                      className="flex items-center justify-between flex-shrink-0 ml-10"
-                      style={{ width: '180px', height: `${contentHeight}px` }}
+                      className="flex items-center justify-center ml-[10%]"
+                      style={{
+                        minWidth: '140px',
+                        maxWidth: '180px',
+                        width: '180px',
+                        height: `${contentHeight}px`,
+                      }}
                     >
                       <GifBox
                         width={180}
@@ -121,7 +100,7 @@ export default function ProcessDesktop() {
                     </div>
                     {/* Text RIGHT */}
                     <div
-                      className=" flex items-center pr-8"
+                      className="flex items-center flex-1 justify-end"
                       style={{ height: `${contentHeight}px` }}
                     >
                       <TextCard
@@ -136,7 +115,7 @@ export default function ProcessDesktop() {
                   <>
                     {/* Text LEFT */}
                     <div
-                      className="flex items-center justify-end pl-8"
+                      className="flex items-center flex-1"
                       style={{ height: `${contentHeight}px` }}
                     >
                       <TextCard
@@ -148,8 +127,13 @@ export default function ProcessDesktop() {
                     </div>
                     {/* Animation RIGHT */}
                     <div
-                      className="flex items-center justify-center flex-shrink-0 mr-[50px]"
-                      style={{ width: '180px', height: `${contentHeight}px` }}
+                      className="flex items-center justify-center mr-[10%]"
+                      style={{
+                        minWidth: '140px',
+                        maxWidth: '180px',
+                        width: '180px',
+                        height: `${contentHeight}px`,
+                      }}
                     >
                       <GifBox
                         width={180}
@@ -165,7 +149,7 @@ export default function ProcessDesktop() {
             );
           })}
         </div>
-      </div>{' '}
+      </div>
     </div>
   );
 }

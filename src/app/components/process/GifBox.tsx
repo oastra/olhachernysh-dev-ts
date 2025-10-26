@@ -18,11 +18,11 @@ export default function GifBox({
   loop = true,
 }: Props) {
   if (!isActive || !lottieSrc) {
-    return <div className="flex-shrink-0" style={{ width, height }} />;
+    return <div style={{ width, height }} />;
   }
 
   return (
-    <div className="flex-shrink-0 " style={{ width, height }}>
+    <div style={{ width, height, minWidth: width }}>
       <DotLottieReact
         src={lottieSrc}
         autoplay

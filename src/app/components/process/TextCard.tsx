@@ -19,7 +19,7 @@ export default function TextCard({
 }: TextCardProps) {
   return (
     <div
-      className="overflow-hidden flex-shrink-0 max-w-[603px] "
+      className="overflow-hidden "
       onMouseEnter={() => onHoverChange?.(true)}
       onMouseLeave={() => onHoverChange?.(false)}
     >

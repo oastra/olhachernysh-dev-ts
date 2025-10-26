@@ -7,9 +7,9 @@ interface SnakeOverlayProps {
   d: string;
   className?: string;
   strokeWidth?: number;
-  animationDuration?: number; // in seconds
-  animationDelay?: number; // in seconds
-  ease?: string; // CSS easing function
+  animationDuration?: number;
+  animationDelay?: number;
+  ease?: string;
 }
 
 export default function SnakeOverlay({
@@ -28,14 +28,13 @@ export default function SnakeOverlay({
     const path = pathRef.current;
     if (!path || hasAnimated) return;
 
-    // Get the total length of the path
     const pathLength = path.getTotalLength();
 
     // Set up the initial state - path is hidden
     path.style.strokeDasharray = `${pathLength}`;
     path.style.strokeDashoffset = `${pathLength}`;
 
-    // Create intersection observer
+    // Create intersection observer with mobile-friendly settings
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -57,8 +56,8 @@ export default function SnakeOverlay({
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.01, // Reduced from 0.1 for better mobile detection
+        rootMargin: '100px 0px 100px 0px', // More generous margin for mobile
       },
     );
 
