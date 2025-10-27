@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormData, FormErrors } from '@/types/contact-form.types';
+import { FormData } from '@/types/contact-form.types';
 
 interface FormInputProps {
   name: keyof FormData;
@@ -38,12 +38,15 @@ export const FormInput: React.FC<FormInputProps> = ({
 
   return (
     <div className="space-y-2">
-      <label htmlFor={name} className="block text-h6 font-medium text-white/90">
+      <label
+        htmlFor={name as string}
+        className="block text-h6 font-medium text-white/90"
+      >
         {label}
       </label>
       <input
-        id={name}
-        name={name}
+        id={name as string}
+        name={name as string}
         type={type}
         placeholder={placeholder}
         value={value}

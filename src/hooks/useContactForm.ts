@@ -8,7 +8,6 @@ interface FormData {
   budget: string;
   message: string;
   terms: boolean;
-  [key: string]: string | boolean;
 }
 
 interface FormErrors {
@@ -82,7 +81,18 @@ export const useContactForm = () => {
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    Object.keys(formData).forEach((key) => {
+    // Validate each field explicitly
+    const fields: (keyof FormData)[] = [
+      'fullName',
+      'email',
+      'businessType',
+      'projectType',
+      'budget',
+      'message',
+      'terms',
+    ];
+
+    fields.forEach((key) => {
       const error = validateField(key, formData[key]);
       if (error) {
         newErrors[key] = error;

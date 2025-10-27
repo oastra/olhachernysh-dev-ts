@@ -6,14 +6,13 @@ export interface FormData {
   budget: string;
   message: string;
   terms: boolean;
-  [key: string]: string | boolean;
 }
 
 export interface FormField {
   label: string;
   placeholder: string;
   type: string;
-  name: string;
+  name: keyof FormData;
   required: boolean;
 }
 
