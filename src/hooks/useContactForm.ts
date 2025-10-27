@@ -1,6 +1,21 @@
-import { useState } from 'react';
-import { FormData, FormErrors } from '../types/contact-form.types';
-import { validateField, validateForm } from '@/utils/form-validation';
+import { useState, ChangeEvent, FocusEvent, FormEvent } from 'react';
+
+interface FormData {
+  fullName: string;
+  email: string;
+  businessType: string;
+  projectType: string;
+  budget: string;
+  message: string;
+  terms: boolean;
+  [key: string]: string | boolean;
+}
+
+interface FormErrors {
+  [key: string]: string;
+}
+
+type SubmitStatus = 'idle' | 'success' | 'error';
 
 export const useContactForm = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -15,57 +30,110 @@ export const useContactForm = () => {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    'idle' | 'success' | 'error'
-  >('idle');
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
 
+  // Validation functions
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateField = (name: string, value: string | boolean): string => {
+    switch (name) {
+      case 'fullName':
+        if (!value || (typeof value === 'string' && value.trim().length < 2)) {
+          return 'Name must be at least 2 characters';
+        }
+        break;
+      case 'email':
+        if (!value || (typeof value === 'string' && !validateEmail(value))) {
+          return 'Please enter a valid email address';
+        }
+        break;
+      case 'businessType':
+        if (!value || (typeof value === 'string' && value.trim().length < 2)) {
+          return 'Please enter your business type';
+        }
+        break;
+      case 'projectType':
+        if (!value || (typeof value === 'string' && value.trim().length < 2)) {
+          return 'Please enter your project type';
+        }
+        break;
+      case 'budget':
+        if (!value || (typeof value === 'string' && value.trim().length < 1)) {
+          return 'Please enter your budget range';
+        }
+        break;
+      case 'message':
+        if (!value || (typeof value === 'string' && value.trim().length < 10)) {
+          return 'Message must be at least 10 characters';
+        }
+        break;
+      case 'terms':
+        if (!value) {
+          return 'You must agree to the terms';
+        }
+        break;
+    }
+    return '';
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    Object.keys(formData).forEach((key) => {
+      const error = validateField(key, formData[key]);
+      if (error) {
+        newErrors[key] = error;
+      }
+    });
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Handlers
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { name, value, type } = e.target;
-    const fieldValue =
-      type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
+    const { name, type } = e.target;
+    const value =
+      type === 'checkbox'
+        ? (e.target as HTMLInputElement).checked
+        : e.target.value;
 
     setFormData((prev) => ({
       ...prev,
-      [name]: fieldValue,
+      [name]: value,
     }));
 
     // Clear error when user starts typing
-    if (errors[name as keyof FormErrors]) {
+    if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
-        [name]: undefined,
+        [name]: '',
       }));
     }
-
-    // Real-time validation for email
-    if (name === 'email' && value) {
-      const error = validateField(name as keyof FormData, value);
-      if (error) {
-        setErrors((prev) => ({ ...prev, [name]: error }));
-      }
-    }
   };
 
-  const handleBlur = (
-    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    const error = validateField(name as keyof FormData, value);
+    const error = validateField(name, value);
 
     if (error) {
-      setErrors((prev) => ({ ...prev, [name]: error }));
+      setErrors((prev) => ({
+        ...prev,
+        [name]: error,
+      }));
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formErrors = validateForm(formData);
-
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
+    // Validate form
+    if (!validateForm()) {
       return;
     }
 
@@ -73,13 +141,21 @@ export const useContactForm = () => {
     setSubmitStatus('idle');
 
     try {
-      // Simulate API call - replace with your actual submission logic
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      console.log('Form submitted successfully:', formData);
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
       setSubmitStatus('success');
 
-      // Reset form
+      // Reset form on success
       setFormData({
         fullName: '',
         email: '',
@@ -90,9 +166,19 @@ export const useContactForm = () => {
         terms: false,
       });
       setErrors({});
+
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error('Error submitting form:', error);
       setSubmitStatus('error');
+
+      // Auto-hide error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
     } finally {
       setIsSubmitting(false);
     }
