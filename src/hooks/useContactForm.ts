@@ -100,6 +100,14 @@ export const useContactForm = () => {
     });
 
     setErrors(newErrors);
+
+    // Debug log
+    if (Object.keys(newErrors).length > 0) {
+      console.log('❌ Validation failed:', newErrors);
+    } else {
+      console.log('✅ Validation passed');
+    }
+
     return Object.keys(newErrors).length === 0;
   };
 
@@ -141,16 +149,21 @@ export const useContactForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log('🚀 Form submitted!');
+    console.log('📝 Form data:', formData);
 
     // Validate form
     if (!validateForm()) {
+      console.log('⚠️ Form validation failed, not submitting');
       return;
     }
 
+    console.log('✅ Validation passed, submitting to API...');
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
     try {
+      console.log('📤 Sending POST request to /api/contact');
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -159,9 +172,16 @@ export const useContactForm = () => {
         body: JSON.stringify(formData),
       });
 
+      console.log('📥 Response status:', response.status);
+
       if (!response.ok) {
+        const errorData = await response.json();
+        console.error('❌ API error:', errorData);
         throw new Error('Failed to send message');
       }
+
+      const data = await response.json();
+      console.log('✅ Success response:', data);
 
       setSubmitStatus('success');
 
@@ -182,7 +202,7 @@ export const useContactForm = () => {
         setSubmitStatus('idle');
       }, 5000);
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('❌ Error submitting form:', error);
       setSubmitStatus('error');
 
       // Auto-hide error message after 5 seconds
@@ -191,6 +211,7 @@ export const useContactForm = () => {
       }, 5000);
     } finally {
       setIsSubmitting(false);
+      console.log('🏁 Form submission complete');
     }
   };
 

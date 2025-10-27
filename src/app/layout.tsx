@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
@@ -51,6 +52,13 @@ export const metadata: Metadata = {
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
   manifest: '/site.webmanifest',
+
+  // ✅ Facebook Domain Verification
+  verification: {
+    other: {
+      'facebook-domain-verification': 'wgkrfydrd2rpfihgk47e2j09ebnayr',
+    },
+  },
 };
 
 export default function RootLayout({
@@ -60,7 +68,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-SBM45GGPYP"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-SBM45GGPYP');
+          `}
+        </Script>
+
+        {children}
+      </body>
     </html>
   );
 }
