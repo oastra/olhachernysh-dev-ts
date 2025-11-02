@@ -12,7 +12,7 @@ const SCALE_FACTOR = (SECTION_HEIGHT * 6) / SVG_VIEWBOX_HEIGHT;
 const CONTAINER_HEIGHT = SVG_VIEWBOX_HEIGHT * SCALE_FACTOR;
 const CONTAINER_WIDTH = SVG_VIEWBOX_WIDTH;
 
-// original Figma positions – don’t add px here
+// Figma positions
 const sectionPositions = [
   { top: 11.5, bottom: 266.249 },
   { top: 286.249, bottom: 544.079 },
@@ -25,18 +25,20 @@ const sectionPositions = [
 export default function ProcessMobile() {
   return (
     <div className="md:hidden w-full">
+      {/* outer padding = space from viewport + sticky header */}
       <div
-        className="relative mx-auto w-full"
+        className="relative mx-auto w-full px-4" // 👈 left/right space from viewport
         style={{
           maxWidth: `${CONTAINER_WIDTH}px`,
           aspectRatio: `${CONTAINER_WIDTH} / ${CONTAINER_HEIGHT}`,
-          // 👇 this creates space under your sticky mobile header / Safari bar
-          paddingTop: '4.75rem', // ~76px
-          paddingBottom: '3.5rem',
+          paddingTop: '4.75rem',
+          paddingBottom: '4rem',
         }}
       >
-        {/* Snake – now starts AFTER padding, same as cards */}
-        <div className="absolute inset-0 w-full h-full">
+        {/* SNAKE */}
+        <div
+          className="absolute inset-y-0 left-2 right-2 w-auto h-full" // 👈 inset-x, not 0
+        >
           <SnakeOverlay
             viewBox={`0 0 ${SVG_VIEWBOX_WIDTH} ${SVG_VIEWBOX_HEIGHT}`}
             d="M1.5 1.5H318.5C324.023 1.5 328.5 5.97715 328.5 11.5V266.249C328.5 271.772 324.023 276.249 318.5 276.249H11.5C5.97716 276.249 1.5 280.726 1.5 286.249V544.079C1.5 549.602 5.97715 554.079 11.5 554.079H318.5C324.023 554.079 328.5 558.556 328.5 564.079V837.309C328.5 842.832 324.023 847.309 318.5 847.309H11.5C5.97716 847.309 1.5 851.786 1.5 857.309V1075C1.5 1080.52 5.97715 1085 11.5 1085L318.5 1085C324.023 1085 328.5 1089.48 328.5 1095V1319.5C328.5 1325.02 324.023 1329.5 318.5 1329.5L11.5 1329.5C5.97716 1329.5 1.5 1333.98 1.5 1339.5V1520.5C1.5 1526.02 5.97715 1530.5 11.5 1530.5L171.713 1530.5C177.236 1530.5 181.713 1534.98 181.713 1540.5V1667"
@@ -47,8 +49,8 @@ export default function ProcessMobile() {
           />
         </div>
 
-        {/* Content – uses the SAME origin as the snake */}
-        <div className="absolute inset-0 w-full h-full px-[1.2%]">
+        {/* CONTENT */}
+        <div className="absolute inset-y-0 left-2 right-2 w-auto h-full">
           {processSteps.map((step, index) => {
             const section = sectionPositions[index];
             const topPercent = (section.top / SVG_VIEWBOX_HEIGHT) * 100;
