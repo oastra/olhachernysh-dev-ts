@@ -11,6 +11,7 @@ interface SnakeOverlayProps {
   animationDelay?: number;
   ease?: string;
   forceOnMount?: boolean;
+  delayAfterVisibleMs?: number; // 👈 new
 }
 
 export default function SnakeOverlay({
@@ -22,27 +23,34 @@ export default function SnakeOverlay({
   animationDelay = 0.2,
   ease = 'ease-in-out',
   forceOnMount = false,
+  delayAfterVisibleMs = 1000, // 👈 1 second after in view
 }: SnakeOverlayProps) {
+  const svgRef = useRef<SVGSVGElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
-  const [jsReady, setJsReady] = useState(false); // to avoid initial flash
+  const timerRef = useRef<number | null>(null);
 
   useEffect(() => {
+    const svgEl = svgRef.current;
     const path = pathRef.current;
-    if (!path) return;
+    if (!svgEl || !path) return;
+
+    const prepareHidden = () => {
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = `${len}`;
+      path.style.strokeDashoffset = `${len}`;
+    };
 
     const runAnimation = () => {
-      const length = path.getTotalLength();
-
-      // start hidden
-      path.style.strokeDasharray = `${length}`;
-      path.style.strokeDashoffset = `${length}`;
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = `${len}`;
+      path.style.strokeDashoffset = `${len}`;
 
       setTimeout(() => {
         path.style.transition = `stroke-dashoffset ${animationDuration}s ${ease}`;
         path.style.strokeDashoffset = '0';
 
-        // after finishing keep the line
+        // keep the line
         setTimeout(() => {
           path.style.strokeDasharray = 'none';
         }, animationDuration * 1000);
@@ -51,45 +59,60 @@ export default function SnakeOverlay({
       setHasAnimated(true);
     };
 
-    // 1) forced (desktop or your own reason)
-    if (forceOnMount && !hasAnimated) {
-      setJsReady(true);
+    // always prep once to avoid flash
+    prepareHidden();
+
+    // forced path (for debugging / desktop)
+    if (forceOnMount) {
       runAnimation();
       return;
     }
 
-    // 2) normal — wait until real visible
     const observer = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          // we want a GOOD visibility, not 1px
-          if (
-            entry.isIntersecting &&
-            entry.intersectionRatio > 0.25 &&
-            !hasAnimated
-          ) {
-            setJsReady(true);
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+
+        if (entry.isIntersecting && !hasAnimated) {
+          // start 3s timer after it's actually visible
+          timerRef.current = window.setTimeout(() => {
             runAnimation();
-            obs.disconnect();
+            observer.disconnect();
+          }, delayAfterVisibleMs);
+        } else {
+          // user scrolled away before 3s → cancel
+          if (timerRef.current) {
+            clearTimeout(timerRef.current);
+            timerRef.current = null;
           }
-        });
+        }
       },
       {
-        // negative top/bottom so it starts a bit LATER (good for tall mobile section)
-        rootMargin: '-120px 0px -120px 0px',
-        threshold: [0, 0.25, 0.5, 0.75, 1],
+        rootMargin: '60px 0px 60px 0px', // small cushion for mobile
+        threshold: 0.08, // 8% of svg in view is enough
       },
     );
 
-    observer.observe(path);
+    observer.observe(svgEl);
 
     return () => {
       observer.disconnect();
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
     };
-  }, [hasAnimated, animationDuration, animationDelay, ease, forceOnMount]);
+  }, [
+    animationDuration,
+    animationDelay,
+    ease,
+    forceOnMount,
+    delayAfterVisibleMs,
+    hasAnimated,
+  ]);
 
   return (
     <svg
+      ref={svgRef}
       className={`pointer-events-none absolute inset-0 z-0 ${className}`}
       width="100%"
       height="100%"
@@ -119,15 +142,6 @@ export default function SnakeOverlay({
         strokeLinecap="round"
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"
-        /* 👇 prevent the “already drawn” flash before JS runs */
-        style={
-          !jsReady && !hasAnimated
-            ? {
-                strokeDasharray: 1,
-                strokeDashoffset: 1,
-              }
-            : undefined
-        }
       />
     </svg>
   );
