@@ -1,30 +1,80 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type Props = {
-  scrolled: boolean;
-  isVisible: boolean; // Add this prop to control visibility based on scroll direction
+  scrolled: boolean; // you already send this from your scroll hook
+  /** id of the section after which header should start hiding */
+  pinUntilId?: string; // e.g. "#process" or "process"
   children: React.ReactNode;
 };
 
 export default function HeaderBar({
   scrolled,
-  isVisible = true,
+  pinUntilId = 'process', // fallback
   children,
 }: Props) {
   const [isMobile, setIsMobile] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const pinnedUntilPx = useRef(0);
 
+  // detect mobile
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768); // md breakpoint
+      if (typeof window === 'undefined') return;
+      setIsMobile(window.innerWidth < 768);
     };
-
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
-
     return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  // measure the section that "unlocks" the auto-hide
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const id = pinUntilId.startsWith('#') ? pinUntilId.slice(1) : pinUntilId;
+    const target = document.getElementById(id);
+
+    if (target) {
+      const rect = target.getBoundingClientRect();
+      // rect.top is relative to viewport, add scroll to get absolute
+      pinnedUntilPx.current = rect.top + window.scrollY - 40; // small offset
+    } else {
+      // if not found, just pin to 300px
+      pinnedUntilPx.current = 300;
+    }
+  }, [pinUntilId]);
+
+  // scroll logic: show until pinnedUntilPx, then show on up, hide on down
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const onScroll = () => {
+      const current = window.scrollY;
+      const unlockAt = pinnedUntilPx.current;
+
+      // 1) before second section → always visible
+      if (current < unlockAt) {
+        setIsVisible(true);
+      } else {
+        // 2) after second section → smart header
+        if (current > lastScrollY.current + 4) {
+          // scrolling down
+          setIsVisible(false);
+        } else if (current < lastScrollY.current - 4) {
+          // scrolling up
+          setIsVisible(true);
+        }
+      }
+
+      lastScrollY.current = current;
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
@@ -32,12 +82,12 @@ export default function HeaderBar({
       className="relative"
       initial={false}
       animate={{
-        y: isVisible ? 0 : -100, // Hide header when scrolling down
+        y: isVisible ? 0 : -100,
         opacity: isVisible ? 1 : 0,
       }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
+      transition={{ duration: 0.28, ease: 'easeInOut' }}
     >
-      {/* Animated pill background */}
+      {/* glass pill */}
       <AnimatePresence initial={false}>
         {scrolled && (
           <motion.div
@@ -53,15 +103,15 @@ export default function HeaderBar({
         )}
       </AnimatePresence>
 
-      {/* Content row: animates padding so the size change is silky */}
+      {/* content */}
       <motion.div
         className="relative z-10 flex items-center justify-between"
         initial={false}
         animate={{
           paddingLeft: scrolled ? 32 : 24,
           paddingRight: scrolled ? 32 : 24,
-          paddingTop: scrolled ? (isMobile ? 4 : 16) : 24, // 4px mobile, 16px desktop when scrolled
-          paddingBottom: scrolled ? (isMobile ? 4 : 16) : 24, // 4px mobile, 16px desktop when scrolled
+          paddingTop: scrolled ? (isMobile ? 4 : 16) : 24,
+          paddingBottom: scrolled ? (isMobile ? 4 : 16) : 24,
         }}
         transition={{ duration: 0.22, ease: 'easeOut' }}
       >

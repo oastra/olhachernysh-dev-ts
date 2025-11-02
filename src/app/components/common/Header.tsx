@@ -77,7 +77,7 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto max-w-[1440px]">
-        <HeaderBar scrolled={scrolled} isVisible={!open}>
+        <HeaderBar scrolled={scrolled} pinUntilId="about">
           <Logo size="md" href="/" />
 
           <nav className="hidden xl:flex w-[388px] items-center justify-between">
