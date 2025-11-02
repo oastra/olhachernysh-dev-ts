@@ -70,7 +70,7 @@ export default function SnakeOverlay({
       },
       {
         threshold: 0.15, // be a bit stricter so it runs only when really on screen
-        rootMargin: '100px 0px 100px 0px',
+        rootMargin: '150px 0px 150px 0px',
       },
     );
 
