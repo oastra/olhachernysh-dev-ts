@@ -10,7 +10,6 @@ interface SnakeOverlayProps {
   animationDuration?: number;
   animationDelay?: number;
   ease?: string;
-  /** NEW: use this on mobile to always animate */
   forceOnMount?: boolean;
 }
 
@@ -19,8 +18,8 @@ export default function SnakeOverlay({
   d,
   className = '',
   strokeWidth = 3,
-  animationDuration = 3.5,
-  animationDelay = 0.2,
+  animationDuration = 3.5, // 👈 match desktop
+  animationDelay = 0.2, // 👈 match desktop
   ease = 'ease-in-out',
   forceOnMount = false,
 }: SnakeOverlayProps) {
@@ -33,15 +32,15 @@ export default function SnakeOverlay({
 
     const animate = () => {
       const pathLength = path.getTotalLength();
+      // initial (hidden)
       path.style.strokeDasharray = `${pathLength}`;
       path.style.strokeDashoffset = `${pathLength}`;
 
-      // delay before draw
       setTimeout(() => {
         path.style.transition = `stroke-dashoffset ${animationDuration}s ${ease}`;
         path.style.strokeDashoffset = '0';
 
-        // keep the line
+        // keep the line after draw
         setTimeout(() => {
           path.style.strokeDasharray = 'none';
         }, animationDuration * 1000);
@@ -50,13 +49,12 @@ export default function SnakeOverlay({
       setHasAnimated(true);
     };
 
-    // 🔒 1) if we explicitly force it (mobile)
+    // mobile / forced
     if (forceOnMount) {
       animate();
       return;
     }
 
-    // 🔍 2) normal behavior with IntersectionObserver
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -67,22 +65,20 @@ export default function SnakeOverlay({
       },
       {
         threshold: 0.01,
-        rootMargin: '150px 0px 150px 0px', // a bit more generous
+        rootMargin: '150px 0px 150px 0px',
       },
     );
 
     observer.observe(path);
 
-    // 🛟 3) fallback: if observer never fires (some mobile Safari cases)
-    const timeoutId = setTimeout(() => {
-      if (!hasAnimated) {
-        animate();
-      }
+    // fallback for iOS
+    const id = setTimeout(() => {
+      if (!hasAnimated) animate();
     }, 1200);
 
     return () => {
       observer.disconnect();
-      clearTimeout(timeoutId);
+      clearTimeout(id);
     };
   }, [hasAnimated, animationDuration, animationDelay, ease, forceOnMount]);
 
@@ -92,6 +88,7 @@ export default function SnakeOverlay({
       width="100%"
       height="100%"
       viewBox={viewBox}
+      // this keeps proportions like desktop
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>
@@ -116,6 +113,8 @@ export default function SnakeOverlay({
         strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
+        // 👇 THIS makes it look like desktop on mobile
+        vectorEffect="non-scaling-stroke"
       />
     </svg>
   );
