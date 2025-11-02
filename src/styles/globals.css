@@ -9,14 +9,6 @@
   --foreground: #171717;
 }
 
-/* Dark mode overrides
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
 /* Theme variables (Tailwind v4 configuration in CSS) */
 @theme {
   --breakpoint-sm: 375px; /* mobile */
@@ -155,7 +147,8 @@
 
   .btn-circle-cta:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.6),
+    box-shadow:
+      0 0 0 4px rgba(255, 255, 255, 0.6),
       0 10px 30px rgba(0, 68, 255, 0.3);
   }
 
@@ -226,8 +219,8 @@
       border-radius: 9999px;
       padding: 9px; /* 1px ring */
       background: linear-gradient(90deg, #000924 0%, #092b79 35%, #00d4ff 98%);
-      -webkit-mask: radial-gradient(closest-side, #000 98%, transparent)
-          content-box,
+      -webkit-mask:
+        radial-gradient(closest-side, #000 98%, transparent) content-box,
         radial-gradient(closest-side, #000 100%, transparent) border-box;
       -webkit-mask-composite: xor;
       mask-composite: exclude;

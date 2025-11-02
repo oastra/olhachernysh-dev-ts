@@ -49,7 +49,7 @@ export default function AboutSection() {
         {/* Masked Image (mobile → tablet → desktop masks) */}
         <div className="max-w-[343px] xl:max-w-[712px] lg:max-h-[603px] justify-self-center lg:justify-self-end w-full">
           <AboutMaskedImage
-            src="/images/about/olha1.png"
+            src="/images/about/olha.jpg"
             alt="Olha Chernysh – Frontend Developer"
             priority
           />
