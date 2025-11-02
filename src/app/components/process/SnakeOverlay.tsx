@@ -10,7 +10,7 @@ interface SnakeOverlayProps {
   animationDuration?: number;
   animationDelay?: number;
   ease?: string;
-  forceOnMount?: boolean;
+  forceOnMount?: boolean; // force right away, but still only once
 }
 
 export default function SnakeOverlay({
@@ -18,8 +18,8 @@ export default function SnakeOverlay({
   d,
   className = '',
   strokeWidth = 3,
-  animationDuration = 3.5, // 👈 match desktop
-  animationDelay = 0.2, // 👈 match desktop
+  animationDuration = 5,
+  animationDelay = 0.3,
   ease = 'ease-in-out',
   forceOnMount = false,
 }: SnakeOverlayProps) {
@@ -28,11 +28,13 @@ export default function SnakeOverlay({
 
   useEffect(() => {
     const path = pathRef.current;
-    if (!path || hasAnimated) return;
+    if (!path) return;
 
-    const animate = () => {
+    const runAnimation = () => {
+      if (!path) return;
       const pathLength = path.getTotalLength();
-      // initial (hidden)
+
+      // initial hidden
       path.style.strokeDasharray = `${pathLength}`;
       path.style.strokeDashoffset = `${pathLength}`;
 
@@ -40,7 +42,7 @@ export default function SnakeOverlay({
         path.style.transition = `stroke-dashoffset ${animationDuration}s ${ease}`;
         path.style.strokeDashoffset = '0';
 
-        // keep the line after draw
+        // keep line
         setTimeout(() => {
           path.style.strokeDasharray = 'none';
         }, animationDuration * 1000);
@@ -49,36 +51,33 @@ export default function SnakeOverlay({
       setHasAnimated(true);
     };
 
-    // mobile / forced
-    if (forceOnMount) {
-      animate();
+    // 1) forced mode → run once on mount
+    if (forceOnMount && !hasAnimated) {
+      runAnimation();
       return;
     }
 
+    // 2) normal: wait until visible
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries, obs) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasAnimated) {
-            animate();
+            runAnimation();
+            // stop observing after first time
+            obs.disconnect();
           }
         });
       },
       {
-        threshold: 0.01,
-        rootMargin: '150px 0px 150px 0px',
+        threshold: 0.15, // be a bit stricter so it runs only when really on screen
+        rootMargin: '100px 0px 100px 0px',
       },
     );
 
     observer.observe(path);
 
-    // fallback for iOS
-    const id = setTimeout(() => {
-      if (!hasAnimated) animate();
-    }, 1200);
-
     return () => {
       observer.disconnect();
-      clearTimeout(id);
     };
   }, [hasAnimated, animationDuration, animationDelay, ease, forceOnMount]);
 
@@ -88,7 +87,6 @@ export default function SnakeOverlay({
       width="100%"
       height="100%"
       viewBox={viewBox}
-      // this keeps proportions like desktop
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>
@@ -113,7 +111,6 @@ export default function SnakeOverlay({
         strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
-        // important on mobile to keep stroke width consistent
         vectorEffect="non-scaling-stroke"
       />
     </svg>

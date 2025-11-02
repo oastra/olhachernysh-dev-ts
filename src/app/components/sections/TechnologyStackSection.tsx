@@ -5,7 +5,7 @@ import SkillsMarquee from '../ui/SkillsMarquee';
 
 export default function TechnologyStackSection() {
   return (
-    <SectionWrapper size="tight" className="w-full">
+    <SectionWrapper id="technology-stack" size="tight" className="w-full">
       {/* running logos */}
       <div className="mb-8 md:mb-16 lg:mb-[93px]">
         <SkillsMarquee />
