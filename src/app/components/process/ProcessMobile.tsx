@@ -39,6 +39,8 @@ export default function ProcessMobile() {
             strokeWidth={3}
             animationDuration={4}
             animationDelay={0.1}
+            // 👇 THIS makes it always animate on phones
+            forceOnMount
           />
         </div>
 

@@ -42,10 +42,12 @@ export default function ContactForm() {
         <FormTextarea
           name="message"
           label="Message"
-          placeholder="Type here..."
+          placeholder="Tell me a bit more about your project..."
           value={formData.message}
+          error={errors.message} //  show “Message must be at least 10 characters”
           disabled={isSubmitting}
           onChange={handleInputChange}
+          onBlur={handleBlur} // so it also validates on blur
         />
 
         <FormCheckbox
@@ -55,6 +57,7 @@ export default function ContactForm() {
           onChange={handleInputChange}
         />
 
+        <StatusMessage status={submitStatus} />
         <SubmitButton isSubmitting={isSubmitting} />
       </form>
     </div>
