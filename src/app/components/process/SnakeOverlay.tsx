@@ -10,7 +10,7 @@ interface SnakeOverlayProps {
   animationDuration?: number;
   animationDelay?: number;
   ease?: string;
-  forceOnMount?: boolean; // force right away, but still only once
+  forceOnMount?: boolean;
 }
 
 export default function SnakeOverlay({
@@ -18,31 +18,31 @@ export default function SnakeOverlay({
   d,
   className = '',
   strokeWidth = 3,
-  animationDuration = 5,
-  animationDelay = 0.3,
+  animationDuration = 3.5,
+  animationDelay = 0.2,
   ease = 'ease-in-out',
   forceOnMount = false,
 }: SnakeOverlayProps) {
   const pathRef = useRef<SVGPathElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [jsReady, setJsReady] = useState(false); // to avoid initial flash
 
   useEffect(() => {
     const path = pathRef.current;
     if (!path) return;
 
     const runAnimation = () => {
-      if (!path) return;
-      const pathLength = path.getTotalLength();
+      const length = path.getTotalLength();
 
-      // initial hidden
-      path.style.strokeDasharray = `${pathLength}`;
-      path.style.strokeDashoffset = `${pathLength}`;
+      // start hidden
+      path.style.strokeDasharray = `${length}`;
+      path.style.strokeDashoffset = `${length}`;
 
       setTimeout(() => {
         path.style.transition = `stroke-dashoffset ${animationDuration}s ${ease}`;
         path.style.strokeDashoffset = '0';
 
-        // keep line
+        // after finishing keep the line
         setTimeout(() => {
           path.style.strokeDasharray = 'none';
         }, animationDuration * 1000);
@@ -51,26 +51,33 @@ export default function SnakeOverlay({
       setHasAnimated(true);
     };
 
-    // 1) forced mode → run once on mount
+    // 1) forced (desktop or your own reason)
     if (forceOnMount && !hasAnimated) {
+      setJsReady(true);
       runAnimation();
       return;
     }
 
-    // 2) normal: wait until visible
+    // 2) normal — wait until real visible
     const observer = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
+          // we want a GOOD visibility, not 1px
+          if (
+            entry.isIntersecting &&
+            entry.intersectionRatio > 0.25 &&
+            !hasAnimated
+          ) {
+            setJsReady(true);
             runAnimation();
-            // stop observing after first time
             obs.disconnect();
           }
         });
       },
       {
-        threshold: 0.15, // be a bit stricter so it runs only when really on screen
-        rootMargin: '150px 0px 150px 0px',
+        // negative top/bottom so it starts a bit LATER (good for tall mobile section)
+        rootMargin: '-120px 0px -120px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1],
       },
     );
 
@@ -112,6 +119,15 @@ export default function SnakeOverlay({
         strokeLinecap="round"
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"
+        /* 👇 prevent the “already drawn” flash before JS runs */
+        style={
+          !jsReady && !hasAnimated
+            ? {
+                strokeDasharray: 1,
+                strokeDashoffset: 1,
+              }
+            : undefined
+        }
       />
     </svg>
   );
