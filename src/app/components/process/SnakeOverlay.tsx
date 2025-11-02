@@ -113,7 +113,7 @@ export default function SnakeOverlay({
         strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
-        // 👇 THIS makes it look like desktop on mobile
+        // important on mobile to keep stroke width consistent
         vectorEffect="non-scaling-stroke"
       />
     </svg>
