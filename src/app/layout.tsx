@@ -55,6 +55,7 @@ export const metadata: Metadata = {
 
   // ✅ Facebook Domain Verification
   verification: {
+    google: 'km_qNRA1DJxmOfjzjJ8NrELAgi70BmdI9iIjEoVK7J8',
     other: {
       'facebook-domain-verification': 'wgkrfydrd2rpfihgk47e2j09ebnayr',
     },
