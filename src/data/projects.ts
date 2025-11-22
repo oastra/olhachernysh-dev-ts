@@ -15,7 +15,7 @@ export const PROJECTS: Project[] = [
   {
     title: 'Tetiana Koldunenko — Artist Portfolio',
     location: 'Sydney, Australia',
-    href: 'https://tatacookies.com',
+    href: 'https://t-koldunenko.com',
     image: {
       src: '/images/projects/t-koldunenko.webp',
       alt: 'Tetiana Koldunenko artist website-portfolio',

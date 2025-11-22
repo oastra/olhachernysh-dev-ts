@@ -41,6 +41,7 @@ export default function ProjectCard({ project, className }: Props) {
         {/* circular CTA — hidden until hover */}
         <Link
           href={project.href}
+          target="_blank"
           aria-labelledby={`proj-${id}-title`}
           className={clsx(
             'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',

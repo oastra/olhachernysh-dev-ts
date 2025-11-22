@@ -20,7 +20,7 @@ export default function SnakeOverlay({
   className = '',
   strokeWidth = 3,
   animationDuration = 3.5,
-  animationDelay = 0.2,
+  animationDelay = 0.1,
   ease = 'ease-in-out',
   forceOnMount = false,
   delayAfterVisibleMs = 1000,
@@ -90,7 +90,7 @@ export default function SnakeOverlay({
       {
         rootMargin: '60px 0px 60px 0px',
         threshold: 0.08,
-      },
+      }
     );
 
     observer.observe(svgEl);
