@@ -23,7 +23,7 @@ export default function ProcessTablet() {
   ];
 
   return (
-    <div className="hidden md:block lg:hidden w-full">
+    <div className="hidden md:block xl:hidden w-full">
       <div
         className="w-full mx-auto relative"
         style={{
@@ -31,7 +31,7 @@ export default function ProcessTablet() {
           aspectRatio: `${CONTAINER_WIDTH} / ${CONTAINER_HEIGHT}`,
         }}
       >
-        {/* Snake Overlay with better animation settings */}
+        {/* snake */}
         <div className="absolute inset-0 w-full h-full">
           <SnakeOverlay
             viewBox={`0 0 ${SVG_VIEWBOX_WIDTH} ${SVG_VIEWBOX_HEIGHT}`}
@@ -39,10 +39,12 @@ export default function ProcessTablet() {
             strokeWidth={3}
             animationDuration={4}
             animationDelay={0.1}
+            // 👇 make it explicit: draw 1s after tablet view sees it
+            delayAfterVisibleMs={1000}
           />
         </div>
 
-        {/* Content with better spacing */}
+        {/* content */}
         <div className="relative z-10 w-full h-full px-4">
           {processSteps.map((step, index) => {
             const section = sectionPositions[index];

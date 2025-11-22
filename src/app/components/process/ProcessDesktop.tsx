@@ -37,7 +37,7 @@ export default function ProcessDesktop() {
   ];
 
   return (
-    <div className="hidden lg:block w-full">
+    <div className="hidden xl:block w-full">
       <div
         className="w-full mx-auto relative"
         style={{

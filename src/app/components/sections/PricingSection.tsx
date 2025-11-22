@@ -11,7 +11,7 @@ export default function PricingSection() {
       <SectionTitle right="All packages include professional UI/UX design handled by an expert designer, followed by custom-coded development.">
         Pricing{' '}
       </SectionTitle>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
         {pricingPlans.map((plan) => (
           <PricingCard key={plan.id} {...plan} />
         ))}

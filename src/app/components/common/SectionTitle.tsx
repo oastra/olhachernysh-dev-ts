@@ -19,11 +19,11 @@ export default function SectionTitle({
   return (
     <div
       className={clsx(
-        'flex flex-col md:flex-row md:items-end md:justify-between',
+        'flex flex-col lg:flex-row lg:items-end lg:justify-between',
         withDivider && 'border-b-2 border-main-blue/10',
         // spacing around the row
         'pb-[22px] lg:pb-[40px] mb-[32px] lg:mb-[62px]',
-        className
+        className,
       )}
     >
       <h2 className="text-h2 text-ink">{children}</h2>

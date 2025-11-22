@@ -11,7 +11,7 @@ interface SnakeOverlayProps {
   animationDelay?: number;
   ease?: string;
   forceOnMount?: boolean;
-  delayAfterVisibleMs?: number; // 👈 new
+  delayAfterVisibleMs?: number;
 }
 
 export default function SnakeOverlay({
@@ -23,7 +23,7 @@ export default function SnakeOverlay({
   animationDelay = 0.2,
   ease = 'ease-in-out',
   forceOnMount = false,
-  delayAfterVisibleMs = 1000, // 👈 1 second after in view
+  delayAfterVisibleMs = 1000,
 }: SnakeOverlayProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
@@ -59,10 +59,10 @@ export default function SnakeOverlay({
       setHasAnimated(true);
     };
 
-    // always prep once to avoid flash
+    // prep once
     prepareHidden();
 
-    // forced path (for debugging / desktop)
+    // force
     if (forceOnMount) {
       runAnimation();
       return;
@@ -74,13 +74,13 @@ export default function SnakeOverlay({
         if (!entry) return;
 
         if (entry.isIntersecting && !hasAnimated) {
-          // start 3s timer after it's actually visible
+          // wait after visible
           timerRef.current = window.setTimeout(() => {
             runAnimation();
             observer.disconnect();
           }, delayAfterVisibleMs);
         } else {
-          // user scrolled away before 3s → cancel
+          // scrolled away before timer
           if (timerRef.current) {
             clearTimeout(timerRef.current);
             timerRef.current = null;
@@ -88,8 +88,8 @@ export default function SnakeOverlay({
         }
       },
       {
-        rootMargin: '60px 0px 60px 0px', // small cushion for mobile
-        threshold: 0.08, // 8% of svg in view is enough
+        rootMargin: '60px 0px 60px 0px',
+        threshold: 0.08,
       },
     );
 
@@ -101,13 +101,13 @@ export default function SnakeOverlay({
         clearTimeout(timerRef.current);
       }
     };
+    // 👇 DON'T include hasAnimated here
   }, [
     animationDuration,
     animationDelay,
     ease,
     forceOnMount,
     delayAfterVisibleMs,
-    hasAnimated,
   ]);
 
   return (
