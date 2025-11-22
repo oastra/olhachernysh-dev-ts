@@ -24,7 +24,7 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    title: 'Tatacookies',
+    title: 'Tatacookies - Handmade Cookies',
     location: 'Sydney, Australia',
     href: 'https://tatacookies.com',
     image: {
