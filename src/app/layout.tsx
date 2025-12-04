@@ -70,6 +70,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        {/* Cloudflare Turnstile script */}
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          async
+          defer
+        />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-SBM45GGPYP"

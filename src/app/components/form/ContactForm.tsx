@@ -8,6 +8,8 @@ import { SubmitButton } from '../ui/buttons/SubmitButton';
 import { StatusMessage } from './StatusMessage';
 import { formFields } from '@/data/form-fields';
 
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
+
 export default function ContactForm() {
   const {
     formData,
@@ -21,9 +23,11 @@ export default function ContactForm() {
 
   return (
     <div className="space-y-4">
+      {/* Global status message (success / error) */}
       <StatusMessage status={submitStatus} />
 
       <form onSubmit={handleSubmit} noValidate className="space-y-5">
+        {/* Standard fields from config */}
         {formFields.map((field) => (
           <FormInput
             key={field.name}
@@ -39,17 +43,19 @@ export default function ContactForm() {
           />
         ))}
 
+        {/* Message textarea */}
         <FormTextarea
           name="message"
           label="Message"
           placeholder="Tell me a bit more about your project..."
           value={formData.message}
-          error={errors.message} //  show “Message must be at least 10 characters”
+          error={errors.message}
           disabled={isSubmitting}
           onChange={handleInputChange}
-          onBlur={handleBlur} // so it also validates on blur
+          onBlur={handleBlur}
         />
 
+        {/* Terms checkbox */}
         <FormCheckbox
           checked={formData.terms}
           error={errors.terms}
@@ -57,6 +63,27 @@ export default function ContactForm() {
           onChange={handleInputChange}
         />
 
+        {/* Honeypot field – hidden from real users */}
+        <input
+          type="text"
+          name="company"
+          className="hidden"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+
+        {/* Cloudflare Turnstile widget */}
+        {TURNSTILE_SITE_KEY && (
+          <div className="mt-4">
+            <div
+              className="cf-turnstile"
+              data-sitekey={TURNSTILE_SITE_KEY}
+              data-theme="light"
+            />
+          </div>
+        )}
+
+        {/* Status + submit button */}
         <StatusMessage status={submitStatus} />
         <SubmitButton isSubmitting={isSubmitting} />
       </form>

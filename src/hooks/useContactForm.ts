@@ -81,7 +81,6 @@ export const useContactForm = () => {
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // Validate each field explicitly
     const fields: (keyof FormData)[] = [
       'fullName',
       'email',
@@ -101,7 +100,6 @@ export const useContactForm = () => {
 
     setErrors(newErrors);
 
-    // Debug log
     if (Object.keys(newErrors).length > 0) {
       console.log('❌ Validation failed:', newErrors);
     } else {
@@ -113,7 +111,7 @@ export const useContactForm = () => {
 
   // Handlers
   const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, type } = e.target;
     const value =
@@ -126,7 +124,6 @@ export const useContactForm = () => {
       [name]: value,
     }));
 
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -136,7 +133,7 @@ export const useContactForm = () => {
   };
 
   const handleBlur = (
-    e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     const error = validateField(name, value);
@@ -154,11 +151,28 @@ export const useContactForm = () => {
     console.log('🚀 Form submitted!');
     console.log('📝 Form data:', formData);
 
-    // Validate form
+    // Validate form first
     if (!validateForm()) {
       console.log('⚠️ Form validation failed, not submitting');
       return;
     }
+
+    // Grab Turnstile token from hidden input injected by Cloudflare
+    const tokenInput = document.querySelector<HTMLInputElement>(
+      'input[name="cf-turnstile-response"]'
+    );
+    const turnstileToken = tokenInput?.value || '';
+
+    // Grab honeypot value (should be empty for humans)
+    const companyInput = document.querySelector<HTMLInputElement>(
+      'input[name="company"]'
+    );
+    const company = companyInput?.value || '';
+
+    console.log('🔐 Spam protection data:', {
+      hasTurnstileToken: !!turnstileToken,
+      companyValue: company,
+    });
 
     console.log('✅ Validation passed, submitting to API...');
     setIsSubmitting(true);
@@ -171,7 +185,11 @@ export const useContactForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          company, // honeypot field
+          turnstileToken, // Turnstile token for backend verification
+        }),
       });
 
       console.log('📥 Response status:', response.status);
@@ -179,7 +197,7 @@ export const useContactForm = () => {
       if (!response.ok) {
         const errorData = await response.json();
         console.error('❌ API error:', errorData);
-        throw new Error('Failed to send message');
+        throw new Error(errorData?.error || 'Failed to send message');
       }
 
       const data = await response.json();
@@ -199,7 +217,6 @@ export const useContactForm = () => {
       });
       setErrors({});
 
-      // Auto-hide success message after 5 seconds
       setTimeout(() => {
         setSubmitStatus('idle');
       }, 5000);
@@ -207,7 +224,6 @@ export const useContactForm = () => {
       console.error('❌ Error submitting form:', error);
       setSubmitStatus('error');
 
-      // Auto-hide error message after 5 seconds
       setTimeout(() => {
         setSubmitStatus('idle');
       }, 5000);
