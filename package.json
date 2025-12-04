@@ -16,10 +16,10 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
     "lottie-react": "^2.4.1",
-    "next": "15.4.5",
+    "next": "15.5.7",
     "nodemailer": "^7.0.10",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
     "resend": "^6.2.2",
     "swiper": "^11.2.10",
     "tabler-icons-react": "^1.56.0"
