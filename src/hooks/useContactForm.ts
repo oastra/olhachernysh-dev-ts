@@ -1,5 +1,7 @@
 import { useState, ChangeEvent, FocusEvent, FormEvent } from 'react';
 
+const IS_PROD = process.env.NODE_ENV === 'production';
+
 interface FormData {
   fullName: string;
   email: string;
@@ -31,49 +33,40 @@ export const useContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
 
-  // Validation functions
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+  /* ---------------- VALIDATION ---------------- */
+  const validateEmail = (email: string): boolean =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const validateField = (name: string, value: string | boolean): string => {
     switch (name) {
       case 'fullName':
-        if (!value || (typeof value === 'string' && value.trim().length < 2)) {
-          return 'Name must be at least 2 characters';
-        }
-        break;
+        return typeof value === 'string' && value.trim().length >= 2
+          ? ''
+          : 'Name must be at least 2 characters';
+
       case 'email':
-        if (!value || (typeof value === 'string' && !validateEmail(value))) {
-          return 'Please enter a valid email address';
-        }
-        break;
+        return typeof value === 'string' && validateEmail(value)
+          ? ''
+          : 'Please enter a valid email address';
+
       case 'businessType':
-        if (!value || (typeof value === 'string' && value.trim().length < 2)) {
-          return 'Please enter your business type';
-        }
-        break;
       case 'projectType':
-        if (!value || (typeof value === 'string' && value.trim().length < 2)) {
-          return 'Please enter your project type';
-        }
-        break;
+        return typeof value === 'string' && value.trim().length >= 2
+          ? ''
+          : 'Please fill out this field';
+
       case 'budget':
-        if (!value || (typeof value === 'string' && value.trim().length < 1)) {
-          return 'Please enter your budget range';
-        }
-        break;
+        return typeof value === 'string' && value.trim().length >= 1
+          ? ''
+          : 'Please enter your budget range';
+
       case 'message':
-        if (!value || (typeof value === 'string' && value.trim().length < 10)) {
-          return 'Message must be at least 10 characters';
-        }
-        break;
+        return typeof value === 'string' && value.trim().length >= 10
+          ? ''
+          : 'Message must be at least 10 characters';
+
       case 'terms':
-        if (!value) {
-          return 'You must agree to the terms';
-        }
-        break;
+        return value ? '' : 'You must agree to the terms';
     }
     return '';
   };
@@ -81,35 +74,16 @@ export const useContactForm = () => {
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    const fields: (keyof FormData)[] = [
-      'fullName',
-      'email',
-      'businessType',
-      'projectType',
-      'budget',
-      'message',
-      'terms',
-    ];
-
-    fields.forEach((key) => {
+    (Object.keys(formData) as (keyof FormData)[]).forEach((key) => {
       const error = validateField(key, formData[key]);
-      if (error) {
-        newErrors[key] = error;
-      }
+      if (error) newErrors[key] = error;
     });
 
     setErrors(newErrors);
-
-    if (Object.keys(newErrors).length > 0) {
-      console.log('❌ Validation failed:', newErrors);
-    } else {
-      console.log('✅ Validation passed');
-    }
-
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handlers
+  /* ---------------- EVENT HANDLERS ---------------- */
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -119,16 +93,10 @@ export const useContactForm = () => {
         ? (e.target as HTMLInputElement).checked
         : e.target.value;
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
     if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: '',
-      }));
+      setErrors((prev) => ({ ...prev, [name]: '' }));
     }
   };
 
@@ -137,75 +105,40 @@ export const useContactForm = () => {
   ) => {
     const { name, value } = e.target;
     const error = validateField(name, value);
-
-    if (error) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: error,
-      }));
-    }
+    if (error) setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('🚀 Form submitted!');
-    console.log('📝 Form data:', formData);
+    if (!validateForm()) return;
 
-    // Validate form first
-    if (!validateForm()) {
-      console.log('⚠️ Form validation failed, not submitting');
-      return;
-    }
-
-    // Grab Turnstile token from hidden input injected by Cloudflare
-    const tokenInput = document.querySelector<HTMLInputElement>(
-      'input[name="cf-turnstile-response"]'
-    );
-    const turnstileToken = tokenInput?.value || '';
-
-    // Grab honeypot value (should be empty for humans)
-    const companyInput = document.querySelector<HTMLInputElement>(
-      'input[name="company"]'
-    );
-    const company = companyInput?.value || '';
-
-    console.log('🔐 Spam protection data:', {
-      hasTurnstileToken: !!turnstileToken,
-      companyValue: company,
-    });
-
-    console.log('✅ Validation passed, submitting to API...');
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
     try {
-      console.log('📤 Sending POST request to /api/contact');
+      const turnstileToken = IS_PROD
+        ? document.querySelector<HTMLInputElement>(
+            'input[name="cf-turnstile-response"]'
+          )?.value || ''
+        : '';
+
+      const company =
+        document.querySelector<HTMLInputElement>('input[name="company"]')
+          ?.value || '';
+
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          company, // honeypot field
-          turnstileToken, // Turnstile token for backend verification
+          company,
+          turnstileToken: IS_PROD ? turnstileToken : undefined,
         }),
       });
 
-      console.log('📥 Response status:', response.status);
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('❌ API error:', errorData);
-        throw new Error(errorData?.error || 'Failed to send message');
-      }
-
-      const data = await response.json();
-      console.log('✅ Success response:', data);
+      if (!response.ok) throw new Error('Submit failed');
 
       setSubmitStatus('success');
-
-      // Reset form on success
       setFormData({
         fullName: '',
         email: '',
@@ -216,20 +149,11 @@ export const useContactForm = () => {
         terms: false,
       });
       setErrors({});
-
-      setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 5000);
-    } catch (error) {
-      console.error('❌ Error submitting form:', error);
+    } catch {
       setSubmitStatus('error');
-
-      setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 5000);
     } finally {
       setIsSubmitting(false);
-      console.log('🏁 Form submission complete');
+      setTimeout(() => setSubmitStatus('idle'), 4500);
     }
   };
 

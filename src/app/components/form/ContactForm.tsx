@@ -9,6 +9,7 @@ import { StatusMessage } from './StatusMessage';
 import { formFields } from '@/data/form-fields';
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
+const IS_PROD = process.env.NODE_ENV === 'production';
 
 export default function ContactForm() {
   const {
@@ -72,13 +73,14 @@ export default function ContactForm() {
           autoComplete="off"
         />
 
-        {/* Cloudflare Turnstile widget */}
-        {TURNSTILE_SITE_KEY && (
+        {/* Cloudflare Turnstile widget – invisible in prod */}
+        {IS_PROD && TURNSTILE_SITE_KEY && (
           <div className="mt-4">
             <div
               className="cf-turnstile"
               data-sitekey={TURNSTILE_SITE_KEY}
-              data-theme="light"
+              data-size="invisible" // tells Turnstile to be invisible
+              data-theme="auto"
             />
           </div>
         )}
