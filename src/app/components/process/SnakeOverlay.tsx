@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 
 interface SnakeOverlayProps {
   viewBox: string;
@@ -25,6 +25,7 @@ export default function SnakeOverlay({
   forceOnMount = false,
   delayAfterVisibleMs = 1000,
 }: SnakeOverlayProps) {
+  const gradientId = useId();
   const svgRef = useRef<SVGSVGElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -121,7 +122,7 @@ export default function SnakeOverlay({
     >
       <defs>
         <linearGradient
-          id="processSnakeGrad"
+          id={gradientId}
           x1="0%"
           y1="0%"
           x2="100%"
@@ -137,7 +138,7 @@ export default function SnakeOverlay({
         ref={pathRef}
         d={d}
         fill="none"
-        stroke="url(#processSnakeGrad)"
+        stroke={`url(#${gradientId})`}
         strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"

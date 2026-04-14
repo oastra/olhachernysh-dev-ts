@@ -163,7 +163,7 @@ export default function SectionFooter() {
         </div>
 
         <div className="flex items-center">
-          &copy; All right reserved, {new Date().getFullYear()}
+          &copy; All rights reserved, {new Date().getFullYear()}
         </div>
       </div>
     </footer>

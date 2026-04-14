@@ -14,7 +14,7 @@ import 'swiper/css/pagination';
 export default function ProjectsSection() {
   return (
     <SectionWrapper id="projects" size="default">
-      <SectionTitle right="Discover more of our standout work.">
+      <SectionTitle right="A selection of recent work we're proud of.">
         Recent Projects
       </SectionTitle>
 

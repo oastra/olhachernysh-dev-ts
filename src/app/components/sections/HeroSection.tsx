@@ -14,9 +14,9 @@ export default function HeroSection() {
             
           "
         >
-          Websites That Work.
+          Websites That Work
           <br />
-          C-C for Your Business
+          For Your Business
         </h1>
 
         <p
@@ -26,8 +26,7 @@ export default function HeroSection() {
             md:text-h3-subheding
           "
         >
-          Unique selling proposition&nbsp;&nbsp; developer, clean code, no
-          templates
+          Custom-coded. Designed with care. Built to convert.
         </p>
       </div>
 

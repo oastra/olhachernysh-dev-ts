@@ -31,18 +31,18 @@ export default function AboutSection() {
         {/* Text */}
         <div className="text-body leading-relaxed text-ink">
           <p>
-            I am Olha Chernysh, a Sydney-based Software Developer specialising
-            in building fast, accessible, and visually engaging websites. I work
-            with modern technologies including Next.js, React, TypeScript, and
-            Tailwind CSS to create custom-coded solutions tailored to each
-            client’s needs — without relying on generic site builders.
+            I&apos;m Olha Chernysh, a Sydney-based Software Developer
+            who builds fast, accessible, and visually engaging websites.
+            Together with a dedicated UI/UX designer, I create custom-coded
+            solutions tailored to each client&apos;s needs — no templates,
+            no page builders.
           </p>
 
           <p className="mt-6">
-            I believe every project deserves a tailored approach, whether it’s a
-            lightweight one-page site or a complex, dynamic application. My goal
-            is to help businesses communicate their brand effectively online
-            while delivering an intuitive experience for their users.
+            Every project gets a tailored approach, whether it&apos;s a
+            one-page landing site or a full-scale web application. My goal
+            is to help businesses communicate their brand online and deliver
+            an experience their users actually enjoy.
           </p>
         </div>
 

@@ -12,9 +12,9 @@ export const processSteps: ProcessStep[] = [
     number: '01',
     title: 'Discovery & Strategy',
     bullets: [
-      'Understand your business goals, target audience, and content needs',
-      'Review inspiration, competitors, and brand direction',
-      'Define project scope, features, and timeline',
+      'We align on your goals, audience, and what success looks like',
+      'Review competitors and references to shape a clear direction',
+      'Lock in scope, features, and timeline — no surprises later',
     ],
   },
   {
@@ -22,10 +22,9 @@ export const processSteps: ProcessStep[] = [
     number: '02',
     title: 'UI/UX Design',
     bullets: [
-      'Wireframe key sections (optional depending on scope)',
-      'Design high-fidelity desktop & mobile layouts in Figma',
-      'Present interactive prototype for feedback',
-      'Finalize design after 1–2 revision rounds',
+      'Design pixel-perfect layouts for desktop and mobile in Figma',
+      'Walk you through an interactive prototype you can click and feel',
+      'Refine together until the design is exactly right',
     ],
   },
   {
@@ -33,11 +32,10 @@ export const processSteps: ProcessStep[] = [
     number: '03',
     title: 'Development',
     bullets: [
-      'Set up project structure (Next.js, Tailwind CSS, etc.)',
-      'Build responsive frontend from approved Figma design',
-      'Integrate animations (Framer Motion or scroll effects if needed)',
-      'Set up CMS (if included), blog, or product catalog',
-      'Connect APIs (forms, Stripe, etc.)',
+      'Hand-code every page with clean, modern technology',
+      'Build fully responsive — looks sharp on any screen',
+      'Add smooth animations and micro-interactions',
+      'Integrate CMS, payments, forms, and any tools your business needs',
     ],
   },
   {
@@ -45,10 +43,9 @@ export const processSteps: ProcessStep[] = [
     number: '04',
     title: 'Testing & Optimization',
     bullets: [
-      'Test across modern browsers and devices',
-      'Optimize for performance, SEO, and accessibility',
-      'Set up metadata, sitemap, and favicons',
-      'Ensure smooth interactions and fast load times',
+      'Test across browsers and devices so nothing breaks',
+      'Optimize for speed, SEO, and accessibility from day one',
+      'Set up metadata and sitemap so Google finds you fast',
     ],
   },
   {
@@ -56,10 +53,9 @@ export const processSteps: ProcessStep[] = [
     number: '05',
     title: 'Launch',
     bullets: [
-      'Connect custom domain',
-      'Deploy to preferred host',
-      'Final walkthrough and training (if CMS is included)',
-      'Go live',
+      'Connect your domain and deploy to your preferred host',
+      'Walk you through everything so you feel confident managing it',
+      'Go live — your site is ready for the world',
     ],
   },
   {
@@ -67,8 +63,9 @@ export const processSteps: ProcessStep[] = [
     number: '06',
     title: 'Post-launch Support',
     bullets: [
-      'Minor tweaks after launch',
-      'Ongoing maintenance available upon request',
+      'Quick fixes and adjustments included after launch',
+      'Ongoing maintenance and updates when you need them',
+      'I stay available — you always have a developer on your side',
     ],
   },
 ];

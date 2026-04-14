@@ -12,7 +12,7 @@ export const StatusMessage: React.FC<StatusMessageProps> = ({ status }) => {
       {status === 'success' && (
         <div className="rounded-md bg-green-500/20 border border-green-400/30 p-4">
           <p className="text-green-100 text-h6">
-            Thank you! Your message has been sent successfully. We&apos;ll get
+            Thank you! Your message has been sent successfully. I&apos;ll get
             back to you soon.
           </p>
         </div>

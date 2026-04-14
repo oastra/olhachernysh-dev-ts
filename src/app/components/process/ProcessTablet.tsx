@@ -55,7 +55,7 @@ export default function ProcessTablet() {
             return (
               <div
                 key={step.id}
-                className="absolute w-full flex items-center"
+                className="absolute w-full flex items-center px-8"
                 style={{
                   top: `${topPercent}%`,
                   height: `${heightPercent}%`,
