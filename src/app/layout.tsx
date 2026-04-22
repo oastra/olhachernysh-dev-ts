@@ -5,7 +5,7 @@ import '../styles/globals.css';
 export const metadata: Metadata = {
   title: 'Olha Chernysh | Software Engineer & Web Developer',
   description:
-    'Portfolio of Olha Chernysh, a Sydney-based Software Engineer specializing in modern web technologies including JavaScript, React, Node.js, Next.js, and scalable custom solutions.',
+    'Sydney-based Software Engineer building fast, custom websites and web apps with Next.js, React and Node.js. Portfolio, case studies and services.',
   keywords: [
     'Olha Chernysh',
     'Software Engineer',
