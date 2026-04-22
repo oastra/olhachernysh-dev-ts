@@ -17,7 +17,7 @@ export default function Gallery({ items, id }: Props) {
 
   return (
     <SectionWrapper id={id} size="default">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
+      <div className="mx-auto max-w-[1100px] grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
         {items.map((item) => {
           const span = item.span ?? 'wide';
           return (
