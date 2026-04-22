@@ -33,14 +33,17 @@ export async function generateMetadata(
 
   const title = `${project.shortTitle} — Case Study | Olha Chernysh`;
   const description = project.caseStudy.summary;
+  const url = `https://olhachernysh.dev/projects/${project.slug}`;
 
   return {
     title,
     description,
+    alternates: { canonical: url },
     openGraph: {
       title,
       description,
-      url: `https://olhachernysh.dev/projects/${project.slug}`,
+      url,
+      type: 'article',
       images: [
         {
           url: project.image.src,
@@ -62,9 +65,61 @@ export default async function ProjectCaseStudyPage(
 
   const nextProject = getNextProject(slug);
   const { caseStudy } = project;
+  const projectUrl = `https://olhachernysh.dev/projects/${project.slug}`;
+
+  const creativeWorkJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    '@id': `${projectUrl}#project`,
+    name: project.title,
+    alternateName: project.shortTitle,
+    description: caseStudy.summary,
+    url: projectUrl,
+    image: `https://olhachernysh.dev${project.image.src}`,
+    inLanguage: 'en',
+    dateCreated: project.meta.year,
+    locationCreated: project.meta.location
+      ? { '@type': 'Place', name: project.meta.location }
+      : undefined,
+    creator: { '@id': 'https://olhachernysh.dev/#me' },
+    keywords: caseStudy.stack.join(', '),
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://olhachernysh.dev/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Projects',
+        item: 'https://olhachernysh.dev/#projects',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: project.shortTitle,
+        item: projectUrl,
+      },
+    ],
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Header />
       <main>
         <CaseStudyHero project={project} />

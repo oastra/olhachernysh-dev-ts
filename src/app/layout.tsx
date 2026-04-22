@@ -24,6 +24,19 @@ export const metadata: Metadata = {
   authors: [{ name: 'Olha Chernysh', url: 'https://olhachernysh.dev' }],
   creator: 'Olha Chernysh',
   metadataBase: new URL('https://olhachernysh.dev'),
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     title: 'Olha Chernysh | Software Engineer & Web Developer',
     description:
@@ -67,9 +80,59 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': 'https://olhachernysh.dev/#website',
+    url: 'https://olhachernysh.dev/',
+    name: 'Olha Chernysh — Software Engineer',
+    description:
+      'Portfolio of Olha Chernysh, a Sydney-based Software Engineer building custom web applications with React, Next.js and Node.js.',
+    inLanguage: 'en',
+    publisher: { '@id': 'https://olhachernysh.dev/#me' },
+  };
+
+  const personJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': 'https://olhachernysh.dev/#me',
+    name: 'Olha Chernysh',
+    url: 'https://olhachernysh.dev/',
+    jobTitle: 'Software Engineer & Web Developer',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Sydney',
+      addressCountry: 'AU',
+    },
+    worksFor: { '@id': 'https://olhachernysh.dev/#org' },
+  };
+
+  const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': 'https://olhachernysh.dev/#org',
+    name: 'Olha Chernysh',
+    url: 'https://olhachernysh.dev/',
+    logo: 'https://olhachernysh.dev/apple-touch-icon.png',
+    founder: { '@id': 'https://olhachernysh.dev/#me' },
+    areaServed: 'AU',
+  };
+
   return (
     <html lang="en">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         {/* Cloudflare Turnstile script */}
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js"
