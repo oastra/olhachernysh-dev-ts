@@ -2,58 +2,865 @@ import { Project } from '@/types/project';
 
 export const PROJECTS: Project[] = [
   {
-    title: 'Ukrrofing - Roofing Solutions',
+    slug: 'dreamsbranch',
+    title: 'DreamsBranch — Community & Fundraising Platform',
+    shortTitle: 'DreamsBranch',
     location: 'Sydney, Australia',
-    href: 'https://ukrrofing.com.au',
+    liveUrl: 'https://dreamsbranch.com.au',
+    status: 'in-development',
+    image: {
+      src: '/images/projects/dreamsbranch.webp',
+      alt: 'DreamsBranch platform with donations, events, and community features',
+      width: 936,
+      height: 650,
+    },
+    meta: {
+      role: 'Full-Stack Development & Platform Architecture',
+      type: 'Community Platform',
+      year: '2026',
+      location: 'Sydney, Australia',
+    },
+    caseStudy: {
+      summary:
+        'A custom-built community and fundraising platform bringing donations, campaigns, events, news and a community space into one coherent experience.',
+      overview: {
+        what: 'DreamsBranch is a community-focused digital platform combining fundraising, events, news and member communication under a single structured product.',
+        audience:
+          'Community members, donors and event participants connected to the organisation, including both first-time visitors and returning supporters.',
+        goal: 'Turn a fragmented set of community activities into one platform where people can support causes, follow news and take part in events without friction.',
+      },
+      challenge: [
+        'The organisation needed to unify several disconnected touchpoints — donations, events, editorial content and community updates — into one platform with a clear structure and a long-term content model.',
+        'The product had to feel light and welcoming to first-time visitors while still handling real fundraising flows, multilingual-oriented content and a growing library of events and stories.',
+      ],
+      solution: [
+        'We approached the build as a long-lived platform rather than a single website, modelling content types first (campaigns, events, news, community entries) and designing the UI around how they would evolve over time.',
+        'Visual language stayed calm and editorial. Donation and event flows were kept short, trustworthy and clearly separated from the browsing experience, so neither side distracts from the other.',
+      ],
+      contributions: [
+        {
+          title: 'Strategy & structure',
+          items: [
+            'Defined the content model for campaigns, events and news',
+            'Mapped the supporter journey from discovery to donation',
+            'Planned the information architecture for scale',
+          ],
+        },
+        {
+          title: 'Development',
+          items: [
+            'Built the full interface in Next.js with reusable sections',
+            'Implemented accessible, responsive layouts across all breakpoints',
+            'Created a consistent component library for content pages',
+          ],
+        },
+        {
+          title: 'Backend & integrations',
+          items: [
+            'Built server-side handlers for donation and event flows',
+            'Integrated editorial content management for the team',
+            'Set up SEO fundamentals and social sharing for campaigns',
+          ],
+        },
+      ],
+      features: [
+        {
+          title: 'Donation campaigns',
+          description:
+            'Dedicated campaign pages with clear goals, progress and a focused call to action.',
+        },
+        {
+          title: 'Events hub',
+          description:
+            'Structured listings for upcoming and past events with registration entry points.',
+        },
+        {
+          title: 'News & stories',
+          description:
+            'Editorial layout for updates, initiatives and community stories that grows over time.',
+        },
+        {
+          title: 'Community space',
+          description:
+            'Sections for members to discover what the community does and how to get involved.',
+        },
+        {
+          title: 'Multilingual-ready content',
+          description:
+            'Content structure designed to expand into additional languages without rework.',
+        },
+      ],
+      process: [
+        {
+          title: 'Discovery',
+          description:
+            'Aligned on audiences, priorities and the long-term vision for the platform.',
+        },
+        {
+          title: 'Structure',
+          description:
+            'Defined the content model and navigation before any visuals were locked in.',
+        },
+        {
+          title: 'Design & development',
+          description:
+            'Built sections in parallel with the content model so each page had a clear purpose.',
+        },
+        {
+          title: 'Refinement',
+          description:
+            'Tightened copy, spacing and donation flow details in close review rounds.',
+        },
+        {
+          title: 'Launch',
+          description:
+            'Shipped with SEO, analytics and a content workflow the team could maintain on their own.',
+        },
+      ],
+      outcome: [
+        'A single platform replacing scattered pages, forms and announcements',
+        'A clear path from first visit to donation or event registration',
+        'A scalable content structure the team can grow without developer involvement',
+        'A visual language that feels trustworthy and community-oriented',
+      ],
+      stack: [
+        'Next.js',
+        'React',
+        'TypeScript',
+        'Tailwind CSS',
+        'Node.js',
+        'Headless CMS',
+        'Vercel',
+      ],
+      gallerySolution: [
+        {
+          src: '/images/projects/dreamsbranch/campaign-detail.webp',
+          alt: 'DreamsBranch donation campaign page with progress and call to action',
+          width: 1440,
+          height: 900,
+          span: 'wide',
+        },
+      ],
+      galleryFeatures: [
+        {
+          src: '/images/projects/dreamsbranch/event-detail.webp',
+          alt: 'DreamsBranch events hub listing',
+          width: 1440,
+          height: 900,
+          span: 'half',
+        },
+        {
+          src: '/images/projects/dreamsbranch/mobile-campaign.webp',
+          alt: 'DreamsBranch campaign page on mobile',
+          width: 390,
+          height: 844,
+          span: 'half',
+        },
+      ],
+      galleryProcess: [
+        {
+          src: '/images/projects/dreamsbranch/design-file.webp',
+          alt: 'DreamsBranch design file — key flows in Figma',
+          width: 1440,
+          height: 900,
+          span: 'wide',
+          caption: 'Design file — key flows.',
+        },
+      ],
+    },
+  },
+  {
+    slug: 'ukrrofing',
+    title: 'Ukrrofing — Roofing Solutions',
+    shortTitle: 'Ukrrofing',
+    location: 'Sydney, Australia',
+    liveUrl: 'https://ukrrofing.com.au',
     image: {
       src: '/images/projects/ukrrofing.webp',
       alt: 'Ukrrofing roofing solutions website',
       width: 936,
       height: 650,
     },
+    meta: {
+      role: 'Full-Stack Development & UX',
+      type: 'Service Business Website',
+      year: '2025',
+      location: 'Sydney, Australia',
+    },
+    caseStudy: {
+      summary:
+        'A trust-first website for a local roofing business, engineered around clear service presentation and direct lead conversion.',
+      overview: {
+        what: "A service-based business website presenting Ukrrofing's roofing offering, credentials and contact paths in a clean, conversion-focused layout.",
+        audience:
+          'Homeowners and property managers in Sydney looking for a reliable roofing contractor — often comparing several providers in one session.',
+        goal: 'Give visitors everything they need to trust the business and request a quote in under a minute, without template clutter.',
+      },
+      challenge: [
+        'Most local service websites feel generic: stock imagery, vague service lists and contact forms hidden at the bottom of a long page. That pattern costs real leads.',
+        'The site needed to communicate credibility quickly, make services easy to understand for a non-technical audience, and keep the path to contact visible throughout the experience.',
+      ],
+      solution: [
+        'We built the site around a single question: "Why should I trust you, and how do I get a quote?" Every section answers one part of that, and the quote CTA is always within reach.',
+        'Services are presented in plain language with distinct categories, so a visitor can place their own job in the right one within seconds. Visual identity stays professional and local, not corporate.',
+      ],
+      contributions: [
+        {
+          title: 'Strategy & UX',
+          items: [
+            'Mapped the decision path for a homeowner comparing providers',
+            'Prioritised trust signals and quote entry points above everything else',
+            'Restructured services for plain-language clarity',
+          ],
+        },
+        {
+          title: 'Development',
+          items: [
+            'Built a fully responsive, fast-loading marketing site',
+            'Implemented accessible forms with clear validation feedback',
+            'Optimised images and typography for quick first paint',
+          ],
+        },
+        {
+          title: 'Backend & integrations',
+          items: [
+            'Built the quote submission endpoint with validation',
+            'Wired email delivery and spam protection for contact flows',
+            'Configured deployment, environment and monitoring',
+          ],
+        },
+        {
+          title: 'SEO & performance',
+          items: [
+            'Structured metadata and semantic markup for local search',
+            'Applied performance budgets to every page',
+            'Set up analytics to track contact conversions',
+          ],
+        },
+      ],
+      features: [
+        {
+          title: 'Service breakdown',
+          description:
+            'Each roofing service presented with plain-language scope, outcomes and example situations.',
+        },
+        {
+          title: 'Quote-first contact',
+          description:
+            'A direct quote request flow prioritised over a generic contact form.',
+        },
+        {
+          title: 'Trust signals',
+          description:
+            'Credentials, locality and workmanship surfaced naturally across the page.',
+        },
+        {
+          title: 'Mobile-optimised flow',
+          description:
+            'Most visitors arrive on phones — every tap target and form field is tuned for that.',
+        },
+      ],
+      process: [
+        {
+          title: 'Discovery',
+          description:
+            'Understood the business, common jobs and the questions homeowners actually ask.',
+        },
+        {
+          title: 'Structure',
+          description:
+            'Mapped a short, focused site rather than a wide one — every page earning its place.',
+        },
+        {
+          title: 'Design & development',
+          description:
+            'Built a calm, professional layout with visible CTAs and clear service sections.',
+        },
+        {
+          title: 'Refinement',
+          description:
+            'Tested forms, tap targets and real-device performance before launch.',
+        },
+        {
+          title: 'Launch',
+          description:
+            'Shipped with SEO, tracking and a handoff that lets the owner update details easily.',
+        },
+      ],
+      outcome: [
+        'A website that looks like a real local business, not a template',
+        'A direct, visible path to requesting a quote on every screen',
+        'Clean structure that supports local SEO from day one',
+        'Fast load times across mobile networks',
+      ],
+      stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+      gallerySolution: [
+        {
+          src: '/images/projects/ukrrofing/services-detail.webp',
+          alt: 'Ukrrofing services breakdown page',
+          width: 1440,
+          height: 900,
+          span: 'wide',
+        },
+      ],
+      galleryFeatures: [
+        {
+          src: '/images/projects/ukrrofing/quote-form.webp',
+          alt: 'Ukrrofing quote request form in context',
+          width: 1440,
+          height: 720,
+          span: 'half',
+        },
+        {
+          src: '/images/projects/ukrrofing/mobile-home.webp',
+          alt: 'Ukrrofing homepage on mobile with visible CTA',
+          width: 390,
+          height: 844,
+          span: 'half',
+        },
+      ],
+      galleryProcess: [
+        {
+          src: '/images/projects/ukrrofing/design-file.webp',
+          alt: 'Ukrrofing design file — service pages and quote flow',
+          width: 1440,
+          height: 900,
+          span: 'wide',
+          caption: 'Design file — service structure and quote flow.',
+        },
+      ],
+    },
   },
   {
+    slug: 't-koldunenko',
     title: 'Tetiana Koldunenko — Artist Portfolio',
+    shortTitle: 'Tetiana Koldunenko',
     location: 'Sydney, Australia',
-    href: 'https://t-koldunenko.com',
+    liveUrl: 'https://t-koldunenko.com',
     image: {
       src: '/images/projects/t-koldunenko.webp',
       alt: 'Tetiana Koldunenko artist website-portfolio',
       width: 936,
       height: 650,
     },
+    meta: {
+      role: 'Full-Stack Development & Design Collaboration',
+      type: 'Artist Portfolio & Shop',
+      year: '2025',
+      location: 'Sydney, Australia',
+    },
+    caseStudy: {
+      summary:
+        'A custom portfolio and shop for a practising artist — balancing editorial presentation of the work with a usable browsing and purchase experience.',
+      overview: {
+        what: "A custom-built website presenting Tetiana's artwork, exhibitions and available pieces, with a quiet commerce layer for direct sales.",
+        audience:
+          'Collectors, curators, gallery contacts and first-time visitors discovering the artist through exhibitions or social channels.',
+        goal: 'Present the work with the respect and calm it deserves, while making it easy to explore the catalogue and enquire about or buy a piece.',
+      },
+      challenge: [
+        'Artist websites often fail in one of two directions: overly decorative layouts that compete with the artwork, or barebones grids that reduce the work to thumbnails.',
+        'The site had to hold the tone of a considered exhibition space while still functioning as a working catalogue — searchable, updatable and ready for commerce when the artist chose to sell a piece.',
+      ],
+      solution: [
+        'We led with typography and generous whitespace, letting each piece breathe. The grid is quiet; the artwork does the talking.',
+        'Commerce is layered in carefully — you notice it only when you want to. Each artwork page moves naturally from presentation to enquiry or purchase without changing the tone of the site.',
+      ],
+      contributions: [
+        {
+          title: 'Design collaboration',
+          items: [
+            'Defined typography and spacing system for an editorial feel',
+            'Planned browsing patterns that respect individual pieces',
+            'Shaped the tone for exhibitions, artworks and statements',
+          ],
+        },
+        {
+          title: 'Development',
+          items: [
+            'Built the full portfolio, shop and content pages in Next.js',
+            'Implemented image-heavy layouts with careful performance work',
+            'Created responsive artwork views that hold up on any screen',
+          ],
+        },
+        {
+          title: 'Commerce & content',
+          items: [
+            'Integrated a lightweight store for artwork sales and enquiries',
+            'Built an updatable structure for new pieces and exhibitions',
+            'Handled SEO for artist discoverability and exhibition archiving',
+          ],
+        },
+      ],
+      features: [
+        {
+          title: 'Artwork browsing',
+          description:
+            'A calm grid that lets individual pieces stand on their own.',
+        },
+        {
+          title: 'Exhibition archive',
+          description:
+            'Dedicated pages for past and current exhibitions, with context and supporting imagery.',
+        },
+        {
+          title: 'Artwork detail pages',
+          description:
+            'Editorial presentation for each piece with medium, year, dimensions and enquiry path.',
+        },
+        {
+          title: 'Quiet commerce',
+          description:
+            'A shop layer that respects the tone of the site and only appears when relevant.',
+        },
+        {
+          title: 'Statements & about',
+          description:
+            'Space for artist statements, biography and press without cluttering the main view.',
+        },
+      ],
+      process: [
+        {
+          title: 'Discovery',
+          description:
+            'Spent time with the body of work to understand its tone before sketching any structure.',
+        },
+        {
+          title: 'Structure',
+          description:
+            'Mapped content into work, exhibitions, shop and statements — each with a distinct but related layout.',
+        },
+        {
+          title: 'Design & development',
+          description:
+            'Built the site in close iteration, tuning spacing, image ratios and type until the rhythm felt right.',
+        },
+        {
+          title: 'Refinement',
+          description:
+            'Reviewed the experience on real artworks and real devices, not only design mockups.',
+        },
+        {
+          title: 'Launch',
+          description:
+            'Shipped with an easy path for the artist to add new pieces and exhibitions over time.',
+        },
+      ],
+      outcome: [
+        'A portfolio that feels like an exhibition space rather than a template',
+        'A catalogue the artist can grow independently',
+        'A commerce layer ready when needed, invisible when not',
+        'Strong discoverability through clean SEO and metadata',
+      ],
+      stack: [
+        'Next.js',
+        'React',
+        'TypeScript',
+        'Tailwind CSS',
+        'Headless CMS',
+        'Vercel',
+      ],
+      gallerySolution: [
+        {
+          src: '/images/projects/t-koldunenko/artwork-detail.webp',
+          alt: 'Tetiana Koldunenko artwork detail page',
+          width: 1440,
+          height: 900,
+          span: 'wide',
+        },
+      ],
+      galleryFeatures: [
+        {
+          src: '/images/projects/t-koldunenko/catalogue.webp',
+          alt: 'Tetiana Koldunenko catalogue browsing grid',
+          width: 1440,
+          height: 900,
+          span: 'half',
+        },
+        {
+          src: '/images/projects/t-koldunenko/mobile-artwork.webp',
+          alt: 'Tetiana Koldunenko artwork page on mobile',
+          width: 390,
+          height: 844,
+          span: 'half',
+        },
+      ],
+      galleryProcess: [
+        {
+          src: '/images/projects/t-koldunenko/design-file.webp',
+          alt: 'Tetiana Koldunenko design file — catalogue and artwork layouts',
+          width: 1440,
+          height: 900,
+          span: 'wide',
+          caption: 'Design file — catalogue and artwork layouts.',
+        },
+      ],
+    },
   },
   {
-    title: 'Tatacookies - Handmade Cookies',
+    slug: 'tatacookies',
+    title: 'Tatacookies — Handmade Cookies',
+    shortTitle: 'Tatacookies',
     location: 'Sydney, Australia',
-    href: 'https://tatacookies.com',
+    liveUrl: 'https://tatacookies.com',
     image: {
       src: '/images/projects/tatacookies.webp',
       alt: 'Tatacookies website',
       width: 936,
       height: 650,
     },
+    meta: {
+      role: 'Full-Stack Development',
+      type: 'Custom E-Commerce',
+      year: '2025',
+      location: 'Sydney, Australia',
+    },
+    caseStudy: {
+      summary:
+        'A full custom website and e-commerce system built from scratch for a handmade cookie brand — brand story, product browsing, checkout, custom orders, admin and transactional emails, all in one build.',
+      overview: {
+        what: 'A full custom-built website with an integrated storefront: brand pages, product browsing, cart, checkout, custom orders, admin tooling and transactional emails — all designed and developed as one coherent product.',
+        audience:
+          'Local customers ordering cookies for everyday occasions, and people commissioning custom orders for events and gifts.',
+        goal: 'Give the brand a complete digital home that handles everything from first impression to paid order — without losing the handmade, personal tone that makes it recognisable.',
+      },
+      challenge: [
+        'The brand had no real digital home and no way to take orders online. Customers had to DM to buy cookies, which created bottlenecks, missed messages and inconsistent order details.',
+        'The new site had to do both jobs at once: introduce the brand properly to first-time visitors and run a working shop end to end — everyday product orders, one-off custom orders, admin tooling and transactional emails — without feeling like a generic e-commerce template.',
+      ],
+      solution: [
+        'We built the full site from scratch as a single product — brand, shop and admin designed together rather than bolted on. Products, cart and checkout are first-class, custom orders have their own structured flow, and the admin side is lean enough to run from a phone.',
+        'Brand presentation stays front and centre — the shop reads as part of the experience, not as a separate mode. Every email, confirmation and status message is written in the same voice.',
+      ],
+      contributions: [
+        {
+          title: 'Strategy',
+          items: [
+            'Defined the order model for regular and custom products',
+            'Shaped the admin experience for a small team',
+            'Planned a single site that covers brand, shop and operations together',
+          ],
+        },
+        {
+          title: 'Development',
+          items: [
+            'Built the full customer-facing storefront in Next.js',
+            'Implemented cart, checkout and order summary flows',
+            'Created responsive product browsing optimised for mobile',
+          ],
+        },
+        {
+          title: 'Backend & integrations',
+          items: [
+            'Built an order and product management layer',
+            'Wired transactional emails for confirmations and updates',
+            'Connected payment handling and order status tracking',
+          ],
+        },
+        {
+          title: 'Performance & SEO',
+          items: [
+            'Tuned images, type and layout for fast product browsing',
+            'Structured metadata for product discoverability',
+            'Applied clean semantic markup across the store',
+          ],
+        },
+      ],
+      features: [
+        {
+          title: 'Product catalogue',
+          description:
+            'A calm, responsive catalogue that keeps the handmade tone of the brand.',
+        },
+        {
+          title: 'Cart & checkout',
+          description:
+            'A short, trustworthy checkout flow designed for first-time buyers.',
+        },
+        {
+          title: 'Custom orders',
+          description:
+            'A dedicated flow for bespoke orders with structured inputs and clear expectations.',
+        },
+        {
+          title: 'Admin tooling',
+          description:
+            'A lean admin view to manage products, orders and statuses without friction.',
+        },
+        {
+          title: 'Transactional emails',
+          description:
+            'Order confirmations, updates and receipts written in the brand voice.',
+        },
+        {
+          title: 'Mobile-first browsing',
+          description:
+            'Optimised for how most customers actually shop — on their phone, quickly.',
+        },
+      ],
+      process: [
+        {
+          title: 'Discovery',
+          description:
+            'Studied the existing ordering pain: where DMs broke down and which orders caused the most back-and-forth.',
+        },
+        {
+          title: 'Structure',
+          description:
+            'Modelled products, custom orders and statuses before writing UI — commerce rewards good data shapes.',
+        },
+        {
+          title: 'Design & development',
+          description:
+            'Built the shop alongside the admin side so operational needs shaped the customer experience.',
+        },
+        {
+          title: 'Refinement',
+          description:
+            'Ran real orders through the system end-to-end, fixed the sharp edges, tightened the emails.',
+        },
+        {
+          title: 'Launch',
+          description:
+            'Shipped quietly with monitoring, then iterated based on real customer behaviour.',
+        },
+      ],
+      outcome: [
+        'A shop replacing the DM-based ordering flow entirely',
+        'Clear, structured custom orders that no longer get lost',
+        'A brand-consistent checkout experience, end to end',
+        'A small-team-friendly admin that the owner can actually run',
+      ],
+      stack: [
+        'Next.js',
+        'React',
+        'TypeScript',
+        'Tailwind CSS',
+        'Node.js',
+        'PostgreSQL',
+        'Email API',
+        'Vercel',
+      ],
+      gallerySolution: [
+        {
+          src: '/images/projects/tatacookies/product-detail.webp',
+          alt: 'Tatacookies product detail page',
+          width: 1440,
+          height: 900,
+          span: 'half',
+        },
+        {
+          src: '/images/projects/tatacookies/mobile-shop.webp',
+          alt: 'Tatacookies catalogue on mobile',
+          width: 390,
+          height: 844,
+          span: 'half',
+        },
+      ],
+      galleryFeatures: [
+        {
+          src: '/images/projects/tatacookies/cart-checkout.webp',
+          alt: 'Tatacookies cart and checkout step',
+          width: 1440,
+          height: 900,
+          span: 'half',
+        },
+        {
+          src: '/images/projects/tatacookies/custom-order.webp',
+          alt: 'Tatacookies custom order form',
+          width: 1440,
+          height: 900,
+          span: 'half',
+        },
+      ],
+      galleryProcess: [
+        {
+          src: '/images/projects/tatacookies/design-file.webp',
+          alt: 'Tatacookies design file — homepage, mobile tablete and full wide layouts',
+          width: 1440,
+          height: 900,
+          span: 'wide',
+          caption:
+            'Tatacookies design file — homepage, mobile tablete and full wide layouts.',
+        },
+      ],
+    },
   },
   {
-    title: 'DeLuxio - Nail Studio',
+    slug: 'deluxio',
+    title: 'DeLuxio — Nail Studio',
+    shortTitle: 'DeLuxio',
     location: 'Sydney, Australia',
-    href: 'https://deluxio.com.au',
+    liveUrl: 'https://deluxio.com.au',
     image: {
       src: '/images/projects/deluxio.webp',
       alt: 'DeLuxio website',
       width: 936,
       height: 650,
     },
-  },
-  {
-    title: 'Air Blonde - Online Course',
-    location: 'Sydney, Australia',
-    href: 'https://colourlikeaboss.com',
-    image: {
-      src: '/images/projects/colour-like-a-boss.webp',
-      alt: 'Air Blonde landing',
-      width: 936,
-      height: 650,
+    meta: {
+      role: 'Full-Stack Development & UX',
+      type: 'One-Page Landing',
+      year: '2024',
+      location: 'Sydney, Australia',
+    },
+    caseStudy: {
+      summary:
+        'A premium, mobile-first one-page landing for a nail studio — built around visual trust, clear pricing and a frictionless booking direction.',
+      overview: {
+        what: "A single-page landing site presenting DeLuxio's services, pricing and aesthetic on one focused scroll, with a strong pathway toward booking.",
+        audience:
+          'Clients choosing a nail studio on their phone, comparing visuals, services and prices within a few minutes.',
+        goal: 'Communicate that DeLuxio is a premium, trusted studio — and make booking the obvious next step, all on a single page.',
+      },
+      challenge: [
+        'Nail studio websites often hide pricing, lean on generic stock visuals and bury the booking path. That pattern loses clients who are already on their phone, ready to book somewhere.',
+        'The landing had to do the whole job on one page: feel genuinely premium, be honest about services and pricing, and move a visitor from curiosity to booking in a few taps — no deep navigation, no filler pages.',
+      ],
+      solution: [
+        'We designed mobile-first and worked outward. The page opens with a clear identity, moves through services and pricing, and keeps the booking CTA in reach throughout the scroll.',
+        'Typography and spacing carry the premium feel; no decorative overload. Every section earns its place on the page, and every tap takes the visitor closer to a booking, not deeper into a menu.',
+      ],
+      contributions: [
+        {
+          title: 'UX & strategy',
+          items: [
+            'Mapped the mobile-first journey from discovery to booking',
+            'Designed a transparent service and pricing structure',
+            'Prioritised trust-building visuals and details',
+          ],
+        },
+        {
+          title: 'Development',
+          items: [
+            'Built a fully responsive, polished layout',
+            'Implemented smooth, subtle transitions that feel premium',
+            'Optimised image delivery for phone-first users',
+          ],
+        },
+        {
+          title: 'Backend & integrations',
+          items: [
+            'Built booking enquiry and contact endpoints end to end',
+            'Wired transactional email delivery and validation',
+            'Configured deployment, DNS and analytics integrations',
+          ],
+        },
+        {
+          title: 'SEO & performance',
+          items: [
+            'Structured metadata for local search visibility',
+            'Tuned layout stability and loading experience',
+            'Applied semantic markup across every section of the page',
+          ],
+        },
+      ],
+      features: [
+        {
+          title: 'Service catalogue',
+          description:
+            'Clear service groupings with honest descriptions — no marketing fog.',
+        },
+        {
+          title: 'Transparent pricing',
+          description:
+            'Pricing visible where it belongs, not hidden behind an enquiry.',
+        },
+        {
+          title: 'Booking direction',
+          description:
+            'A visible, consistent path toward booking across the entire site.',
+        },
+        {
+          title: 'Visual storytelling',
+          description:
+            'Studio imagery used with restraint to communicate the premium feel.',
+        },
+        {
+          title: 'Mobile-first layout',
+          description:
+            'Designed for the device most clients actually choose the studio on.',
+        },
+      ],
+      process: [
+        {
+          title: 'Discovery',
+          description:
+            'Understood how clients actually shop for a nail studio and what makes them commit.',
+        },
+        {
+          title: 'Structure',
+          description:
+            'Kept the site short, focused and honest — no filler pages to pad it out.',
+        },
+        {
+          title: 'Design & development',
+          description:
+            'Tuned typography, spacing and imagery until the premium feel came through without noise.',
+        },
+        {
+          title: 'Refinement',
+          description:
+            'Tested the full journey on real phones, not only desktop mockups.',
+        },
+        {
+          title: 'Launch',
+          description:
+            'Shipped with analytics and a layout the studio can update as services evolve.',
+        },
+      ],
+      outcome: [
+        'A website that signals "premium" without shouting',
+        'Pricing and services a visitor can trust at first glance',
+        'A visible, consistent path toward booking',
+        'Strong mobile experience across the entire flow',
+      ],
+      stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+      gallerySolution: [
+        {
+          src: '/images/projects/deluxio/services-pricing.webp',
+          alt: 'DeLuxio services and pricing page',
+          width: 1440,
+          height: 900,
+          span: 'wide',
+        },
+      ],
+      galleryFeatures: [
+        {
+          src: '/images/projects/deluxio/mobile-home.webp',
+          alt: 'DeLuxio homepage on mobile with booking CTA',
+          width: 390,
+          height: 844,
+          span: 'half',
+        },
+        {
+          src: '/images/projects/deluxio/mobile-services.webp',
+          alt: 'DeLuxio services and pricing on mobile',
+          width: 390,
+          height: 844,
+          span: 'half',
+        },
+      ],
+      galleryProcess: [
+        {
+          src: '/images/projects/deluxio/design-file.webp',
+          alt: 'DeLuxio design file — services, pricing and booking flow',
+          width: 1440,
+          height: 900,
+          span: 'wide',
+          caption: 'Design file — services, pricing and booking flow.',
+        },
+      ],
     },
   },
 ];
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return PROJECTS.find((p) => p.slug === slug);
+}
+
+export function getNextProject(slug: string): Project {
+  const index = PROJECTS.findIndex((p) => p.slug === slug);
+  const nextIndex = index === -1 ? 0 : (index + 1) % PROJECTS.length;
+  return PROJECTS[nextIndex];
+}

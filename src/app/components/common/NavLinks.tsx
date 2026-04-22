@@ -7,11 +7,11 @@ type NavLinksProps = {
 };
 
 const links = [
-  { href: '#', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#projects', label: 'Works' },
-  { href: '#services', label: 'Services' },
-  { href: '#pricing', label: 'Prices' },
+  { href: '/', label: 'Home' },
+  { href: '/#about', label: 'About' },
+  { href: '/#projects', label: 'Works' },
+  { href: '/#services', label: 'Services' },
+  { href: '/#pricing', label: 'Prices' },
 ];
 
 const NavLinks = ({ onClick = () => {}, className = '' }: NavLinksProps) => {

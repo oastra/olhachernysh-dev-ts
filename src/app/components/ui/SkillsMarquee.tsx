@@ -28,7 +28,7 @@ function Track({ duration = 40 }: { duration?: number }) {
   return (
     <motion.div
       className="flex w-max shrink-0 items-center gap-12"
-      animate={{ x: ['0%', '-100%'] }} // seamless loop (list is duplicated)
+      animate={{ x: ['0%', '-50%'] }} // seamless loop (list is duplicated)
       transition={{
         duration,
         ease: 'linear',
