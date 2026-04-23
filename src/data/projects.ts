@@ -161,7 +161,18 @@ export const PROJECTS: Project[] = [
           alt: 'DreamsBranch events hub listing',
           width: 1440,
           height: 900,
-          span: 'wide',
+        },
+        {
+          src: '/images/projects/dreamsbranch/feature-2.webp',
+          alt: 'DreamsBranch campaign and donation flow',
+          width: 1440,
+          height: 900,
+        },
+        {
+          src: '/images/projects/dreamsbranch/feature-3.webp',
+          alt: 'DreamsBranch community stories feed',
+          width: 1440,
+          height: 900,
         },
       ],
       galleryMobile: [
@@ -353,7 +364,18 @@ export const PROJECTS: Project[] = [
           alt: 'Ukrrofing quote request form in context',
           width: 1440,
           height: 720,
-          span: 'wide',
+        },
+        {
+          src: '/images/projects/ukrrofing/feature-2.webp',
+          alt: 'Ukrrofing services overview with pricing cues',
+          width: 1440,
+          height: 900,
+        },
+        {
+          src: '/images/projects/ukrrofing/feature-3.webp',
+          alt: 'Ukrrofing project gallery with completed roofs',
+          width: 1440,
+          height: 900,
         },
       ],
       galleryMobile: [
@@ -533,7 +555,18 @@ export const PROJECTS: Project[] = [
           alt: 'Tetiana Koldunenko catalogue browsing grid',
           width: 1440,
           height: 900,
-          span: 'wide',
+        },
+        {
+          src: '/images/projects/t-koldunenko/feature-2.webp',
+          alt: 'Tetiana Koldunenko artwork detail page',
+          width: 1440,
+          height: 900,
+        },
+        {
+          src: '/images/projects/t-koldunenko/feature-3.webp',
+          alt: 'Tetiana Koldunenko about-the-artist section',
+          width: 1440,
+          height: 900,
         },
       ],
       galleryMobile: [
@@ -720,14 +753,18 @@ export const PROJECTS: Project[] = [
           alt: 'Tatacookies cart and checkout step',
           width: 1440,
           height: 900,
-          span: 'half',
         },
         {
           src: '/images/projects/tatacookies/feature-2.webp',
           alt: 'Tatacookies custom order form',
           width: 1440,
           height: 900,
-          span: 'half',
+        },
+        {
+          src: '/images/projects/tatacookies/feature-3.webp',
+          alt: 'Tatacookies product catalogue with filters',
+          width: 1440,
+          height: 900,
         },
       ],
       galleryMobile: [
@@ -893,6 +930,26 @@ export const PROJECTS: Project[] = [
         'Next time we would bring the booking integration in even tighter from the start. The "direction to booking" works beautifully; an in-page booking step would shave the final friction.',
       ],
       stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+      galleryFeatures: [
+        {
+          src: '/images/projects/deluxio/feature-1.webp',
+          alt: 'DeLuxio hero with booking CTA',
+          width: 1440,
+          height: 900,
+        },
+        {
+          src: '/images/projects/deluxio/feature-2.webp',
+          alt: 'DeLuxio signature services showcase',
+          width: 1440,
+          height: 900,
+        },
+        {
+          src: '/images/projects/deluxio/feature-3.webp',
+          alt: 'DeLuxio studio gallery and pricing cues',
+          width: 1440,
+          height: 900,
+        },
+      ],
       gallerySolution: [
         {
           src: '/images/projects/deluxio/solution.webp',
