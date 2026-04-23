@@ -183,8 +183,7 @@ export default async function ProjectCaseStudyPage(
         </CaseStudySection>
 
         <FeatureGallery
-          slug={project.slug}
-          shortTitle={project.shortTitle}
+          items={caseStudy.galleryFeatures}
           id="gallery-features"
         />
 
