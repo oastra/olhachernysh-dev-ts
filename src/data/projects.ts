@@ -214,6 +214,12 @@ export const PROJECTS: Project[] = [
       width: 936,
       height: 650,
     },
+    heroImage: {
+      src: '/images/projects/ukrrofing/hero.webp',
+      alt: 'Ukrrofing roofing solutions hero banner',
+      width: 1440,
+      height: 900,
+    },
     meta: {
       role: 'Full-Stack Development & UX',
       type: 'Service Business Website',

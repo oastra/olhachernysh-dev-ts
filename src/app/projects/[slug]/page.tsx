@@ -14,9 +14,10 @@ import ProcessList from '@/app/components/caseStudy/ProcessList';
 import OutcomeList from '@/app/components/caseStudy/OutcomeList';
 import TechStackList from '@/app/components/caseStudy/TechStackList';
 import NextProject from '@/app/components/caseStudy/NextProject';
-import Gallery from '@/app/components/caseStudy/Gallery';
 import MobileGallery from '@/app/components/caseStudy/MobileGallery';
 import FeatureGallery from '@/app/components/caseStudy/FeatureGallery';
+import DesignExploration from '@/app/components/caseStudy/DesignExploration';
+import SlotImage from '@/app/components/caseStudy/SlotImage';
 
 import { PROJECTS, getProjectBySlug, getNextProject } from '@/data/projects';
 
@@ -151,20 +152,16 @@ export default async function ProjectCaseStudyPage(
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
             <Prose paragraphs={caseStudy.solution} />
-            {caseStudy.gallerySolution && caseStudy.gallerySolution[0] ? (
-              <div className="rounded-[24px] md:rounded-[32px] bg-solution-blue p-4 md:p-8">
-                <div className="rounded-[12px] md:rounded-[18px] bg-white shadow-[0_16px_40px_-20px_rgba(0,0,0,0.15)] overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={caseStudy.gallerySolution[0].src}
-                    alt={caseStudy.gallerySolution[0].alt}
-                    width={caseStudy.gallerySolution[0].width}
-                    height={caseStudy.gallerySolution[0].height}
-                    className="w-full h-auto select-none"
-                  />
-                </div>
+            <div className="rounded-[24px] md:rounded-[32px] bg-solution-blue p-4 md:p-8">
+              <div className="relative rounded-[12px] md:rounded-[18px] bg-white shadow-[0_16px_40px_-20px_rgba(0,0,0,0.15)] overflow-hidden min-h-[200px]">
+                <SlotImage
+                  src={`/images/projects/${project.slug}/solution.webp`}
+                  alt={`${project.shortTitle} — solution view`}
+                  placeholderLabel="Solution"
+                  className="block w-full h-auto select-none"
+                />
               </div>
-            ) : null}
+            </div>
           </div>
         </CaseStudySection>
 
@@ -205,9 +202,12 @@ export default async function ProjectCaseStudyPage(
           <ProcessList steps={caseStudy.process} />
         </CaseStudySection>
 
-        {caseStudy.galleryProcess && caseStudy.galleryProcess.length > 0 && (
-          <Gallery items={caseStudy.galleryProcess} id="gallery-process" />
-        )}
+        <DesignExploration
+          slug={project.slug}
+          shortTitle={project.shortTitle}
+          id="gallery-process"
+          caption={caseStudy.galleryProcess?.[0]?.caption}
+        />
 
         <CaseStudySection
           index="07"
