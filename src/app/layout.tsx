@@ -120,6 +120,15 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero/hero-img-1.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
+      </head>
       <body>
         <script
           type="application/ld+json"
@@ -133,11 +142,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
-        {/* Cloudflare Turnstile script */}
+        {/* Cloudflare Turnstile — only needed for contact form, defer until idle */}
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-          async
-          defer
+          strategy="lazyOnload"
         />
         {/* Google Analytics */}
         <Script

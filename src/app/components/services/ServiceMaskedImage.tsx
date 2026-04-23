@@ -7,6 +7,7 @@ export default function ServiceMaskedImage(props: {
   src: string;
   alt: string;
   className?: string;
+  priority?: boolean;
 }) {
   return (
     <ResponsiveMaskedImage

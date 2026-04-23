@@ -8,15 +8,17 @@ import {
 } from '@/lib/contact/validation';
 import { sendContactEmails } from '@/lib/email/contactEmails';
 
+const isDev = process.env.NODE_ENV === 'development';
+
 export async function POST(request: NextRequest) {
-  console.log('📧 Contact API called');
+  if (isDev) console.log('📧 Contact API called');
 
   try {
     const body = (await request.json()) as ContactFormData;
 
     // 0) Honeypot
     if (isBotSubmission(body.company)) {
-      console.warn('🕵️‍♀️ Honeypot triggered – bot ignored');
+      if (isDev) console.warn('🕵️‍♀️ Honeypot triggered – bot ignored');
       return NextResponse.json({ ok: true }, { status: 200 });
     }
 
@@ -51,7 +53,7 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    console.error('❌ Error in contact API:', error);
+    if (isDev) console.error('❌ Error in contact API:', error);
     return NextResponse.json(
       { error: 'Failed to send email' },
       { status: 500 }

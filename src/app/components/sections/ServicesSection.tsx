@@ -45,6 +45,7 @@ export default function ServicesSection() {
                   src={activeItem.image.src}
                   alt={activeItem.image.alt}
                   className="h-full w-full object-cover"
+                  priority={activeItem.index === 1}
                 />
               </motion.div>
             )}
