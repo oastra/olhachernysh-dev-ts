@@ -43,7 +43,7 @@ export default function CaseStudyHero({ project }: Props) {
       {(() => {
         const hero = project.heroImage ?? project.image;
         return (
-          <div className="mt-10 lg:mt-14 rounded-[28px] md:rounded-[40px] bg-hero-pink p-6 md:p-10 lg:p-14">
+          <div className="mt-10 lg:mt-14 rounded-[28px] md:rounded-[40px] bg-portfolio-gradient p-6 md:p-10 lg:p-14">
             <div className="rounded-[16px] md:rounded-[24px] bg-white shadow-[0_20px_60px_-20px_rgba(0,0,0,0.18)] overflow-hidden">
               <Image
                 src={hero.src}
@@ -67,7 +67,7 @@ export default function CaseStudyHero({ project }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Visit ${project.shortTitle} live site`}
-            className="group inline-flex items-center justify-center gap-2 px-6 py-3 lg:px-8 lg:py-4 rounded-full btn-primary text-[18px] leading-[19.8px] font-display transition-all duration-300"
+            className="group inline-flex items-center justify-center gap-2 px-8 py-4 text-[18px] leading-[19.8px] font-display font-normal text-[#091A84] rounded-[35px] bg-[rgba(95,160,255,0.37)] hover:bg-main-gradient hover:text-white transition-all duration-300 focus:outline-none"
           >
             View Live Project
             <IconArrowUpRight

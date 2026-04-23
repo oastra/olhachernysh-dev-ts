@@ -33,6 +33,27 @@ export type CaseStudyContributionGroup = {
   items: string[];
 };
 
+export type OutcomeIcon =
+  | 'trophy'
+  | 'trending'
+  | 'rocket'
+  | 'mobile'
+  | 'trust'
+  | 'sparkles'
+  | 'palette'
+  | 'calendar'
+  | 'message'
+  | 'cart'
+  | 'search'
+  | 'check';
+
+export type CaseStudyOutcome =
+  | string
+  | {
+      text: string;
+      icon?: OutcomeIcon;
+    };
+
 export type CaseStudyGalleryItem = ProjectImage & {
   /** "wide" spans full width, "half" sits in a 2-up grid. Defaults to "wide". */
   span?: 'wide' | 'half';
@@ -53,7 +74,7 @@ export type CaseStudyContent = {
   features: CaseStudyFeature[];
   process: CaseStudyProcessStep[];
   /** Bullet outcomes — describe real-world impact without fake numbers. */
-  outcome: string[];
+  outcome: CaseStudyOutcome[];
   /** Paragraphs reflecting on what we learned and would do differently. */
   reflection?: string[];
   stack: string[];

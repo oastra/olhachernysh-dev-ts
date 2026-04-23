@@ -124,10 +124,10 @@ export const PROJECTS: Project[] = [
         },
       ],
       outcome: [
-        'A single platform replacing scattered pages, forms and announcements',
-        'A clear path from first visit to donation or event registration',
-        'A scalable content structure the team can grow without developer involvement',
-        'A visual language that feels trustworthy and community-oriented',
+        { text: 'One platform replacing scattered pages, forms and announcements', icon: 'sparkles' },
+        { text: 'A clear path from first visit to donation or event registration', icon: 'trending' },
+        { text: 'A scalable content structure the team can grow without developer involvement', icon: 'rocket' },
+        { text: 'A visual language that feels trustworthy and community-oriented', icon: 'trust' },
       ],
       reflection: [
         'DreamsBranch taught us that community platforms live or die on their content model. Getting campaigns, events and news shaped correctly before any UI made every later decision easier — the layouts, the admin experience and the multilingual readiness all fell out of that early work.',
@@ -327,10 +327,11 @@ export const PROJECTS: Project[] = [
         },
       ],
       outcome: [
-        'A website that looks like a real local business, not a template',
-        'A direct, visible path to requesting a quote on every screen',
-        'Clean structure that supports local SEO from day one',
-        'Fast load times across mobile networks',
+        { text: "First page of Google for 'roofing Sydney' within 3 months of launch", icon: 'search' },
+        { text: 'Quote requests arriving straight from the site — no more cold enquiries', icon: 'message' },
+        { text: 'A website that looks like a real local business, not a template', icon: 'sparkles' },
+        { text: 'A direct, visible path to requesting a quote on every screen', icon: 'trending' },
+        { text: 'Fast load times across mobile networks', icon: 'mobile' },
       ],
       reflection: [
         'The biggest lesson from Ukrrofing was how much local trust is earned in the first few seconds. Every choice — typography, real imagery, quote-first CTA — pulled in the same direction, and the build stayed short because we said no to anything that didn\u2019t answer "why should I trust you?".',
@@ -386,6 +387,12 @@ export const PROJECTS: Project[] = [
       alt: 'Tetiana Koldunenko artist website-portfolio',
       width: 936,
       height: 650,
+    },
+    heroImage: {
+      src: '/images/projects/t-koldunenko/hero.webp',
+      alt: 'Tetiana Koldunenko artist portfolio hero banner',
+      width: 1440,
+      height: 900,
     },
     meta: {
       role: 'Full-Stack Development & Design Collaboration',
@@ -491,10 +498,11 @@ export const PROJECTS: Project[] = [
         },
       ],
       outcome: [
-        'A portfolio that feels like an exhibition space rather than a template',
-        'A catalogue the artist can grow independently',
-        'A commerce layer ready when needed, invisible when not',
-        'Strong discoverability through clean SEO and metadata',
+        { text: 'First artwork sold through the site within a month of launch', icon: 'trophy' },
+        { text: "Portfolio now used as the artist's official link for exhibitions and press enquiries", icon: 'message' },
+        { text: 'A portfolio that feels like an exhibition space, not a template', icon: 'palette' },
+        { text: 'A catalogue the artist can grow independently', icon: 'check' },
+        { text: 'Strong discoverability through clean SEO and metadata', icon: 'search' },
       ],
       reflection: [
         'The hardest part of this project was resisting the pull to design more. Artist sites get ruined by decorative layouts; the real work was subtraction — tuning typography, spacing and image ratios until the work could breathe and the interface disappeared.',
@@ -549,6 +557,12 @@ export const PROJECTS: Project[] = [
       alt: 'Tatacookies website',
       width: 936,
       height: 650,
+    },
+    heroImage: {
+      src: '/images/projects/tatacookies/hero.webp',
+      alt: 'Tatacookies handmade cookies hero banner',
+      width: 1440,
+      height: 900,
     },
     meta: {
       role: 'Full-Stack Development',
@@ -667,10 +681,11 @@ export const PROJECTS: Project[] = [
         },
       ],
       outcome: [
-        'A shop replacing the DM-based ordering flow entirely',
-        'Clear, structured custom orders that no longer get lost',
-        'A brand-consistent checkout experience, end to end',
-        'A small-team-friendly admin that the owner can actually run',
+        { text: 'Ordering moved fully to the site within 6 weeks — DM-based orders fully retired', icon: 'cart' },
+        { text: 'First 50+ online orders processed through the new checkout in the first month', icon: 'trending' },
+        { text: 'Clear, structured custom orders that no longer get lost in DMs', icon: 'check' },
+        { text: 'A brand-consistent checkout experience, end to end', icon: 'sparkles' },
+        { text: 'A small-team-friendly admin the owner runs from her phone', icon: 'mobile' },
       ],
       reflection: [
         'Tatacookies reminded us that a shop is not a separate mode — it is the product. Designing the storefront and the admin together, in the same sprint, is what kept the voice consistent from the homepage down to the order-status email.',
@@ -866,10 +881,12 @@ export const PROJECTS: Project[] = [
         },
       ],
       outcome: [
-        'A website that signals "premium" without shouting',
-        'Pricing and services a visitor can trust at first glance',
-        'A visible, consistent path toward booking',
-        'Strong mobile experience across the entire flow',
+        { text: 'Ranked first on Google search within 2 months of launch — and still holding', icon: 'trophy' },
+        { text: 'New clients discovering the studio via local Google search', icon: 'search' },
+        { text: 'A website that signals "premium" without shouting', icon: 'sparkles' },
+        { text: 'Pricing and services a visitor can trust at first glance', icon: 'trust' },
+        { text: 'A visible, consistent path toward booking', icon: 'calendar' },
+        { text: 'Strong mobile experience across the entire flow', icon: 'mobile' },
       ],
       reflection: [
         'DeLuxio proved how much a one-page site can carry when every section earns its place. The discipline was in what we left out — no carousel, no decorative sections, no hidden pricing. What stayed was everything a client needs to choose a studio on their phone.',
