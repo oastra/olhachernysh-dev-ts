@@ -32,6 +32,8 @@ type Props = {
   priority?: boolean;
   animated?: boolean;
   sizes?: string;
+  objectPosition?: string;
+  objectFit?: 'cover' | 'contain';
 };
 
 export default function ResponsiveMaskedImage({
@@ -42,6 +44,8 @@ export default function ResponsiveMaskedImage({
   priority,
   animated = true,
   sizes = '(min-width:1024px) 712px, (min-width:744px) 664px, 343px',
+  objectPosition = 'center',
+  objectFit = 'cover',
 }: Props) {
   // Precompute once per prop change (top-level hook usage is valid)
   const mobile = masks.mobile;
@@ -82,7 +86,8 @@ export default function ResponsiveMaskedImage({
           src={src}
           alt={alt}
           fill
-          className="object-cover"
+          className={objectFit === 'contain' ? 'object-contain' : 'object-cover'}
+          style={{ objectPosition }}
           priority={priority}
           sizes={sizes}
         />

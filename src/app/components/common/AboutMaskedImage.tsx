@@ -12,6 +12,8 @@ type Props = {
   alt: string;
   className?: string;
   priority?: boolean;
+  objectPosition?: string;
+  objectFit?: 'cover' | 'contain';
 };
 
 export default function AboutMaskedImage({
@@ -19,6 +21,8 @@ export default function AboutMaskedImage({
   alt,
   className,
   priority,
+  objectPosition = 'center',
+  objectFit = 'cover',
 }: Props) {
   return (
     <ResponsiveMaskedImage
@@ -26,6 +30,8 @@ export default function AboutMaskedImage({
       alt={alt}
       className={className}
       priority={priority}
+      objectPosition={objectPosition}
+      objectFit={objectFit}
       sizes="(min-width:1024px) 712px, 100vw"
       masks={{
         mobile: { ...MOBILE_ABOUT_MASK_PATH, width: 343, height: 345 },

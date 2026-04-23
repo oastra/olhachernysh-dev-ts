@@ -31,26 +31,25 @@ export default function AboutSection() {
         {/* Text */}
         <div className="text-body leading-relaxed text-ink">
           <p>
-            I&apos;m Olha Chernysh, a Sydney-based Software Developer
-            who builds fast, accessible, and visually engaging websites.
-            Together with a dedicated UI/UX designer, I create custom-coded
-            solutions tailored to each client&apos;s needs — no templates,
-            no page builders.
+            I&apos;m Olha Chernysh, a Sydney-based Software Developer who builds
+            fast, accessible, and visually engaging websites. Together with a
+            dedicated UI/UX designer, I create custom-coded solutions tailored
+            to each client&apos;s needs — no templates, no page builders.
           </p>
 
           <p className="mt-6">
-            Every project gets a tailored approach, whether it&apos;s a
-            one-page landing site or a full-scale web application. My goal
-            is to help businesses communicate their brand online and deliver
-            an experience their users actually enjoy.
+            Every project gets a tailored approach, whether it&apos;s a one-page
+            landing site or a full-scale web application. My goal is to help
+            businesses communicate their brand online and deliver an experience
+            their users actually enjoy.
           </p>
         </div>
 
         {/* Masked Image (mobile → tablet → desktop masks) */}
         <div className="max-w-[343px] xl:max-w-[712px] lg:max-h-[603px] justify-self-center lg:justify-self-end w-full">
           <AboutMaskedImage
-            src="/images/about/olha.jpg"
-            alt="Olha Chernysh – Frontend Developer"
+            src="/images/about/olha.webp"
+            alt="Olha Chernysh – Full-Stack Developer"
             priority
           />
         </div>
