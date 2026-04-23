@@ -19,11 +19,11 @@ export default function SnakeOverlay({
   d,
   className = '',
   strokeWidth = 3,
-  animationDuration = 3.5,
+  animationDuration = 2,
   animationDelay = 0.1,
-  ease = 'ease-in-out',
+  ease = 'ease-out',
   forceOnMount = false,
-  delayAfterVisibleMs = 1000,
+  delayAfterVisibleMs = 300,
 }: SnakeOverlayProps) {
   const gradientId = useId();
   const svgRef = useRef<SVGSVGElement>(null);
