@@ -72,7 +72,7 @@ export default function Header() {
     <header
       className={`w-full z-50 transition-all duration-300 ${
         scrolled
-          ? 'sticky top-3 lg:top-6 max-w-[312px] md:max-w-[632px] lg:max-w-[912px] xl:max-w-[1172px] place-self-center'
+          ? 'sticky top-3 lg:top-6 mx-auto max-w-[312px] md:max-w-[632px] lg:max-w-[912px] xl:max-w-[1172px]'
           : 'relative'
       }`}
     >

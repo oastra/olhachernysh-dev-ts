@@ -18,6 +18,7 @@ import MobileGallery from '@/app/components/caseStudy/MobileGallery';
 import FeatureGallery from '@/app/components/caseStudy/FeatureGallery';
 import DesignExploration from '@/app/components/caseStudy/DesignExploration';
 import SlotImage from '@/app/components/caseStudy/SlotImage';
+import ReadingProgress from '@/app/components/caseStudy/ReadingProgress';
 
 import { PROJECTS, getProjectBySlug, getNextProject } from '@/data/projects';
 
@@ -123,6 +124,7 @@ export default async function ProjectCaseStudyPage(
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      <ReadingProgress />
       <Header />
       <main>
         <CaseStudyHero project={project} />

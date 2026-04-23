@@ -60,12 +60,10 @@ export default function HeaderBar({
       if (current < unlockAt) {
         setIsVisible(true);
       } else {
-        // 2) after second section → smart header
-        if (current > lastScrollY.current + 4) {
-          // scrolling down
+        // 2) after second section → smart header (hair-trigger hide)
+        if (current > lastScrollY.current + 1) {
           setIsVisible(false);
-        } else if (current < lastScrollY.current - 4) {
-          // scrolling up
+        } else if (current < lastScrollY.current - 2) {
           setIsVisible(true);
         }
       }
@@ -85,7 +83,7 @@ export default function HeaderBar({
         y: isVisible ? 0 : -100,
         opacity: isVisible ? 1 : 0,
       }}
-      transition={{ duration: 0.28, ease: 'easeInOut' }}
+      transition={{ duration: 0.16, ease: 'easeOut' }}
     >
       {/* glass pill */}
       <AnimatePresence initial={false}>

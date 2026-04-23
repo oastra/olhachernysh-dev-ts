@@ -18,8 +18,12 @@ export default function ProjectCard({ project, className }: Props) {
 
   return (
     <article className={clsx('group', className)}>
-      {/* Device-like frame */}
-      <div className="relative max-h-[470px] lg:max-h-[582px] rounded-[28px] md:rounded-[50px] bg-portfolio-gradient shadow-sm overflow-hidden px-6 pt-8">
+      {/* Device-like frame — whole area is tappable (mobile) and hover-reveals CTA (desktop) */}
+      <Link
+        href={caseStudyHref}
+        aria-labelledby={`proj-${id}-title`}
+        className="relative block max-h-[470px] lg:max-h-[582px] rounded-[28px] md:rounded-[50px] bg-portfolio-gradient shadow-sm overflow-hidden px-6 pt-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-main-blue/60"
+      >
         {/* Hover gradient overlay */}
         <div className="absolute inset-0 bg-gradient-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0" />
 
@@ -33,24 +37,23 @@ export default function ProjectCard({ project, className }: Props) {
           priority={false}
         />
 
-        {/* circular CTA — hidden until hover */}
-        <Link
-          href={caseStudyHref}
-          aria-labelledby={`proj-${id}-title`}
+        {/* circular CTA — decorative, revealed on hover (desktop) */}
+        <span
+          aria-hidden="true"
           className={clsx(
             'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
             'w-20 h-20 md:w-[120px] md:h-[120px]',
             'btn-circle-cta flex items-center justify-center',
-            'opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10',
-            'transition-transform group-hover:scale-105 focus:scale-105 focus-visible:outline-none',
+            'opacity-0 group-hover:opacity-100 transition-all duration-300 z-10',
+            'group-hover:scale-105',
           )}
         >
           <IconArrowUpRight
             className="w-8 h-8 md:w-[76px] md:h-[76px] text-white"
             strokeWidth={1.1}
           />
-        </Link>
-      </div>
+        </span>
+      </Link>
 
       {/* Meta */}
       <div className="mt-6 pl-8">

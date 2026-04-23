@@ -23,7 +23,7 @@ export default function NextProject({ project }: Props) {
         Next project
       </SectionTitle>
 
-      <article className="group max-w-[720px]">
+      <article className="group max-w-[720px] mb-16 md:mb-0">
         <div className="relative max-h-[470px] lg:max-h-[582px] rounded-[28px] md:rounded-[50px] bg-portfolio-gradient shadow-sm overflow-hidden px-6 pt-8">
           <div className="absolute inset-0 bg-gradient-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0" />
 

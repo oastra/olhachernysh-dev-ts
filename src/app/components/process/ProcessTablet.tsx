@@ -25,52 +25,58 @@ export default function ProcessTablet() {
   return (
     <div className="hidden md:block xl:hidden w-full">
       <div
-        className="w-full mx-auto relative"
+        className="relative mx-auto w-full"
         style={{
           maxWidth: `${CONTAINER_WIDTH}px`,
           aspectRatio: `${CONTAINER_WIDTH} / ${CONTAINER_HEIGHT}`,
+          paddingTop: '4.5rem',
+          paddingBottom: '3.75rem',
         }}
       >
         {/* snake */}
-        <div className="absolute inset-0 w-full h-full">
-          <SnakeOverlay
-            viewBox={`0 0 ${SVG_VIEWBOX_WIDTH} ${SVG_VIEWBOX_HEIGHT}`}
-            d="M1.5 1.5H513C518.523 1.5 523 5.97715 523 11.5V214.5C523 220.023 518.523 224.5 513 224.5H11.5C5.97719 224.5 1.5 228.977 1.5 234.5V440C1.5 445.523 5.97715 450 11.5 450H513C518.523 450 523 454.477 523 460V678C523 683.523 518.523 688 513 688H11.5C5.97719 688 1.5 692.477 1.5 698V914C1.5 919.523 5.97715 924 11.5 924H513C518.523 924 523 928.414 523 933.896V1154.4C523 1159.96 518.523 1164.5 513 1164.5H11.5C5.97719 1164.5 1.5 1168.98 1.5 1174.5V1397.5C1.5 1403.02 5.97715 1407.5 11.5 1407.5H200C205.523 1407.5 210 1411.98 210 1417.5V1611"
-            strokeWidth={3}
-            animationDuration={2.2}
-            animationDelay={0.1}
-            delayAfterVisibleMs={300}
-          />
+        <div className="absolute inset-0 flex items-stretch justify-center pointer-events-none">
+          <div className="w-[90%] h-full">
+            <SnakeOverlay
+              viewBox={`0 0 ${SVG_VIEWBOX_WIDTH} ${SVG_VIEWBOX_HEIGHT}`}
+              d="M1.5 1.5H513C518.523 1.5 523 5.97715 523 11.5V214.5C523 220.023 518.523 224.5 513 224.5H11.5C5.97719 224.5 1.5 228.977 1.5 234.5V440C1.5 445.523 5.97715 450 11.5 450H513C518.523 450 523 454.477 523 460V678C523 683.523 518.523 688 513 688H11.5C5.97719 688 1.5 692.477 1.5 698V914C1.5 919.523 5.97715 924 11.5 924H513C518.523 924 523 928.414 523 933.896V1154.4C523 1159.96 518.523 1164.5 513 1164.5H11.5C5.97719 1164.5 1.5 1168.98 1.5 1174.5V1397.5C1.5 1403.02 5.97715 1407.5 11.5 1407.5H200C205.523 1407.5 210 1411.98 210 1417.5V1611"
+              strokeWidth={3}
+              animationDuration={2.2}
+              animationDelay={0.1}
+              delayAfterVisibleMs={300}
+            />
+          </div>
         </div>
 
         {/* content */}
-        <div className="relative z-10 w-full h-full px-4">
-          {processSteps.map((step, index) => {
-            const section = sectionPositions[index];
-            const topPercent = (section.top / SVG_VIEWBOX_HEIGHT) * 100;
-            const heightPercent =
-              ((section.bottom - section.top) / SVG_VIEWBOX_HEIGHT) * 100;
+        <div className="absolute inset-0 flex items-stretch justify-center">
+          <div className="w-[90%] h-full relative">
+            {processSteps.map((step, index) => {
+              const section = sectionPositions[index];
+              const topPercent = (section.top / SVG_VIEWBOX_HEIGHT) * 100;
+              const heightPercent =
+                ((section.bottom - section.top) / SVG_VIEWBOX_HEIGHT) * 100;
 
-            return (
-              <div
-                key={step.id}
-                className="absolute w-full flex items-center px-8"
-                style={{
-                  top: `${topPercent}%`,
-                  height: `${heightPercent}%`,
-                  paddingTop: '2%',
-                  paddingBottom: '2%',
-                }}
-              >
-                <ProcessStep
-                  number={step.number}
-                  title={step.title}
-                  bullets={step.bullets}
-                  layout="tablet"
-                />
-              </div>
-            );
-          })}
+              return (
+                <div
+                  key={step.id}
+                  className="absolute w-full flex items-center px-8"
+                  style={{
+                    top: `${topPercent}%`,
+                    height: `${heightPercent}%`,
+                    paddingTop: '2%',
+                    paddingBottom: '2%',
+                  }}
+                >
+                  <ProcessStep
+                    number={step.number}
+                    title={step.title}
+                    bullets={step.bullets}
+                    layout="tablet"
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
