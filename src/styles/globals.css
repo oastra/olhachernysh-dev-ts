@@ -97,6 +97,14 @@
     background: linear-gradient(90deg, #e7e9eb 0%, rgba(9, 83, 132, 0.05) 100%);
   }
 
+  .bg-hero-pink {
+    background: linear-gradient(135deg, #fde8ec 0%, #fbd9e0 100%);
+  }
+
+  .bg-solution-blue {
+    background: linear-gradient(135deg, #e6efff 0%, #dbe5ff 100%);
+  }
+
   /* Buttons */
   .btn-cta {
     background-color: var(--color-main-blue);

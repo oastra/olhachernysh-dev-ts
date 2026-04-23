@@ -9,10 +9,16 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://dreamsbranch.com.au',
     status: 'in-development',
     image: {
-      src: '/images/projects/dreamsbranch.webp',
+      src: '/images/projects/dreamsbranch/card.webp',
       alt: 'DreamsBranch platform with donations, events, and community features',
       width: 936,
       height: 650,
+    },
+    heroImage: {
+      src: '/images/projects/dreamsbranch/hero.webp',
+      alt: 'DreamsBranch platform hero banner',
+      width: 1440,
+      height: 900,
     },
     meta: {
       role: 'Full-Stack Development & Platform Architecture',
@@ -123,6 +129,10 @@ export const PROJECTS: Project[] = [
         'A scalable content structure the team can grow without developer involvement',
         'A visual language that feels trustworthy and community-oriented',
       ],
+      reflection: [
+        'DreamsBranch taught us that community platforms live or die on their content model. Getting campaigns, events and news shaped correctly before any UI made every later decision easier — the layouts, the admin experience and the multilingual readiness all fell out of that early work.',
+        'If we could rewind, we would spend even more time on the editorial tooling side from day one. The public platform feels right; the next frontier is making it just as effortless for the team to keep feeding it.',
+      ],
       stack: [
         'Next.js',
         'React',
@@ -138,7 +148,7 @@ export const PROJECTS: Project[] = [
       ],
       gallerySolution: [
         {
-          src: '/images/projects/dreamsbranch/campaign-detail.webp',
+          src: '/images/projects/dreamsbranch/solution.webp',
           alt: 'DreamsBranch donation campaign page with progress and call to action',
           width: 1440,
           height: 900,
@@ -147,23 +157,42 @@ export const PROJECTS: Project[] = [
       ],
       galleryFeatures: [
         {
-          src: '/images/projects/dreamsbranch/event-detail.webp',
+          src: '/images/projects/dreamsbranch/feature-1.webp',
           alt: 'DreamsBranch events hub listing',
           width: 1440,
           height: 900,
-          span: 'half',
+          span: 'wide',
         },
+      ],
+      galleryMobile: [
         {
-          src: '/images/projects/dreamsbranch/mobile-campaign.webp',
+          src: '/images/projects/dreamsbranch/mobile-1.webp',
           alt: 'DreamsBranch campaign page on mobile',
           width: 390,
           height: 844,
-          span: 'half',
+        },
+        {
+          src: '/images/projects/dreamsbranch/mobile-2.webp',
+          alt: 'DreamsBranch community view on mobile',
+          width: 390,
+          height: 844,
+        },
+        {
+          src: '/images/projects/dreamsbranch/mobile-3.webp',
+          alt: 'DreamsBranch events listing on mobile',
+          width: 390,
+          height: 844,
+        },
+        {
+          src: '/images/projects/dreamsbranch/mobile-4.webp',
+          alt: 'DreamsBranch news feed on mobile',
+          width: 390,
+          height: 844,
         },
       ],
       galleryProcess: [
         {
-          src: '/images/projects/dreamsbranch/design-file.webp',
+          src: '/images/projects/dreamsbranch/process.webp',
           alt: 'DreamsBranch design file — key flows in Figma',
           width: 1440,
           height: 900,
@@ -180,7 +209,7 @@ export const PROJECTS: Project[] = [
     location: 'Sydney, Australia',
     liveUrl: 'https://ukrrofing.com.au',
     image: {
-      src: '/images/projects/ukrrofing.webp',
+      src: '/images/projects/ukrrofing/card.webp',
       alt: 'Ukrrofing roofing solutions website',
       width: 936,
       height: 650,
@@ -297,10 +326,14 @@ export const PROJECTS: Project[] = [
         'Clean structure that supports local SEO from day one',
         'Fast load times across mobile networks',
       ],
+      reflection: [
+        'The biggest lesson from Ukrrofing was how much local trust is earned in the first few seconds. Every choice — typography, real imagery, quote-first CTA — pulled in the same direction, and the build stayed short because we said no to anything that didn\u2019t answer "why should I trust you?".',
+        'If we were starting again, we would invest even earlier in structured testimonials and job photography — the site frames them well, but the raw material is what makes them land.',
+      ],
       stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
       gallerySolution: [
         {
-          src: '/images/projects/ukrrofing/services-detail.webp',
+          src: '/images/projects/ukrrofing/solution.webp',
           alt: 'Ukrrofing services breakdown page',
           width: 1440,
           height: 900,
@@ -309,23 +342,24 @@ export const PROJECTS: Project[] = [
       ],
       galleryFeatures: [
         {
-          src: '/images/projects/ukrrofing/quote-form.webp',
+          src: '/images/projects/ukrrofing/feature-1.webp',
           alt: 'Ukrrofing quote request form in context',
           width: 1440,
           height: 720,
-          span: 'half',
+          span: 'wide',
         },
+      ],
+      galleryMobile: [
         {
-          src: '/images/projects/ukrrofing/mobile-home.webp',
+          src: '/images/projects/ukrrofing/mobile-1.webp',
           alt: 'Ukrrofing homepage on mobile with visible CTA',
           width: 390,
           height: 844,
-          span: 'half',
         },
       ],
       galleryProcess: [
         {
-          src: '/images/projects/ukrrofing/design-file.webp',
+          src: '/images/projects/ukrrofing/process.webp',
           alt: 'Ukrrofing design file — service pages and quote flow',
           width: 1440,
           height: 900,
@@ -342,7 +376,7 @@ export const PROJECTS: Project[] = [
     location: 'Sydney, Australia',
     liveUrl: 'https://t-koldunenko.com',
     image: {
-      src: '/images/projects/t-koldunenko.webp',
+      src: '/images/projects/t-koldunenko/card.webp',
       alt: 'Tetiana Koldunenko artist website-portfolio',
       width: 936,
       height: 650,
@@ -456,6 +490,10 @@ export const PROJECTS: Project[] = [
         'A commerce layer ready when needed, invisible when not',
         'Strong discoverability through clean SEO and metadata',
       ],
+      reflection: [
+        'The hardest part of this project was resisting the pull to design more. Artist sites get ruined by decorative layouts; the real work was subtraction — tuning typography, spacing and image ratios until the work could breathe and the interface disappeared.',
+        'What we would keep for future portfolios: lead with the body of work, not a template. What we would change: build the "add a new exhibition" flow even earlier so the artist feels ownership from day one.',
+      ],
       stack: [
         'Next.js',
         'React',
@@ -468,7 +506,7 @@ export const PROJECTS: Project[] = [
       ],
       gallerySolution: [
         {
-          src: '/images/projects/t-koldunenko/artwork-detail.webp',
+          src: '/images/projects/t-koldunenko/solution.webp',
           alt: 'Tetiana Koldunenko artwork detail page',
           width: 1440,
           height: 900,
@@ -477,28 +515,19 @@ export const PROJECTS: Project[] = [
       ],
       galleryFeatures: [
         {
-          src: '/images/projects/t-koldunenko/catalogue.webp',
+          src: '/images/projects/t-koldunenko/feature-1.webp',
           alt: 'Tetiana Koldunenko catalogue browsing grid',
           width: 1440,
           height: 900,
-          span: 'half',
+          span: 'wide',
         },
+      ],
+      galleryMobile: [
         {
-          src: '/images/projects/t-koldunenko/mobile-artwork.webp',
+          src: '/images/projects/t-koldunenko/mobile-1.webp',
           alt: 'Tetiana Koldunenko artwork page on mobile',
           width: 390,
           height: 844,
-          span: 'half',
-        },
-      ],
-      galleryProcess: [
-        {
-          src: '/images/projects/t-koldunenko/design-file.webp',
-          alt: 'Tetiana Koldunenko design file — catalogue and artwork layouts',
-          width: 1440,
-          height: 900,
-          span: 'wide',
-          caption: 'Design file — catalogue and artwork layouts.',
         },
       ],
     },
@@ -510,7 +539,7 @@ export const PROJECTS: Project[] = [
     location: 'Sydney, Australia',
     liveUrl: 'https://tatacookies.com',
     image: {
-      src: '/images/projects/tatacookies.webp',
+      src: '/images/projects/tatacookies/card.webp',
       alt: 'Tatacookies website',
       width: 936,
       height: 650,
@@ -637,6 +666,10 @@ export const PROJECTS: Project[] = [
         'A brand-consistent checkout experience, end to end',
         'A small-team-friendly admin that the owner can actually run',
       ],
+      reflection: [
+        'Tatacookies reminded us that a shop is not a separate mode — it is the product. Designing the storefront and the admin together, in the same sprint, is what kept the voice consistent from the homepage down to the order-status email.',
+        'If we were doing it again we would prototype the custom-order flow even earlier with real customers. That was the piece that saved the most time once live, and it deserved more attention in the first iteration.',
+      ],
       stack: [
         'Next.js',
         'React',
@@ -653,39 +686,40 @@ export const PROJECTS: Project[] = [
       ],
       gallerySolution: [
         {
-          src: '/images/projects/tatacookies/product-detail.webp',
+          src: '/images/projects/tatacookies/solution.webp',
           alt: 'Tatacookies product detail page',
           width: 1440,
           height: 900,
-          span: 'half',
-        },
-        {
-          src: '/images/projects/tatacookies/mobile-shop.webp',
-          alt: 'Tatacookies catalogue on mobile',
-          width: 390,
-          height: 844,
-          span: 'half',
+          span: 'wide',
         },
       ],
       galleryFeatures: [
         {
-          src: '/images/projects/tatacookies/cart-checkout.webp',
+          src: '/images/projects/tatacookies/feature-1.webp',
           alt: 'Tatacookies cart and checkout step',
           width: 1440,
           height: 900,
           span: 'half',
         },
         {
-          src: '/images/projects/tatacookies/custom-order.webp',
+          src: '/images/projects/tatacookies/feature-2.webp',
           alt: 'Tatacookies custom order form',
           width: 1440,
           height: 900,
           span: 'half',
         },
       ],
+      galleryMobile: [
+        {
+          src: '/images/projects/tatacookies/mobile-1.webp',
+          alt: 'Tatacookies catalogue on mobile',
+          width: 390,
+          height: 844,
+        },
+      ],
       galleryProcess: [
         {
-          src: '/images/projects/tatacookies/design-file.webp',
+          src: '/images/projects/tatacookies/process.webp',
           alt: 'Tatacookies design file — homepage, mobile tablete and full wide layouts',
           width: 1440,
           height: 900,
@@ -703,10 +737,16 @@ export const PROJECTS: Project[] = [
     location: 'Sydney, Australia',
     liveUrl: 'https://deluxio.com.au',
     image: {
-      src: '/images/projects/deluxio.webp',
+      src: '/images/projects/deluxio/card.webp',
       alt: 'DeLuxio website',
       width: 936,
       height: 650,
+    },
+    heroImage: {
+      src: '/images/projects/deluxio/hero.webp',
+      alt: 'DeLuxio nail studio hero banner',
+      width: 1440,
+      height: 900,
     },
     meta: {
       role: 'Full-Stack Development & UX',
@@ -825,35 +865,37 @@ export const PROJECTS: Project[] = [
         'A visible, consistent path toward booking',
         'Strong mobile experience across the entire flow',
       ],
+      reflection: [
+        'DeLuxio proved how much a one-page site can carry when every section earns its place. The discipline was in what we left out — no carousel, no decorative sections, no hidden pricing. What stayed was everything a client needs to choose a studio on their phone.',
+        'Next time we would bring the booking integration in even tighter from the start. The "direction to booking" works beautifully; an in-page booking step would shave the final friction.',
+      ],
       stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
       gallerySolution: [
         {
-          src: '/images/projects/deluxio/services-pricing.webp',
+          src: '/images/projects/deluxio/solution.webp',
           alt: 'DeLuxio services and pricing page',
           width: 1440,
           height: 900,
           span: 'wide',
         },
       ],
-      galleryFeatures: [
+      galleryMobile: [
         {
-          src: '/images/projects/deluxio/mobile-home.webp',
+          src: '/images/projects/deluxio/mobile-1.webp',
           alt: 'DeLuxio homepage on mobile with booking CTA',
           width: 390,
           height: 844,
-          span: 'half',
         },
         {
-          src: '/images/projects/deluxio/mobile-services.webp',
+          src: '/images/projects/deluxio/mobile-2.webp',
           alt: 'DeLuxio services and pricing on mobile',
           width: 390,
           height: 844,
-          span: 'half',
         },
       ],
       galleryProcess: [
         {
-          src: '/images/projects/deluxio/design-file.webp',
+          src: '/images/projects/deluxio/process.webp',
           alt: 'DeLuxio design file — services, pricing and booking flow',
           width: 1440,
           height: 900,

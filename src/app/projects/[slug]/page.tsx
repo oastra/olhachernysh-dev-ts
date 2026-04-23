@@ -15,6 +15,8 @@ import OutcomeList from '@/app/components/caseStudy/OutcomeList';
 import TechStackList from '@/app/components/caseStudy/TechStackList';
 import NextProject from '@/app/components/caseStudy/NextProject';
 import Gallery from '@/app/components/caseStudy/Gallery';
+import MobileGallery from '@/app/components/caseStudy/MobileGallery';
+import FeatureGallery from '@/app/components/caseStudy/FeatureGallery';
 
 import { PROJECTS, getProjectBySlug, getNextProject } from '@/data/projects';
 
@@ -137,6 +139,7 @@ export default async function ProjectCaseStudyPage(
           index="02"
           label="Challenge"
           id="challenge"
+          tone="muted"
         >
           <Prose paragraphs={caseStudy.challenge} />
         </CaseStudySection>
@@ -146,18 +149,30 @@ export default async function ProjectCaseStudyPage(
           label="Solution"
           id="solution"
         >
-          <Prose paragraphs={caseStudy.solution} />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+            <Prose paragraphs={caseStudy.solution} />
+            {caseStudy.gallerySolution && caseStudy.gallerySolution[0] ? (
+              <div className="rounded-[24px] md:rounded-[32px] bg-solution-blue p-4 md:p-8">
+                <div className="rounded-[12px] md:rounded-[18px] bg-white shadow-[0_16px_40px_-20px_rgba(0,0,0,0.15)] overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={caseStudy.gallerySolution[0].src}
+                    alt={caseStudy.gallerySolution[0].alt}
+                    width={caseStudy.gallerySolution[0].width}
+                    height={caseStudy.gallerySolution[0].height}
+                    className="w-full h-auto select-none"
+                  />
+                </div>
+              </div>
+            ) : null}
+          </div>
         </CaseStudySection>
-
-        {caseStudy.gallerySolution && caseStudy.gallerySolution.length > 0 && (
-          <Gallery items={caseStudy.gallerySolution} id="gallery-solution" />
-        )}
 
         <CaseStudySection
           index="04"
           label="What we did"
           id="what-i-did"
-          lede="Strategy, development, integrations and everything in between."
+          tone="muted"
         >
           <ContributionGroups groups={caseStudy.contributions} />
         </CaseStudySection>
@@ -170,15 +185,22 @@ export default async function ProjectCaseStudyPage(
           <FeatureList features={caseStudy.features} />
         </CaseStudySection>
 
-        {caseStudy.galleryFeatures && caseStudy.galleryFeatures.length > 0 && (
-          <Gallery items={caseStudy.galleryFeatures} id="gallery-features" />
-        )}
+        <FeatureGallery
+          slug={project.slug}
+          shortTitle={project.shortTitle}
+          id="gallery-features"
+        />
+
+        <MobileGallery
+          slug={project.slug}
+          shortTitle={project.shortTitle}
+          id="mobile-view"
+        />
 
         <CaseStudySection
           index="06"
           label="Process"
           id="process"
-          lede="From discovery to launch — the path this project actually took."
         >
           <ProcessList steps={caseStudy.process} />
         </CaseStudySection>
@@ -191,14 +213,22 @@ export default async function ProjectCaseStudyPage(
           index="07"
           label="Outcome"
           id="outcome"
+          tone="muted"
         >
           <OutcomeList outcomes={caseStudy.outcome} />
         </CaseStudySection>
+
+        {caseStudy.reflection && caseStudy.reflection.length > 0 && (
+          <CaseStudySection label="Reflection" id="reflection">
+            <Prose paragraphs={caseStudy.reflection} />
+          </CaseStudySection>
+        )}
 
         <CaseStudySection
           index="08"
           label="Tech stack"
           id="stack"
+          tone="muted"
         >
           <TechStackList stack={caseStudy.stack} />
         </CaseStudySection>

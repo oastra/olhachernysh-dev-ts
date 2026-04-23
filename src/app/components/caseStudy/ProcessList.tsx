@@ -10,15 +10,17 @@ export default function ProcessList({ steps }: Props) {
       {steps.map((step, i) => (
         <li
           key={step.title}
-          className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 md:grid-cols-[80px_1fr_2fr] md:gap-x-12 lg:gap-x-20 py-7 lg:py-8 border-t-2 first:border-t-0 border-main-blue/10 last:border-b-2"
+          className="grid grid-cols-[64px_1fr] md:grid-cols-[88px_1fr] gap-x-4 md:gap-x-6 py-8 lg:py-10 border-t border-ink/10 first:border-t-0"
         >
-          <span className="text-h6 text-main-blue/60 pt-2 md:pt-3">
+          <span className="text-h3-subheading text-ink/40 font-normal pt-[2px]">
             {String(i + 1).padStart(2, '0')}
           </span>
-          <h3 className="text-h3-subheading text-ink">{step.title}</h3>
-          <p className="col-start-2 md:col-start-3 text-body text-ink/75 md:pt-1">
-            {step.description}
-          </p>
+          <div className="flex flex-col gap-3 max-w-[760px]">
+            <h3 className="text-h3-subheading text-ink font-semibold">
+              {step.title}
+            </h3>
+            <p className="text-body text-ink/70">{step.description}</p>
+          </div>
         </li>
       ))}
     </ol>

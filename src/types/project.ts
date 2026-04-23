@@ -54,6 +54,8 @@ export type CaseStudyContent = {
   process: CaseStudyProcessStep[];
   /** Bullet outcomes — describe real-world impact without fake numbers. */
   outcome: string[];
+  /** Paragraphs reflecting on what we learned and would do differently. */
+  reflection?: string[];
   stack: string[];
   /** Extra screenshots shown after the Solution section. */
   gallerySolution?: CaseStudyGalleryItem[];
@@ -61,6 +63,8 @@ export type CaseStudyContent = {
   galleryFeatures?: CaseStudyGalleryItem[];
   /** Design-file artefacts (Figma frames etc.) shown after the Process section. */
   galleryProcess?: CaseStudyGalleryItem[];
+  /** Phone mockups shown in the Mobile View section — up to 4 recommended. */
+  galleryMobile?: CaseStudyGalleryItem[];
 };
 
 export type ProjectStatus = 'live' | 'in-development';
@@ -76,6 +80,8 @@ export type Project = {
   /** Defaults to "live" when omitted. */
   status?: ProjectStatus;
   image: ProjectImage;
+  /** Optional hero image dedicated to the case-study top banner. Falls back to `image`. */
+  heroImage?: ProjectImage;
   meta: ProjectMeta;
   caseStudy: CaseStudyContent;
 };

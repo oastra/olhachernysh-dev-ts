@@ -17,15 +17,13 @@ export default function MetaGrid({ meta, className }: Props) {
     <dl
       className={[
         'grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-6',
-        'border-t-2 border-main-blue/10 pt-6',
+        'border-b border-ink/10 pb-6',
         className ?? '',
       ].join(' ')}
     >
       {ITEMS.map(({ key, label }) => (
-        <div key={key} className="flex flex-col gap-1">
-          <dt className="text-h6 text-ink/50 uppercase tracking-wide">
-            {label}
-          </dt>
+        <div key={key} className="flex flex-col gap-2">
+          <dt className="text-h6 text-ink/50">{label}</dt>
           <dd className="text-body text-ink">{meta[key]}</dd>
         </div>
       ))}
