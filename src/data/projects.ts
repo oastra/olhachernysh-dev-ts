@@ -28,12 +28,12 @@ export const PROJECTS: Project[] = [
     },
     caseStudy: {
       summary:
-        'A custom-built community and fundraising platform bringing donations, campaigns, events, news and a community space into one coherent experience.',
+        'A custom-built bilingual (English and Ukrainian) community and fundraising platform bringing donations, campaigns, events, news and a community space into one coherent experience.',
       overview: {
-        what: 'DreamsBranch is a community-focused digital platform combining fundraising, events, news and member communication under a single structured product.',
+        what: 'DreamsBranch is a community-focused digital platform combining fundraising, events, news and member communication under a single structured product, fully translated into English and Ukrainian.',
         audience:
-          'Community members, donors and event participants connected to the organisation, including both first-time visitors and returning supporters.',
-        goal: 'Turn a fragmented set of community activities into one platform where people can support causes, follow news and take part in events without friction.',
+          'A bilingual English- and Ukrainian-speaking community of members, donors and event participants — both first-time visitors and returning supporters.',
+        goal: 'Turn a fragmented set of community activities into one platform where people can support causes, follow news and take part in events without friction, in whichever of the two languages they prefer.',
       },
       challenge: [
         'The organisation needed to unify several disconnected touchpoints — donations, events, editorial content and community updates — into one platform with a clear structure and a long-term content model.',
@@ -65,6 +65,7 @@ export const PROJECTS: Project[] = [
           items: [
             'Built server-side handlers for donation and event flows',
             'Integrated editorial content management for the team',
+            'Wired bilingual (English / Ukrainian) routing, translations and a header language switch',
             'Set up SEO fundamentals and social sharing for campaigns',
           ],
         },
@@ -91,9 +92,9 @@ export const PROJECTS: Project[] = [
             'Sections for members to discover what the community does and how to get involved.',
         },
         {
-          title: 'Multilingual-ready content',
+          title: 'Bilingual content — English & Ukrainian',
           description:
-            'Content structure designed to expand into additional languages without rework.',
+            'Every page is fully translated and editable in both languages, with a language switch in the header so visitors stay on the page they are reading.',
         },
       ],
       process: [
@@ -125,19 +126,21 @@ export const PROJECTS: Project[] = [
       ],
       outcome: [
         { text: 'One platform replacing scattered pages, forms and announcements', icon: 'sparkles' },
+        { text: 'Fully bilingual experience in English and Ukrainian, shipping from day one', icon: 'message' },
         { text: 'A clear path from first visit to donation or event registration', icon: 'trending' },
         { text: 'A scalable content structure the team can grow without developer involvement', icon: 'rocket' },
         { text: 'A visual language that feels trustworthy and community-oriented', icon: 'trust' },
       ],
       reflection: [
-        'DreamsBranch taught us that community platforms live or die on their content model. Getting campaigns, events and news shaped correctly before any UI made every later decision easier — the layouts, the admin experience and the multilingual readiness all fell out of that early work.',
-        'If we could rewind, we would spend even more time on the editorial tooling side from day one. The public platform feels right; the next frontier is making it just as effortless for the team to keep feeding it.',
+        'DreamsBranch taught us that community platforms live or die on their content model. Getting campaigns, events and news shaped correctly before any UI made every later decision easier — the layouts, the admin experience and the bilingual English/Ukrainian rollout all fell out of that early work.',
+        'If we could rewind, we would spend even more time on the editorial tooling side from day one — especially around keeping the two language versions in sync without slowing the team down. The public platform feels right; the next frontier is making it just as effortless for the team to keep feeding it.',
       ],
       stack: [
         'Next.js',
         'React',
         'TypeScript',
         'Tailwind CSS',
+        'next-intl',
         'Node.js',
         'Supabase',
         'PostgreSQL',
