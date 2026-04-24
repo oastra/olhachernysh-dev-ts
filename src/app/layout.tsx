@@ -3,8 +3,7 @@ import Script from 'next/script';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
-  title:
-    'Web Developer Sydney | Custom Websites & E-commerce — Olha Chernysh',
+  title: 'Web Developer Sydney — Olha Chernysh | Custom Websites',
   description:
     'Freelance web developer in Sydney building fast, custom websites, landing pages and e-commerce stores for small businesses and founders. Next.js, React, Node.js. Get a fixed-price quote.',
   keywords: [
@@ -41,7 +40,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Web Developer Sydney | Custom Websites & E-commerce — Olha Chernysh',
+    title: 'Web Developer Sydney — Olha Chernysh | Custom Websites',
     description:
       'Freelance web developer in Sydney. Custom websites, landing pages and online stores built in Next.js, React and Node.js — designed to win clients and rank on Google.',
     url: 'https://olhachernysh.dev',

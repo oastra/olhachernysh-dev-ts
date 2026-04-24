@@ -36,7 +36,7 @@ export async function generateMetadata(
   if (!project) return { title: 'Project not found' };
 
   const title = project.headline
-    ? `${project.headline} | Olha Chernysh`
+    ? project.headline
     : `${project.shortTitle} — Case Study | Olha Chernysh`;
   const description = project.caseStudy.summary;
   const url = `https://olhachernysh.dev/projects/${project.slug}`;
