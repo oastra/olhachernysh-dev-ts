@@ -71,7 +71,7 @@ export default function ProjectCard({ project, className }: Props) {
             href={caseStudyHref}
             className="hover:text-main-blue transition-colors"
           >
-            {project.title}
+            {project.headline ?? project.title}
           </Link>
         </h3>
         {project.location && (

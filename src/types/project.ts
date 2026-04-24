@@ -95,6 +95,8 @@ export type Project = {
   title: string;
   /** Short version used in "next project" teasers. */
   shortTitle: string;
+  /** Outcome-focused headline shown on cards and SERP. Falls back to `title`. */
+  headline?: string;
   location?: string;
   /** Public URL of the live site. */
   liveUrl: string;

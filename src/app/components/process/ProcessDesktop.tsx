@@ -77,6 +77,10 @@ export default function ProcessDesktop() {
                   paddingTop: `${verticalPadding}px`,
                   paddingBottom: `${verticalPadding}px`,
                 }}
+                onMouseEnter={() => setActiveIndex(index)}
+                onMouseLeave={() =>
+                  setActiveIndex((prev) => (prev === index ? null : prev))
+                }
               >
                 {index % 2 === 0 ? (
                   <>
@@ -107,7 +111,6 @@ export default function ProcessDesktop() {
                         number={step.number}
                         title={step.title}
                         bullets={step.bullets}
-                        onHoverChange={(h) => setActiveIndex(h ? index : null)}
                       />
                     </div>
                   </>
@@ -122,7 +125,6 @@ export default function ProcessDesktop() {
                         number={step.number}
                         title={step.title}
                         bullets={step.bullets}
-                        onHoverChange={(h) => setActiveIndex(h ? index : null)}
                       />
                     </div>
                     {/* Animation RIGHT */}

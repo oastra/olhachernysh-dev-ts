@@ -1,6 +1,13 @@
 'use client';
 
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { DotLottie, DotLottieWorker } from '@lottiefiles/dotlottie-web';
+
+// Self-host the WASM runtime — CSP blocks the default jsDelivr/unpkg CDN URLs.
+if (typeof window !== 'undefined') {
+  DotLottie.setWasmUrl('/dotlottie-player.wasm');
+  DotLottieWorker.setWasmUrl('/dotlottie-player.wasm');
+}
 
 type Props = {
   width?: number;

@@ -217,6 +217,7 @@ export const PROJECTS: Project[] = [
     slug: 'ukrrofing',
     title: 'Ukrrofing — Roofing Solutions',
     shortTitle: 'Ukrrofing',
+    headline: "Ukrrofing — Ranked page 1 on Google for 'roofing Sydney' in 3 months",
     location: 'Sydney, Australia',
     liveUrl: 'https://ukrrofing.com.au',
     image: {
@@ -402,6 +403,7 @@ export const PROJECTS: Project[] = [
     slug: 't-koldunenko',
     title: 'Tetiana Koldunenko — Artist Portfolio',
     shortTitle: 'Tetiana Koldunenko',
+    headline: 'Tetiana Koldunenko — First artwork sold within a month of launch',
     location: 'Sydney, Australia',
     liveUrl: 'https://t-koldunenko.com',
     image: {
@@ -583,6 +585,7 @@ export const PROJECTS: Project[] = [
     slug: 'tatacookies',
     title: 'Tatacookies — Handmade Cookies',
     shortTitle: 'Tatacookies',
+    headline: 'Tatacookies — 50+ online orders in the first month, DM ordering retired',
     location: 'Sydney, Australia',
     liveUrl: 'https://tatacookies.com',
     image: {
@@ -792,6 +795,7 @@ export const PROJECTS: Project[] = [
     slug: 'deluxio',
     title: 'DeLuxio — Nail Studio',
     shortTitle: 'DeLuxio',
+    headline: 'DeLuxio — Ranked #1 on Google within 2 months of launch',
     location: 'Sydney, Australia',
     liveUrl: 'https://deluxio.com.au',
     image: {

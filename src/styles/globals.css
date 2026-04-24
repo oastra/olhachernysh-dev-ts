@@ -70,7 +70,8 @@
 
   /* Gradient text */
   .text-main-gradient,
-  .hover\:text-main-gradient:hover {
+  .hover\:text-main-gradient:hover,
+  .group:hover .group-hover\:text-main-gradient {
     background: linear-gradient(90deg, #000924 0%, #092b79 35%, #00d4ff 98%);
     -webkit-background-clip: text;
     background-clip: text;

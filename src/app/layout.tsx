@@ -3,23 +3,26 @@ import Script from 'next/script';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
-  title: 'Olha Chernysh | Software Engineer & Web Developer',
+  title:
+    'Web Developer Sydney | Custom Websites & E-commerce — Olha Chernysh',
   description:
-    'Sydney-based Software Engineer building fast, custom websites and web apps with Next.js, React and Node.js. Portfolio, case studies and services.',
+    'Freelance web developer in Sydney building fast, custom websites, landing pages and e-commerce stores for small businesses and founders. Next.js, React, Node.js. Get a fixed-price quote.',
   keywords: [
+    'web developer Sydney',
+    'freelance web developer Sydney',
+    'hire web developer Sydney',
+    'custom website developer Sydney',
+    'small business website Sydney',
+    'e-commerce website developer Sydney',
+    'website redesign Sydney',
+    'landing page developer Sydney',
+    'Next.js developer Sydney',
+    'React developer Sydney',
+    'Shopify alternative developer',
+    'custom web app development',
+    'MVP developer for startups',
+    'website for small business Australia',
     'Olha Chernysh',
-    'Software Engineer',
-    'Web Developer',
-    'Full-Stack Developer',
-    'JavaScript Engineer',
-    'Next.js',
-    'Node.js',
-    'React',
-    'Tailwind CSS',
-    'Custom Web Development',
-    'Sydney Developer',
-    'Frontend Developer',
-    'Backend Developer',
   ],
   authors: [{ name: 'Olha Chernysh', url: 'https://olhachernysh.dev' }],
   creator: 'Olha Chernysh',
@@ -38,11 +41,11 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Olha Chernysh | Software Engineer & Web Developer',
+    title: 'Web Developer Sydney | Custom Websites & E-commerce — Olha Chernysh',
     description:
-      'Sydney-based Software Engineer crafting modern, high-performance websites and applications using React, Next.js, Node.js, and more.',
+      'Freelance web developer in Sydney. Custom websites, landing pages and online stores built in Next.js, React and Node.js — designed to win clients and rank on Google.',
     url: 'https://olhachernysh.dev',
-    siteName: 'Olha Chernysh – Software Engineer Portfolio',
+    siteName: 'Olha Chernysh — Web Developer Sydney',
     images: [
       {
         url: '/og-image.png',
@@ -85,9 +88,9 @@ export default function RootLayout({
     '@type': 'WebSite',
     '@id': 'https://olhachernysh.dev/#website',
     url: 'https://olhachernysh.dev/',
-    name: 'Olha Chernysh — Software Engineer',
+    name: 'Olha Chernysh — Web Developer Sydney',
     description:
-      'Portfolio of Olha Chernysh, a Sydney-based Software Engineer building custom web applications with React, Next.js and Node.js.',
+      'Freelance web developer in Sydney building custom websites, landing pages and e-commerce stores for small businesses and founders.',
     inLanguage: 'en',
     publisher: { '@id': 'https://olhachernysh.dev/#me' },
   };
@@ -98,7 +101,7 @@ export default function RootLayout({
     '@id': 'https://olhachernysh.dev/#me',
     name: 'Olha Chernysh',
     url: 'https://olhachernysh.dev/',
-    jobTitle: 'Software Engineer & Web Developer',
+    jobTitle: 'Freelance Web Developer (Sydney)',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Sydney',
