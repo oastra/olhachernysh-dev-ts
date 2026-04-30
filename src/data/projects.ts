@@ -10,13 +10,13 @@ export const PROJECTS: Project[] = [
     status: 'in-development',
     image: {
       src: '/images/projects/dreamsbranch/card.webp',
-      alt: 'DreamsBranch platform with donations, events, and community features',
+      alt: 'DreamsBranch — custom bilingual community and fundraising platform built in Next.js for a Sydney Ukrainian foundation',
       width: 936,
       height: 650,
     },
     heroImage: {
       src: '/images/projects/dreamsbranch/hero.webp',
-      alt: 'DreamsBranch platform hero banner',
+      alt: 'DreamsBranch About the Community page — custom Next.js community website for a Sydney-based Ukrainian foundation',
       width: 1440,
       height: 900,
     },
@@ -152,7 +152,7 @@ export const PROJECTS: Project[] = [
       gallerySolution: [
         {
           src: '/images/projects/dreamsbranch/solution.webp',
-          alt: 'DreamsBranch donation campaign page with progress and call to action',
+          alt: 'Bilingual fundraising campaign page (Ukrainian) for an EcoFlow battery — DreamsBranch custom donation platform built in Next.js',
           width: 1440,
           height: 900,
           span: 'wide',
@@ -161,19 +161,19 @@ export const PROJECTS: Project[] = [
       galleryFeatures: [
         {
           src: '/images/projects/dreamsbranch/feature-1.webp',
-          alt: 'DreamsBranch events hub listing',
+          alt: 'Volunteer recruitment CTA and FAQ accordion — DreamsBranch community platform built by a Sydney web developer',
           width: 1440,
           height: 900,
         },
         {
           src: '/images/projects/dreamsbranch/feature-2.webp',
-          alt: 'DreamsBranch campaign and donation flow',
+          alt: 'Foundation origin story page — "Dreams: Our Beginning" with February 24, 2022 timeline and Sydney rally photos, custom Next.js editorial layout',
           width: 1440,
           height: 900,
         },
         {
           src: '/images/projects/dreamsbranch/feature-3.webp',
-          alt: 'DreamsBranch community stories feed',
+          alt: 'Transparency results dashboard — 4 years supporting the Armed Forces, 1,200 events, $12,000 in aid and a "View reports" CTA',
           width: 1440,
           height: 900,
         },
@@ -181,25 +181,25 @@ export const PROJECTS: Project[] = [
       galleryMobile: [
         {
           src: '/images/projects/dreamsbranch/mobile-1.webp',
-          alt: 'DreamsBranch campaign page on mobile',
+          alt: 'DreamsBranch community events listing on mobile (Ukrainian) — bilingual Next.js platform for a Sydney foundation',
           width: 390,
           height: 844,
         },
         {
           src: '/images/projects/dreamsbranch/mobile-2.webp',
-          alt: 'DreamsBranch community view on mobile',
+          alt: 'Mobile bilingual donation form with PayPal, Apple Pay, Google Pay and card checkout — DreamsBranch fundraising platform',
           width: 390,
           height: 844,
         },
         {
           src: '/images/projects/dreamsbranch/mobile-3.webp',
-          alt: 'DreamsBranch events listing on mobile',
+          alt: 'Mobile fundraising campaign detail page (Ukrainian) — DreamsBranch EcoFlow donation, custom Next.js community platform',
           width: 390,
           height: 844,
         },
         {
           src: '/images/projects/dreamsbranch/mobile-4.webp',
-          alt: 'DreamsBranch news feed on mobile',
+          alt: 'Mobile handmade goods shop category (Ukrainian) — DreamsBranch community marketplace built in Next.js',
           width: 390,
           height: 844,
         },
@@ -207,11 +207,11 @@ export const PROJECTS: Project[] = [
       galleryProcess: [
         {
           src: '/images/projects/dreamsbranch/process.webp',
-          alt: 'DreamsBranch design file — key flows in Figma',
+          alt: 'User flow diagram in Figma for DreamsBranch — donation, events and news flows across desktop and mobile, bilingual Next.js platform',
           width: 1440,
           height: 900,
           span: 'wide',
-          caption: 'Design file — key flows.',
+          caption: 'User flow — donation, events and news across desktop and mobile.',
         },
       ],
     },
@@ -225,13 +225,13 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://ukrrofing.com.au',
     image: {
       src: '/images/projects/ukrrofing/card.webp',
-      alt: 'Ukrrofing roofing solutions website',
+      alt: 'Ukrrofing — custom Next.js website for a Sydney roofing business, built by a Sydney web developer',
       width: 936,
       height: 650,
     },
     heroImage: {
       src: '/images/projects/ukrrofing/hero.webp',
-      alt: 'Ukrrofing roofing solutions hero banner',
+      alt: 'Ukrrofing homepage hero — "Professional Roofing Services in Sydney" with worker installing blue tile roof, custom Next.js website',
       width: 1440,
       height: 900,
     },
@@ -356,7 +356,7 @@ export const PROJECTS: Project[] = [
       gallerySolution: [
         {
           src: '/images/projects/ukrrofing/solution.webp',
-          alt: 'Ukrrofing services breakdown page',
+          alt: 'Reliable Roofing Installations & Repairs services grid — new roof installation, tile replacement and metal roof repairs in Sydney, Ukrrofing custom Next.js site',
           width: 1440,
           height: 900,
           span: 'wide',
@@ -365,19 +365,19 @@ export const PROJECTS: Project[] = [
       galleryFeatures: [
         {
           src: '/images/projects/ukrrofing/feature-1.webp',
-          alt: 'Ukrrofing quote request form in context',
+          alt: 'Roofing materials gallery — Zinc Roofing, Bitumen Membranes and Green Roofing options for Sydney homes, Ukrrofing service website',
           width: 1440,
           height: 720,
         },
         {
           src: '/images/projects/ukrrofing/feature-2.webp',
-          alt: 'Ukrrofing services overview with pricing cues',
+          alt: 'About Us section with Sydney roofing experience stats — 17K+ roofs installed, 3K+ repairs completed and 8+ years of experience, Ukrrofing',
           width: 1440,
           height: 900,
         },
         {
           src: '/images/projects/ukrrofing/feature-3.webp',
-          alt: 'Ukrrofing project gallery with completed roofs',
+          alt: 'Get in Touch contact form — quote request flow with name, phone, email and message for Ukrrofing Sydney roofing team',
           width: 1440,
           height: 900,
         },
@@ -385,7 +385,7 @@ export const PROJECTS: Project[] = [
       galleryMobile: [
         {
           src: '/images/projects/ukrrofing/mobile-1.webp',
-          alt: 'Ukrrofing homepage on mobile with visible CTA',
+          alt: 'Ukrrofing mobile homepage — "Professional Roofing Services in Sydney" hero, custom Next.js site by a Sydney web developer',
           width: 390,
           height: 844,
         },
@@ -393,11 +393,11 @@ export const PROJECTS: Project[] = [
       galleryProcess: [
         {
           src: '/images/projects/ukrrofing/process.webp',
-          alt: 'Ukrrofing design file — service pages and quote flow',
+          alt: 'Ukrrofing Figma design file — services, materials, testimonials and gallery section layouts for the Sydney roofing site',
           width: 1440,
           height: 900,
           span: 'wide',
-          caption: 'Design file — service structure and quote flow.',
+          caption: 'Design file — services, materials, testimonials and gallery layouts.',
         },
       ],
     },
@@ -411,13 +411,13 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://t-koldunenko.com',
     image: {
       src: '/images/projects/t-koldunenko/card.webp',
-      alt: 'Tetiana Koldunenko artist website-portfolio',
+      alt: 'Tetiana Koldunenko — custom artist portfolio and shop in Next.js for a Sydney-based Australian botanical painter',
       width: 936,
       height: 650,
     },
     heroImage: {
       src: '/images/projects/t-koldunenko/hero.webp',
-      alt: 'Tetiana Koldunenko artist portfolio hero banner',
+      alt: 'Tetiana Koldunenko artist portfolio homepage — bottlebrush and banksia paintings hero with "Meet the Artist" section, custom Next.js portfolio for a Sydney painter',
       width: 1440,
       height: 900,
     },
@@ -548,7 +548,7 @@ export const PROJECTS: Project[] = [
       gallerySolution: [
         {
           src: '/images/projects/t-koldunenko/solution.webp',
-          alt: 'Tetiana Koldunenko artwork detail page',
+          alt: 'Lightbox view of "Fairy-Floss" Corymbia ficifolia acrylic and texture-paste painting by Tetiana Koldunenko, custom Sydney artist portfolio in Next.js',
           width: 1440,
           height: 900,
           span: 'wide',
@@ -557,19 +557,19 @@ export const PROJECTS: Project[] = [
       galleryFeatures: [
         {
           src: '/images/projects/t-koldunenko/feature-1.webp',
-          alt: 'Tetiana Koldunenko catalogue browsing grid',
+          alt: 'Original art shop catalogue grid with prices — Tetiana Koldunenko\'s Australian bushland and shore paintings, Sydney artist online shop',
           width: 1440,
           height: 900,
         },
         {
           src: '/images/projects/t-koldunenko/feature-2.webp',
-          alt: 'Tetiana Koldunenko artwork detail page',
+          alt: 'Sanity CMS admin view managing artwork content — Tetiana Koldunenko Sydney artist portfolio built in Next.js with a Sanity-backed shop',
           width: 1440,
           height: 900,
         },
         {
           src: '/images/projects/t-koldunenko/feature-3.webp',
-          alt: 'Tetiana Koldunenko about-the-artist section',
+          alt: 'Artwork detail page — "Two Aussie Blues" with description, materials, dimensions and Add to Cart, Tetiana Koldunenko Sydney artist online shop',
           width: 1440,
           height: 900,
         },
@@ -577,7 +577,7 @@ export const PROJECTS: Project[] = [
       galleryMobile: [
         {
           src: '/images/projects/t-koldunenko/mobile-1.webp',
-          alt: 'Tetiana Koldunenko artwork page on mobile',
+          alt: 'Mobile artwork shop catalogue — Tetiana Koldunenko original Australian paintings with prices, Sydney artist portfolio in Next.js',
           width: 390,
           height: 844,
         },
@@ -593,13 +593,13 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://tatacookies.com',
     image: {
       src: '/images/projects/tatacookies/card.webp',
-      alt: 'Tatacookies website',
+      alt: 'Tatacookies — custom Next.js e-commerce website for a handmade gingerbread cookie brand in Sydney, built by a Sydney web developer',
       width: 936,
       height: 650,
     },
     heroImage: {
       src: '/images/projects/tatacookies/hero.webp',
-      alt: 'Tatacookies handmade cookies hero banner',
+      alt: 'Tatacookies homepage hero — "Smile-worthy cookies" with handcrafted Easter bunny and donut gingerbread sets, custom Next.js e-commerce build in Sydney',
       width: 1440,
       height: 900,
     },
@@ -747,7 +747,7 @@ export const PROJECTS: Project[] = [
       gallerySolution: [
         {
           src: '/images/projects/tatacookies/solution.webp',
-          alt: 'Tatacookies product detail page',
+          alt: 'Product detail page — "Hearts Gift Box Cookies" Valentine\'s Day set with quantity, Add to Cart and stock state, Tatacookies custom Next.js shop in Sydney',
           width: 1440,
           height: 900,
           span: 'wide',
@@ -756,19 +756,19 @@ export const PROJECTS: Project[] = [
       galleryFeatures: [
         {
           src: '/images/projects/tatacookies/feature-1.webp',
-          alt: 'Tatacookies cart and checkout step',
+          alt: 'Themed cookie gallery — Alice in Wonderland, Halloween, farm and Harry Potter handmade cookie sets, Tatacookies Sydney',
           width: 1440,
           height: 900,
         },
         {
           src: '/images/projects/tatacookies/feature-2.webp',
-          alt: 'Tatacookies custom order form',
+          alt: 'Custom Cookie Order Form — bespoke order flow with event theme, date, delivery, budget and inspiration upload, Tatacookies Sydney handmade cookies',
           width: 1440,
           height: 900,
         },
         {
           src: '/images/projects/tatacookies/feature-3.webp',
-          alt: 'Tatacookies product catalogue with filters',
+          alt: 'Shop catalogue with category filters — 31 handmade gingerbread cookie products with free Sydney pick-up, Tatacookies custom Next.js storefront',
           width: 1440,
           height: 900,
         },
@@ -776,7 +776,7 @@ export const PROJECTS: Project[] = [
       galleryMobile: [
         {
           src: '/images/projects/tatacookies/mobile-1.webp',
-          alt: 'Tatacookies catalogue on mobile',
+          alt: 'Mobile homepage — "Things we bake" category showcase with carousel, Tatacookies handmade cookies Sydney custom Next.js shop',
           width: 390,
           height: 844,
         },
@@ -784,12 +784,12 @@ export const PROJECTS: Project[] = [
       galleryProcess: [
         {
           src: '/images/projects/tatacookies/process.webp',
-          alt: 'Tatacookies design file — homepage, mobile tablete and full wide layouts',
+          alt: 'System flow diagram — Tatacookies storefront and admin flows designed together, custom Next.js commerce build for a Sydney cookie brand',
           width: 1440,
           height: 900,
           span: 'wide',
           caption:
-            'Tatacookies design file — homepage, mobile tablete and full wide layouts.',
+            'Storefront and admin flows — designed together as one product.',
         },
       ],
     },
@@ -803,13 +803,13 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://deluxio.com.au',
     image: {
       src: '/images/projects/deluxio/card.webp',
-      alt: 'DeLuxio website',
+      alt: 'DeLuxio — custom Next.js one-page website for a premium nail studio in Rockdale, Sydney, built by a Sydney web developer',
       width: 936,
       height: 650,
     },
     heroImage: {
       src: '/images/projects/deluxio/hero.webp',
-      alt: 'DeLuxio nail studio hero banner',
+      alt: 'DeLuxio homepage hero — "Perfect Manicure: Stylish, Quality, Safe" with manicure photo and Book Now CTA, custom Next.js website for a Sydney nail studio',
       width: 1440,
       height: 900,
     },
@@ -940,19 +940,19 @@ export const PROJECTS: Project[] = [
       galleryFeatures: [
         {
           src: '/images/projects/deluxio/feature-1.webp',
-          alt: 'DeLuxio hero with booking CTA',
+          alt: 'Location and working hours section — "Conveniently located in Sydney" with Rockdale map and weekly schedule, DeLuxio nail studio website',
           width: 1440,
           height: 900,
         },
         {
           src: '/images/projects/deluxio/feature-2.webp',
-          alt: 'DeLuxio signature services showcase',
+          alt: 'Nail care advice section — "Do I need to take breaks from gel?" editorial card with manicure photo, DeLuxio Sydney nail studio',
           width: 1440,
           height: 900,
         },
         {
           src: '/images/projects/deluxio/feature-3.webp',
-          alt: 'DeLuxio studio gallery and pricing cues',
+          alt: 'Client testimonials section — five-star reviews from Instagram, Google and Fresha for DeLuxio nail studio in Sydney',
           width: 1440,
           height: 900,
         },
@@ -960,7 +960,7 @@ export const PROJECTS: Project[] = [
       gallerySolution: [
         {
           src: '/images/projects/deluxio/solution.webp',
-          alt: 'DeLuxio services and pricing page',
+          alt: 'Services and transparent pricing page — manicure, pedicure and brows & lashes with prices and Book Now CTA, DeLuxio nail studio Sydney',
           width: 1440,
           height: 900,
           span: 'wide',
@@ -969,13 +969,13 @@ export const PROJECTS: Project[] = [
       galleryMobile: [
         {
           src: '/images/projects/deluxio/mobile-1.webp',
-          alt: 'DeLuxio homepage on mobile with booking CTA',
+          alt: 'Mobile menu and contacts panel with Book Now CTA — DeLuxio nail studio in Rockdale, Sydney, custom Next.js one-page site',
           width: 390,
           height: 844,
         },
         {
           src: '/images/projects/deluxio/mobile-2.webp',
-          alt: 'DeLuxio services and pricing on mobile',
+          alt: 'Mobile Brows & Lashes service section — eyebrow lamination card with pricing and Book Now CTA, DeLuxio Sydney nail studio',
           width: 390,
           height: 844,
         },
@@ -983,11 +983,11 @@ export const PROJECTS: Project[] = [
       galleryProcess: [
         {
           src: '/images/projects/deluxio/process.webp',
-          alt: 'DeLuxio design file — services, pricing and booking flow',
+          alt: 'Responsive design file — desktop, tablet and mobile layouts with menu-open states, DeLuxio Sydney nail studio one-page site in Figma',
           width: 1440,
           height: 900,
           span: 'wide',
-          caption: 'Design file — services, pricing and booking flow.',
+          caption: 'Design file — desktop, tablet and mobile layouts with menu states.',
         },
       ],
     },
