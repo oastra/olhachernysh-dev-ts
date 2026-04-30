@@ -156,6 +156,7 @@ export const PROJECTS: Project[] = [
           width: 1440,
           height: 900,
           span: 'wide',
+          caption: 'Campaign page — goal, progress and donor list in one focused layout.',
         },
       ],
       galleryFeatures: [
@@ -360,6 +361,7 @@ export const PROJECTS: Project[] = [
           width: 1440,
           height: 900,
           span: 'wide',
+          caption: 'Services grid — every offering in plain language, quote CTA always in reach.',
         },
       ],
       galleryFeatures: [
@@ -552,6 +554,7 @@ export const PROJECTS: Project[] = [
           width: 1440,
           height: 900,
           span: 'wide',
+          caption: 'Artwork lightbox — generous space so the piece carries the page.',
         },
       ],
       galleryFeatures: [
@@ -580,6 +583,16 @@ export const PROJECTS: Project[] = [
           alt: 'Mobile artwork shop catalogue — Tetiana Koldunenko original Australian paintings with prices, Sydney artist portfolio in Next.js',
           width: 390,
           height: 844,
+        },
+      ],
+      galleryProcess: [
+        {
+          src: '/images/projects/t-koldunenko/process.webp',
+          alt: 'Tetiana Koldunenko portfolio design file in Figma — desktop, tablet and mobile portfolio layouts with gallery and lightbox states',
+          width: 1440,
+          height: 900,
+          span: 'wide',
+          caption: 'Portfolio design file — desktop, tablet and mobile layouts with lightbox states.',
         },
       ],
     },
@@ -751,6 +764,7 @@ export const PROJECTS: Project[] = [
           width: 1440,
           height: 900,
           span: 'wide',
+          caption: 'Product page — clear stock state, quantity and Add to Cart in the brand voice.',
         },
       ],
       galleryFeatures: [
@@ -964,6 +978,7 @@ export const PROJECTS: Project[] = [
           width: 1440,
           height: 900,
           span: 'wide',
+          caption: 'Services and pricing — transparent, grouped, with Book Now within reach.',
         },
       ],
       galleryMobile: [

@@ -156,16 +156,27 @@ export default async function ProjectCaseStudyPage(
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
             <Prose paragraphs={caseStudy.solution} />
-            <div className="rounded-[24px] md:rounded-[32px] bg-solution-blue p-4 md:p-8">
+            <figure className="rounded-[24px] md:rounded-[32px] bg-solution-blue p-4 md:p-8 m-0">
               <div className="relative rounded-[12px] md:rounded-[18px] bg-white shadow-[0_16px_40px_-20px_rgba(0,0,0,0.15)] overflow-hidden min-h-[200px]">
                 <SlotImage
-                  src={`/images/projects/${project.slug}/solution.webp`}
-                  alt={`${project.shortTitle} — solution view`}
+                  src={
+                    caseStudy.gallerySolution?.[0]?.src ??
+                    `/images/projects/${project.slug}/solution.webp`
+                  }
+                  alt={
+                    caseStudy.gallerySolution?.[0]?.alt ??
+                    `${project.shortTitle} — solution view`
+                  }
                   placeholderLabel="Solution"
                   className="block w-full h-auto select-none"
                 />
               </div>
-            </div>
+              {caseStudy.gallerySolution?.[0]?.caption && (
+                <figcaption className="text-h6 text-ink/55 pt-3 md:pt-4 pl-2 md:pl-6">
+                  {caseStudy.gallerySolution[0].caption}
+                </figcaption>
+              )}
+            </figure>
           </div>
         </CaseStudySection>
 
