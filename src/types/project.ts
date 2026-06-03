@@ -90,6 +90,62 @@ export type CaseStudyContent = {
 
 export type ProjectStatus = 'live' | 'in-development';
 
+/** Where a stage sits relative to "now". */
+export type ProgressStageStatus = 'done' | 'active' | 'upcoming';
+
+export type ProgressStage = {
+  /** e.g. "Design", "Build", "Launch". */
+  title: string;
+  status: ProgressStageStatus;
+  /** Optional one-liner — what this stage covers or where it stands. */
+  detail?: string;
+};
+
+export type ProgressDecisionOption = {
+  /** e.g. "Sanity", "Payload CMS". */
+  name: string;
+  /** Why it was considered — the honest trade-off. */
+  note: string;
+  /** Marks the option we recommended. */
+  recommended?: boolean;
+  /** Marks the option the client chose (may differ from the recommendation). */
+  chosen?: boolean;
+};
+
+export type ProgressDecision = {
+  /** e.g. "Choosing the CMS / backend". */
+  title: string;
+  /** "open" = still deciding, "recommended" = leaning, "decided" = locked. */
+  state?: 'open' | 'recommended' | 'decided';
+  options: ProgressDecisionOption[];
+  /** The recommendation and the reasoning behind it. */
+  recommendation?: string;
+};
+
+/**
+ * Content for an in-development project shown as a living "progress" page
+ * instead of a finished case study.
+ */
+export type ProgressContent = {
+  /** Hero subtitle — one or two sentences. */
+  summary: string;
+  overview: CaseStudyOverview;
+  /** Label for the phase the project is in right now, e.g. "Design". */
+  currentPhase: string;
+  /** Concrete things already delivered — rendered as a checklist. */
+  highlights?: CaseStudyOutcome[];
+  /** Ordered stages forming the timeline. */
+  stages: ProgressStage[];
+  /** Open decisions being worked through — e.g. the stack choice. */
+  decisions?: ProgressDecision[];
+  /** Design previews / screenshots of work delivered so far. */
+  gallery?: CaseStudyGalleryItem[];
+  /** What happens next, in plain paragraphs. */
+  next?: string[];
+  /** Tentative / planned stack. */
+  stack?: string[];
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -106,5 +162,8 @@ export type Project = {
   /** Optional hero image dedicated to the case-study top banner. Falls back to `image`. */
   heroImage?: ProjectImage;
   meta: ProjectMeta;
-  caseStudy: CaseStudyContent;
+  /** Full case study — present for shipped work. */
+  caseStudy?: CaseStudyContent;
+  /** Living progress page — present for in-development work without a finished case study. */
+  progress?: ProgressContent;
 };

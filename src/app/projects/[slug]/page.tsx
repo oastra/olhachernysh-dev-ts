@@ -19,6 +19,7 @@ import FeatureGallery from '@/app/components/caseStudy/FeatureGallery';
 import DesignExploration from '@/app/components/caseStudy/DesignExploration';
 import SlotImage from '@/app/components/caseStudy/SlotImage';
 import ReadingProgress from '@/app/components/caseStudy/ReadingProgress';
+import ProgressLayout from '@/app/components/caseStudy/progress/ProgressLayout';
 
 import { PROJECTS, getProjectBySlug, getNextProject } from '@/data/projects';
 
@@ -38,7 +39,7 @@ export async function generateMetadata(
   const title = project.headline
     ? project.headline
     : `${project.shortTitle} — Case Study | Olha Chernysh`;
-  const description = project.caseStudy.summary;
+  const description = project.progress?.summary ?? project.caseStudy?.summary ?? '';
   const url = `https://olhachernysh.dev/projects/${project.slug}`;
 
   return {
@@ -70,7 +71,20 @@ export default async function ProjectCaseStudyPage(
   if (!project) notFound();
 
   const nextProject = getNextProject(slug);
-  const { caseStudy } = project;
+
+  // In-development projects render a living "progress" page instead of a case study.
+  if (project.progress) {
+    return (
+      <ProgressLayout
+        project={project}
+        progress={project.progress}
+        nextProject={nextProject}
+      />
+    );
+  }
+
+  if (!project.caseStudy) notFound();
+  const caseStudy = project.caseStudy;
   const projectUrl = `https://olhachernysh.dev/projects/${project.slug}`;
 
   const creativeWorkJsonLd = {

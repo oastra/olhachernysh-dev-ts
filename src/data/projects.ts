@@ -2,6 +2,168 @@ import { Project } from '@/types/project';
 
 export const PROJECTS: Project[] = [
   {
+    slug: 'tresp',
+    title: 'TRESP Recruitment — MedTech Talent Platform',
+    shortTitle: 'TRESP',
+    headline: 'TRESP — a MedTech recruitment platform in the making',
+    location: 'Australia',
+    liveUrl: 'https://tresp.com.au',
+    status: 'in-development',
+    image: {
+      src: '/images/projects/tresp/card.webp',
+      alt: 'TRESP Recruitment — website redesign for a boutique MedTech and HealthTech recruitment agency, currently in design',
+      width: 936,
+      height: 650,
+    },
+    heroImage: {
+      src: '/images/projects/tresp/hero.webp',
+      alt: 'TRESP Recruitment platform — Home, About, Employers, Jobseekers, Vacancies and Insights, currently in the design phase',
+      width: 1440,
+      height: 900,
+    },
+    meta: {
+      role: 'Design Direction & Full-Stack Development',
+      type: 'MedTech Recruitment Platform',
+      year: '2026',
+      location: 'Australia',
+    },
+    progress: {
+      summary:
+        'A full website redesign for TRESP Recruitment, a boutique MedTech & HealthTech agency — bringing live vacancies, the team and editorial Insights into one modern, conversion-focused product, integrated with JobAdder, LinkedIn and Google Reviews. Design is approved and Payload CMS is signed off as the foundation — now moving into build.',
+      overview: {
+        what: 'A new website for TRESP Recruitment across six areas — Home, About, Employers, Jobseekers, Vacancies and Insights — replacing an outdated site with a trustworthy, conversion-focused platform wired to the agency’s existing tools.',
+        audience:
+          'Two distinct audiences: employers hiring specialist MedTech talent and jobseekers looking for roles — plus the TRESP team, showcased through individual consultant profiles that build trust before contact.',
+        goal: 'Fix the current site’s weak points (no clear CTA, no social proof, thin navigation, no analytics) and let live data flow in from JobAdder, LinkedIn and Google — keeping candidate personal data off the website entirely, with submissions passed straight to JobAdder.',
+      },
+      currentPhase: 'Build — kicking off',
+      highlights: [
+        { text: 'Information architecture agreed: Home, About, Employers, Jobseekers, Vacancies and Insights', icon: 'check' },
+        { text: 'Design system defined — Kollektif headings + Plus Jakarta Sans, a blue palette with a warm #FFA675 accent', icon: 'palette' },
+        { text: 'High-fidelity designs delivered across Home, Employers, Jobseekers, Vacancies and Insights — desktop, tablet and mobile', icon: 'sparkles' },
+        { text: 'Key patterns designed: hero + tagline, job search filters, structured vacancy cards and the team auto-scroll carousel', icon: 'mobile' },
+        { text: 'Stack approved by the client — building on Payload CMS, with a host-then-transfer model and no ongoing licence fees', icon: 'rocket' },
+        { text: 'Data approach locked: vacancies served live from JobAdder, with no candidate personal data stored on the site', icon: 'trust' },
+        { text: 'Integration scope mapped: JobAdder (live vacancies + applications), LinkedIn (Insights feed), Google Reviews, Office 365', icon: 'trending' },
+      ],
+      stages: [
+        {
+          title: 'Discovery',
+          status: 'done',
+          detail:
+            'Kick-off, the client’s competitor analysis and a full discovery round complete; page structure and feature priorities agreed.',
+        },
+        {
+          title: 'Design',
+          status: 'done',
+          detail:
+            'Home, Employers, Jobseekers, Vacancies and Insights designed across desktop, tablet and mobile; About finishing once team photos arrive.',
+        },
+        {
+          title: 'Build',
+          status: 'active',
+          detail:
+            'Stack signed off and kicking off — scaffolding Payload and wiring the live JobAdder integration first.',
+        },
+        {
+          title: 'Launch',
+          status: 'upcoming',
+          detail:
+            'Ship with JobPosting structured data, analytics and a clean transfer to TRESP’s own accounts.',
+        },
+      ],
+      gallery: [
+        {
+          src: '/images/projects/tresp/employers.webp',
+          alt: 'TRESP Employers page design — hero and value proposition for clients hiring MedTech talent',
+          width: 960,
+          height: 720,
+          span: 'half',
+          caption: 'Employers — for clients building MedTech teams.',
+        },
+        {
+          src: '/images/projects/tresp/jobseekers.webp',
+          alt: 'TRESP Jobseekers page design — “We care about your career” hero with Upload CV and View Vacancies CTAs',
+          width: 960,
+          height: 720,
+          span: 'half',
+          caption: 'Jobseekers — career-focused, with a clear path to apply.',
+        },
+        {
+          src: '/images/projects/tresp/vacancies.webp',
+          alt: 'TRESP Vacancies page design — job search with filters and structured vacancy cards, fed live from JobAdder',
+          width: 960,
+          height: 720,
+          span: 'half',
+          caption: 'Vacancies — search and filters, served live from JobAdder.',
+        },
+        {
+          src: '/images/projects/tresp/insights.webp',
+          alt: 'TRESP Insights page design — editorial articles and updates fed from LinkedIn',
+          width: 960,
+          height: 720,
+          span: 'half',
+          caption: 'Insights — editorial content, fed from LinkedIn.',
+        },
+      ],
+      decisions: [
+        {
+          title: 'Choosing the CMS / backend',
+          state: 'decided',
+          options: [
+            {
+              name: 'Sanity',
+              note: 'Considered for its simplicity — fast to set up and a polished editor. But it’s a hosted content store, so the JobAdder / LinkedIn integrations and lead routing would live separately, and data would sit on Sanity’s cloud.',
+            },
+            {
+              name: 'Payload CMS',
+              note: 'Self-hosted and TypeScript-native with its own database — manages the editable content and hosts the JobAdder / LinkedIn / Google integrations in one codebase, with no ongoing licence fees and full data ownership.',
+              recommended: true,
+              chosen: true,
+            },
+          ],
+          recommendation:
+            'Decided: Payload CMS, approved by the client. TRESP isn’t a typical content site — vacancies come live from JobAdder, posts from LinkedIn and ratings from Google, so the CMS mainly manages team profiles, services and editorial content. Payload is self-hosted with its own database, keeping that content and the integration logic in one codebase, with no ongoing licence fees. Crucially, no candidate personal data is stored on the site — applications pass straight through to JobAdder via the API. Sanity was the simpler, faster start, but data ownership and keeping the integrations in one place won out. Agreed delivery model: I host on my account through the build, with a full transfer to TRESP’s own accounts at go-live (hosting ~$20–40/month).',
+        },
+        {
+          title: 'Primary accent & button colour',
+          state: 'decided',
+          options: [
+            {
+              name: 'Warm accent (peach / orange)',
+              note: 'My recommendation — a warm #FFA675 against the blue palette gives the CTAs real contrast and a friendlier, more human feel for a people-first recruitment brand, helping the “Hire Talent” and apply buttons stand out.',
+              recommended: true,
+            },
+            {
+              name: 'Light blue',
+              note: 'The client’s choice — staying within the blue family keeps the look calm, clinical and on-brand for MedTech. Mehdi also asked to move the top banner from a white background to light blue, so the hero now leads with blue too.',
+              chosen: true,
+            },
+          ],
+          recommendation:
+            'Decided: light blue, at the client’s request. I recommended a warm peach/orange accent to make the calls-to-action pop and add some human warmth, but Mehdi preferred to keep everything in the blue family for a calmer, more clinical MedTech feel — and asked to switch the top banner from white to light blue. It’s their brand, so the designs now lead with blue across the buttons and hero. We can always revisit a warm accent later if the CTAs need more lift.',
+        },
+      ],
+      next: [
+        'Scaffold the Payload CMS build and wire the JobAdder integration first, so Vacancies show live and applications pass straight through to JobAdder.',
+        'Build out the approved designs — Home, Employers, Jobseekers, Vacancies and Insights — across desktop, tablet and mobile.',
+        'Finish the About page once team photos arrive, and set up hosting under my account ready for a clean transfer to TRESP at go-live.',
+      ],
+      stack: [
+        'Next.js',
+        'React',
+        'TypeScript',
+        'Tailwind CSS',
+        'Payload CMS',
+        'PostgreSQL',
+        'JobAdder API',
+        'LinkedIn API',
+        'Google Reviews',
+        'Vercel',
+      ],
+    },
+  },
+  {
     slug: 'dreamsbranch',
     title: 'DreamsBranch — Community & Fundraising Platform',
     shortTitle: 'DreamsBranch',

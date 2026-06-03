@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import { IconArrowUpRight } from '@tabler/icons-react';
 import clsx from 'clsx';
 import type { Project } from '@/types/project';
@@ -14,6 +14,7 @@ type Props = {
 
 export default function ProjectCard({ project, className }: Props) {
   const id = useId();
+  const [imageFailed, setImageFailed] = useState(false);
   const caseStudyHref = `/projects/${project.slug}`;
 
   return (
@@ -27,15 +28,28 @@ export default function ProjectCard({ project, className }: Props) {
         {/* Hover gradient overlay */}
         <div className="absolute inset-0 bg-gradient-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0" />
 
-        {/* Main image */}
-        <Image
-          src={project.image.src}
-          alt={project.image.alt}
-          width={project.image.width}
-          height={project.image.height}
-          className="w-full h-auto select-none rounded-[5px] group-hover:blur-[2px]"
-          priority={false}
-        />
+        {/* Main image — falls back to a tasteful placeholder if the file is missing */}
+        {imageFailed ? (
+          <div
+            className="flex flex-col items-center justify-center gap-1 w-full rounded-[5px] bg-white/40 text-ink/40 text-center aspect-[936/650]"
+            aria-label={project.image.alt}
+          >
+            <span className="text-h6">{project.shortTitle}</span>
+            <span className="text-[11px] uppercase tracking-[0.1em] text-ink/30">
+              preview coming soon
+            </span>
+          </div>
+        ) : (
+          <Image
+            src={project.image.src}
+            alt={project.image.alt}
+            width={project.image.width}
+            height={project.image.height}
+            className="w-full h-auto select-none rounded-[5px] group-hover:blur-[2px]"
+            priority={false}
+            onError={() => setImageFailed(true)}
+          />
+        )}
 
         {/* circular CTA — decorative, revealed on hover (desktop) */}
         <span

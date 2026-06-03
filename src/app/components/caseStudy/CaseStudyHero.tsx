@@ -32,7 +32,7 @@ export default function CaseStudyHero({ project }: Props) {
         )}
         <h1 className="text-h1 text-ink">{project.title}</h1>
         <p className="text-h4-mobile-subheading md:text-h3-subheading text-ink/70 max-w-[820px]">
-          {project.caseStudy.summary}
+          {project.caseStudy?.summary}
         </p>
       </div>
 

@@ -45,7 +45,7 @@ export default function FeatureGallery({ items, id }: Props) {
                         ? '(max-width: 768px) 100vw, (max-width: 1440px) 90vw, 1300px'
                         : '(max-width: 768px) 100vw, (max-width: 1440px) 46vw, 650px'
                     }
-                    quality={90}
+                    quality={100}
                     className="object-cover select-none"
                   />
                 </div>
