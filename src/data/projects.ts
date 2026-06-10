@@ -29,16 +29,17 @@ export const PROJECTS: Project[] = [
     },
     progress: {
       summary:
-        'A full website redesign for TRESP Recruitment, a boutique MedTech & HealthTech agency — bringing live vacancies, the team and editorial Insights into one modern, conversion-focused product, integrated with JobAdder, LinkedIn and Google Reviews. Design is approved and Payload CMS is signed off as the foundation — now moving into build.',
+        'A full website redesign for TRESP Recruitment, a boutique MedTech & HealthTech agency — bringing live vacancies, the team and editorial Insights into one modern, conversion-focused product, integrated with JobAdder, LinkedIn and Google Reviews. Design is approved and Payload CMS is signed off as the foundation — build underway, with the main page live end-to-end.',
       overview: {
         what: 'A new website for TRESP Recruitment across six areas — Home, About, Employers, Jobseekers, Vacancies and Insights — replacing an outdated site with a trustworthy, conversion-focused platform wired to the agency’s existing tools.',
         audience:
           'Two distinct audiences: employers hiring specialist MedTech talent and jobseekers looking for roles — plus the TRESP team, showcased through individual consultant profiles that build trust before contact.',
         goal: 'Fix the current site’s weak points (no clear CTA, no social proof, thin navigation, no analytics) and let live data flow in from JobAdder, LinkedIn and Google — keeping candidate personal data off the website entirely, with submissions passed straight to JobAdder.',
       },
-      currentPhase: 'Build — kicking off',
+      currentPhase: 'Build — main page shipped, CMS & integrations next',
       highlights: [
         { text: 'Ran discovery end to end — audited TRESP’s business and services, benchmarked competitor recruiters, and turned it into a section-by-section plan for every page', icon: 'search' },
+        { text: 'Main page built end-to-end from the approved design — every section, responsive across desktop, tablet and mobile, on the live Next.js / React / Payload stack with an SEO foundation (metadata + JSON-LD) in place', icon: 'rocket' },
         { text: 'Information architecture agreed: Home, About, Employers, Jobseekers, Vacancies and Insights', icon: 'check' },
         { text: 'Design system defined — Kollektif headings + Plus Jakarta Sans, a blue palette with a warm #FFA675 accent', icon: 'palette' },
         { text: 'High-fidelity designs delivered across Home, Employers, Jobseekers, Vacancies and Insights — desktop, tablet and mobile', icon: 'sparkles' },
@@ -64,7 +65,7 @@ export const PROJECTS: Project[] = [
           title: 'Build',
           status: 'active',
           detail:
-            'Stack signed off and kicking off — scaffolding Payload and wiring the live JobAdder integration first.',
+            'The main page is built end-to-end from the approved design — every section, responsive across desktop, tablet and mobile, on the live Next.js / React / Payload stack with an SEO foundation in place. Next: model content in Payload and wire the live JobAdder integration so Vacancies serve live and applications pass straight through.',
         },
         {
           title: 'Launch',
