@@ -11,6 +11,7 @@ import ReadingProgress from '../ReadingProgress';
 
 import ProgressHero from './ProgressHero';
 import StageTimeline from './StageTimeline';
+import ProgressBlueprint from './ProgressBlueprint';
 import DecisionList from './DecisionList';
 import ProgressGallery from './ProgressGallery';
 
@@ -67,6 +68,18 @@ export default function ProgressLayout({ project, progress, nextProject }: Props
         >
           <StageTimeline stages={progress.stages} />
         </CaseStudySection>
+
+        {progress.blueprint && progress.blueprint.pages.length > 0 && (
+          <CaseStudySection
+            label="The blueprint"
+            id="blueprint"
+            lede={
+              'Before a screen was designed: the discovery plan, mapping every page section by section.'
+            }
+          >
+            <ProgressBlueprint blueprint={progress.blueprint} />
+          </CaseStudySection>
+        )}
 
         {progress.decisions && progress.decisions.length > 0 && (
           <CaseStudySection

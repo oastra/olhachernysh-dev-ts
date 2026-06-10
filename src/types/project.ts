@@ -122,6 +122,31 @@ export type ProgressDecision = {
   recommendation?: string;
 };
 
+export type BlueprintPage = {
+  /** e.g. "Home", "Candidates", "Vacancies". */
+  name: string;
+  /** Where the page sits, e.g. "Primary", "2nd level", "Technical". */
+  level?: string;
+  /** Who the page primarily speaks to. */
+  audience?: string;
+  /** The single key action the page is built to drive. */
+  keyAction?: string;
+  /** Ordered section names that make up the page, top to bottom. */
+  sections: string[];
+};
+
+/**
+ * The information-architecture blueprint produced in discovery — every page
+ * mapped section by section. Rendered as the "what & where" plan.
+ */
+export type ProgressBlueprint = {
+  /** Short paragraph framing how the plan was built. */
+  intro?: string;
+  /** Guiding principles shown as chips, e.g. "Stronger brand presence". */
+  principles?: string[];
+  pages: BlueprintPage[];
+};
+
 /**
  * Content for an in-development project shown as a living "progress" page
  * instead of a finished case study.
@@ -136,6 +161,8 @@ export type ProgressContent = {
   highlights?: CaseStudyOutcome[];
   /** Ordered stages forming the timeline. */
   stages: ProgressStage[];
+  /** Information-architecture blueprint — the page-by-page plan from discovery. */
+  blueprint?: ProgressBlueprint;
   /** Open decisions being worked through — e.g. the stack choice. */
   decisions?: ProgressDecision[];
   /** Design previews / screenshots of work delivered so far. */
