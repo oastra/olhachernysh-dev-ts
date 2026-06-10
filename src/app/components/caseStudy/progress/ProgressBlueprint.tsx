@@ -25,7 +25,7 @@ type Props = {
 
 function PageCard({ page }: { page: BlueprintPage }) {
   return (
-    <article className="flex min-h-[260px] flex-col rounded-[20px] border border-ink/12 bg-white p-6 md:p-7">
+    <article className="flex h-full flex-col rounded-[20px] border border-ink/12 bg-white p-6 md:p-7">
       <header className="flex flex-col gap-3 border-b border-ink/10 pb-5">
         <div className="flex flex-wrap items-center gap-3">
           <h3 className="text-h3-subheading font-semibold text-ink">
@@ -151,7 +151,6 @@ export default function ProgressBlueprint({ blueprint }: Props) {
                 pauseOnMouseEnter: true,
               }
         }
-        autoHeight
         spaceBetween={20}
         slidesPerView={1.05}
         breakpoints={{
@@ -161,7 +160,7 @@ export default function ProgressBlueprint({ blueprint }: Props) {
         className="mx-auto w-full max-w-[760px]"
       >
         {pages.map((page) => (
-          <SwiperSlide key={page.name} className="self-start">
+          <SwiperSlide key={page.name} className="!h-auto">
             <PageCard page={page} />
           </SwiperSlide>
         ))}

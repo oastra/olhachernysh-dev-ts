@@ -261,7 +261,7 @@ export const PROJECTS: Project[] = [
             },
           ],
           recommendation:
-            'Decided: Payload CMS, approved by the client. TRESP isn’t a typical content site — vacancies come live from JobAdder, posts from LinkedIn and ratings from Google, so the CMS mainly manages team profiles, services and editorial content. Payload is self-hosted with its own database, keeping that content and the integration logic in one codebase, with no ongoing licence fees. Crucially, no candidate personal data is stored on the site — applications pass straight through to JobAdder via the API. Sanity was the simpler, faster start, but data ownership and keeping the integrations in one place won out. Agreed delivery model: I host on my account through the build, with a full transfer to TRESP’s own accounts at go-live (hosting ~$20–40/month).',
+            'Decided: Payload CMS, approved by the client. TRESP isn’t a typical content site — vacancies come live from JobAdder, posts from LinkedIn and ratings from Google, so the CMS mainly manages team profiles, services and editorial content. Payload is self-hosted with its own database, keeping that content and the integration logic in one codebase, with no ongoing licence fees. Crucially, no candidate personal data is stored on the site — applications pass straight through to JobAdder via the API. Sanity was the simpler, faster start, but data ownership and keeping the integrations in one place won out. Agreed delivery model: we host on our account through the build, with a full transfer to TRESP’s own accounts at go-live (hosting ~$20–40/month).',
         },
         {
           title: 'Primary accent & button colour',
@@ -269,7 +269,7 @@ export const PROJECTS: Project[] = [
           options: [
             {
               name: 'Warm accent (peach / orange)',
-              note: 'My recommendation — a warm #FFA675 against the blue palette gives the CTAs real contrast and a friendlier, more human feel for a people-first recruitment brand, helping the “Hire Talent” and apply buttons stand out.',
+              note: 'Our recommendation — a warm #FFA675 against the blue palette gives the CTAs real contrast and a friendlier, more human feel for a people-first recruitment brand, helping the “Hire Talent” and apply buttons stand out.',
               recommended: true,
             },
             {
@@ -279,13 +279,13 @@ export const PROJECTS: Project[] = [
             },
           ],
           recommendation:
-            'Decided: light blue, at the client’s request. I recommended a warm peach/orange accent to make the calls-to-action pop and add some human warmth, but Mehdi preferred to keep everything in the blue family for a calmer, more clinical MedTech feel — and asked to switch the top banner from white to light blue. It’s their brand, so the designs now lead with blue across the buttons and hero. We can always revisit a warm accent later if the CTAs need more lift.',
+            'Decided: light blue, at the client’s request. We recommended a warm peach/orange accent to make the calls-to-action pop and add some human warmth, but Mehdi preferred to keep everything in the blue family for a calmer, more clinical MedTech feel — and asked to switch the top banner from white to light blue. It’s their brand, so the designs now lead with blue across the buttons and hero. We can always revisit a warm accent later if the CTAs need more lift.',
         },
       ],
       next: [
         'Scaffold the Payload CMS build and wire the JobAdder integration first, so Vacancies show live and applications pass straight through to JobAdder.',
         'Build out the approved designs — Home, Employers, Jobseekers, Vacancies and Insights — across desktop, tablet and mobile.',
-        'Finish the About page once team photos arrive, and set up hosting under my account ready for a clean transfer to TRESP at go-live.',
+        'Finish the About page once team photos arrive, and set up hosting under our account ready for a clean transfer to TRESP at go-live.',
       ],
       stack: [
         'Next.js',

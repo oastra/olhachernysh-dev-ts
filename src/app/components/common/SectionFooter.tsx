@@ -10,11 +10,11 @@ import {
 
 export default function SectionFooter() {
   const linksNav = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About Me' },
-    { href: '#projects', label: 'Works' },
-    { href: '#services', label: 'Services' },
-    { href: '#pricing', label: 'Prices' },
+    { href: '/', label: 'Home' },
+    { href: '/#about', label: 'About Me' },
+    { href: '/#projects', label: 'Works' },
+    { href: '/#services', label: 'Services' },
+    { href: '/#pricing', label: 'Prices' },
   ];
 
   const socialLinks = [

@@ -26,7 +26,7 @@ export default function ServicesSection() {
 
   return (
     <SectionWrapper id="services">
-      <SectionTitle>My Services</SectionTitle>
+      <SectionTitle>Services</SectionTitle>
 
       <div className="overflow-x-hidden gap-4 px-0px-1 lg:px-0 lg:grid lg:grid-cols-[503px_1fr] lg:gap-12">
         {/* LEFT: 503×712 image, desktop only, not sticky */}
